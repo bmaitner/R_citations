@@ -41,47 +41,58 @@ test <- pubmedR::pmApi2df(test)
 
 #scopus
 
-res <- scopus_search(query = "all(ecology) OR all(evolution)
-                              AND SUBJAREA(AGRI)
-                              AND pubyear > 2010
-                              AND LANGUAGE(english)
-                    AND REF(R Core Team)
-                    AND srctype(j)",count = 20,
-                     max_count = 200)
 
-
-n_records <- res$total_results
-df <- gen_entries_to_df(res$entries)
 out_df <- df$df
 
 
-while(nrow(out_df) < n_records){
-  
-  message(round(nrow(out_df)/n_records,digits = 2)*100, " pct done")
-  
-  Sys.sleep(25)
+#set year thresholds
+  min_year <- 2010
+  max_year <- 2022
 
-  res <- scopus_search(query = "all(ecology) OR all(evolution)
+out_df <- NULL
+for(i in min_year:max_year){
+
+  res <- scopus_search(query = paste("all(ecology)
                               AND SUBJAREA(AGRI)
-                              AND pubyear > 2010
-                              AND LANGUAGE(english)
-                    AND REF(R Core Team)
-                    AND srctype(j)",count = 20,
-                       max_count = 200,
-                       start = nrow(out_df)+1)
+                              AND pubyear = ", i,
+                              "AND LANGUAGE(english)
+                    AND REF('R Core Team')
+                    AND srctype(j)"),
+                       count = 25,
+                       max_count = 5000)
   
   
-  df <- gen_entries_to_df(res$entries)
+  n_records <- res$total_results
   
-  out_df <- bind_rows(out_df, df$df)
+  if(n_records > 5000){stop("Brian, add a while() loop")}
+  
+  out_df <- bind_rows(out_df,gen_entries_to_df(res$entries)$df)
 
-}
+}#year loop
 
 
-Sys.setenv('Elsevier_API' = "a2d541ae2c77641c21a2405f634a22f8")
-?Sys.setenv
 
-#a2d541ae2c77641c21a2405f634a22f8
+  
+# save df of articles
+
+
+# reorder articles so that they are stratified
+
+  #randomize order
+  # group by year
+  # add unique identifier to each record (within years)
+  # reorder by year, record number
+
+
+
+
+
+
+
+
+
+
+
 
 
 
