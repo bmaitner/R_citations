@@ -70,6 +70,8 @@ for(i in min_year:max_year){
 
 }#year loop
 
+saveRDS(object = out_df,
+        file = "data/search_results_2022_08_19.RDS")
 
 
   
