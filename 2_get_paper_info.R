@@ -18,7 +18,7 @@ library(googlesheets4)
 cite_data <- read_sheet("1pYB_oJt-Sx__OKJdmlgEpBmDFLmGLxh9Rddp9qKNooE")
 
 
-
+# Papers with scripts included over time
 cite_data%>%
   group_by(year)%>%
   summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
@@ -30,11 +30,17 @@ cite_data%>%
              y=prop_scripts_available))+
   geom_line()+
   ylab("Proportion of Papers with R Scripts Available")+
-  ylim(c(0,1))+
-  scale_x_continuous(limits = c(2010, 2022), breaks = seq(2010, 2022, 1))
+  scale_x_continuous(limits = c(2010, 2022), breaks = seq(2010, 2022, 1))+
+  scale_y_continuous(limits=c(0,1),breaks = seq(0,1,0.1))
 
 
+# Total number of papers we've found scripts for
+  cite_data %>%
+    summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")))
 
+# Total number of papers we've evaluated
+  cite_data %>%
+    summarise(n_papers_evaluated = sum(na.omit(r_scripts_available %in% c("yes","no"))))
 
 
 
