@@ -17,21 +17,25 @@ library(googlesheets4)
 # Pull the current version of hte google sheet
 cite_data <- read_sheet("1pYB_oJt-Sx__OKJdmlgEpBmDFLmGLxh9Rddp9qKNooE")
 
+library(ggpmisc)
 
 # Papers with scripts included over time
-cite_data%>%
-  group_by(year)%>%
+cite_data %>%
+  group_by(year) %>%
   summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
             n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
-            prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available))%>%
-  ungroup()%>%
-  mutate(year=as.integer(year))%>%
+            prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available)) %>%
+  ungroup() %>%
+  mutate(year=as.integer(year)) %>%
   ggplot(aes(x=year,
              y=prop_scripts_available))+
   geom_line()+
   ylab("Proportion of Papers with R Scripts Available")+
   scale_x_continuous(limits = c(2010, 2022), breaks = seq(2010, 2022, 1))+
-  scale_y_continuous(limits=c(0,1),breaks = seq(0,1,0.1))
+  scale_y_continuous(limits=c(0,1),breaks = seq(0,1,0.1))+
+  geom_smooth(method = "lm")+
+  stat_poly_eq(aes(label = paste(after_stat(eq.label),
+                                 after_stat(rr.label), sep = "*\", \"*")))
 
 
 # Total number of papers we've found scripts for
@@ -42,5 +46,9 @@ cite_data%>%
   cite_data %>%
     summarise(n_papers_evaluated = sum(na.omit(r_scripts_available %in% c("yes","no"))))
 
-
-
+# Overall fraction of papers with scripts
+  cite_data %>%
+    summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")))/
+    cite_data %>%
+    summarise(n_papers_evaluated = sum(na.omit(r_scripts_available %in% c("yes","no"))))
+  
