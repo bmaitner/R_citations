@@ -12,12 +12,11 @@
 library(tidyverse)
 library(googledrive)
 library(googlesheets4)
-
+library(ggpmisc)
 
 # Pull the current version of hte google sheet
 cite_data <- read_sheet("1pYB_oJt-Sx__OKJdmlgEpBmDFLmGLxh9Rddp9qKNooE")
 
-library(ggpmisc)
 
 # Papers with scripts included over time
 cite_data %>%
@@ -51,4 +50,16 @@ cite_data %>%
     summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")))/
     cite_data %>%
     summarise(n_papers_evaluated = sum(na.omit(r_scripts_available %in% c("yes","no"))))
+  
+# Samples per year
+  cite_data %>%
+    dplyr::filter(r_scripts_available %in% c("yes","no"))%>%
+    group_by(year)%>%
+    summarise(n = n()) %>%
+    ggplot(mapping = aes(x = year, y = n))+
+    geom_line()+
+    scale_x_continuous(limits = c(2010, 2022),
+                       breaks = seq(2010, 2022, 1),minor_breaks = NULL)+
+    scale_y_continuous(limits=c(0,100),breaks = seq(0,100,10))
+  
   
