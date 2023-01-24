@@ -14,11 +14,17 @@ library(googledrive)
 library(googlesheets4)
 library(ggpmisc)
 
-# Pull the current version of hte google sheet
+# Pull the current version of the google sheet
+
 cite_data <- read_sheet("1pYB_oJt-Sx__OKJdmlgEpBmDFLmGLxh9Rddp9qKNooE")
 
+# Limit the data to the comprehensive sampling at the beginning (to avoid any biases due to more freely-available journals)
+
+cite_data %>%
+  slice_head(n = 750) -> cite_data
 
 # Papers with scripts included over time
+
 cite_data %>%
   group_by(year) %>%
   summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
@@ -38,20 +44,24 @@ cite_data %>%
 
 
 # Total number of papers we've found scripts for
+
   cite_data %>%
     summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")))
 
 # Total number of papers we've evaluated
+  
   cite_data %>%
     summarise(n_papers_evaluated = sum(na.omit(r_scripts_available %in% c("yes","no"))))
 
 # Overall fraction of papers with scripts
+  
   cite_data %>%
     summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")))/
     cite_data %>%
     summarise(n_papers_evaluated = sum(na.omit(r_scripts_available %in% c("yes","no"))))
   
 # Samples per year
+
   cite_data %>%
     dplyr::filter(r_scripts_available %in% c("yes","no"))%>%
     group_by(year)%>%
