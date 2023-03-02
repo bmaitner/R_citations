@@ -3,7 +3,7 @@ import os
 import csv
 import utils
 
-
+# Download the Google Sheet as a CSV file and save it in run/r_citations_sheet.csv
 def download():
     sheet_id = "1pYB_oJt-Sx__OKJdmlgEpBmDFLmGLxh9Rddp9qKNooE"
 
@@ -13,7 +13,7 @@ def download():
     with open("run/r_citations_sheet.csv", "w") as f:
         f.write(response.text)
 
-
+# Read the Google Sheet from as dictionary, download if not exist
 def read():
     if not os.path.exists("run/r_citations_sheet.csv"):
         download()
