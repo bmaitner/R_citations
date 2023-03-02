@@ -8,9 +8,9 @@
 
 ## TODO
 - [x] Downloads the Google Sheet as csv
-- [ ] Scrap papers with `open_access=1`
-  - [ ] Attempt to scrap the others because they might also be open access
-  - [ ] Find the paper on other website (e.g. libkey/Unpaywall)
+- [x] Scrap papers with `open_access=1`
+  - [x] Attempt to scrap the others because they might also be open access
+  - [x] Find the paper on other website (e.g. libkey/Unpaywall)
 - [ ] Find Github links
   - [ ] Check repo code type
 - [ ] Analyze by links
