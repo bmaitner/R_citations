@@ -3,8 +3,7 @@ import google_sheet
 import os
 import utils
 import concurrent.futures
-
-silent_error = True
+import multiprocessing
 
 # noinspection PyBroadException
 try:
@@ -17,21 +16,33 @@ if email_address == "":
     print("Please enter your email address in run/email.txt for unpaywall api access.")
     exit()
 
+utils.create_if_not_exist("run/paper_pdf")
+
 # Download using unpaywall
 def download_entry(entry):
     uid = entry["uid"]
     doi = entry["doi_url"]
 
+    if os.path.exists(f"run/paper_pdf/{uid}.pdf"): return
+    if doi == "": return
+
+    # Request info from unpaywall api
     try:
-        # Request info from unpaywall api
         url = f"https://api.unpaywall.org/v2/{doi}?email={email_address}"
-        response = requests.get(url)
+        response = requests.get(url, timeout=15)
         response.raise_for_status()
         doi_obj = response.json()
+    except requests.exceptions.Timeout:
+        print(f"Timeout while requesting info for uid_{uid}")
+        return
 
-        # Download pdf
-        pdf_link = doi_obj["best_oa_location"]["url_for_pdf"]
-        response = requests.get(pdf_link)
+    pdf_link = doi_obj["best_oa_location"]["url_for_pdf"]
+    if not pdf_link or pdf_link == "":
+        return
+
+    # Download pdf
+    try:
+        response = requests.get(pdf_link, timeout=15)
         response.raise_for_status()
 
         # Save pdf
@@ -39,22 +50,14 @@ def download_entry(entry):
             f.write(response.content)
 
         print(f"Downloaded uid_{uid}")
-    except:
-        if not silent_error:
-            print(f"Could not download uid_{uid}")
+    except requests.exceptions.Timeout:
+        print(f"Timeout while downloading uid_{uid}")
 
 
 def download():
-    utils.create_if_not_exist("run/paper_pdf")
     sheet = google_sheet.read()
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=64) as pool:
+    with concurrent.futures.ThreadPoolExecutor(multiprocessing.cpu_count() * 8) as pool:
         for e in sheet:
-            uid = e["uid"]
-
-            if os.path.exists(f"run/paper_pdf/{uid}.pdf"): continue
-            if e["doi_url"] == "": continue
-
             pool.submit(download_entry, e)
 
-        pool.shutdown(wait=True)
