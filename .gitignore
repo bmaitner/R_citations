@@ -5,3 +5,5 @@
 api_key.R
 
 .idea
+run
+__pycache__
