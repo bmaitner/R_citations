@@ -1,9 +1,11 @@
-import requests
-import google_sheet
-import os
-import utils
 import concurrent.futures
 import multiprocessing
+import os
+
+import requests
+
+import google_sheet
+import utils
 
 # noinspection PyBroadException
 try:
@@ -17,6 +19,7 @@ if email_address == "":
     exit()
 
 utils.create_if_not_exist("run/paper_pdf")
+
 
 # Download using unpaywall
 def download_entry(entry):
@@ -60,4 +63,3 @@ def download():
     with concurrent.futures.ThreadPoolExecutor(multiprocessing.cpu_count() * 8) as pool:
         for e in sheet:
             pool.submit(download_entry, e)
-

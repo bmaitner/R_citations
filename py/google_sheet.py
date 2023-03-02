@@ -1,7 +1,8 @@
-import requests
-import os
 import csv
-import utils
+import os
+
+import requests
+
 
 # Download the Google Sheet as a CSV file and save it in run/r_citations_sheet.csv
 def download():
@@ -12,6 +13,7 @@ def download():
 
     with open("run/r_citations_sheet.csv", "w") as f:
         f.write(response.text)
+
 
 # Read the Google Sheet from as dictionary, download if not exist
 def read():
@@ -27,4 +29,3 @@ def read():
             result.append(dict(zip(header, row)))
 
     return result
-
