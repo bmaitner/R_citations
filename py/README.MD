@@ -15,3 +15,7 @@
   - [ ] Check repo code type
 - [ ] Analyze by links
 - [ ] Analyze by keywords
+
+## Credits
+- [Requests](https://requests.readthedocs.io/en/master/)
+- [Unpaywall](https://unpaywall.org/)
