@@ -18,9 +18,7 @@ def find_links_in_pdf(entry):
         uid = entry["uid"]
         file_path = f"run/paper_pdf/{uid}.pdf"
 
-        if not os.path.exists(file_path): return []
-
-        reader = pypdf.PdfReader(file_path, strict=True)
+        reader = pypdf.PdfReader(file_path, strict=False)
         urls = []
         for page in reader.pages:
             urls += find_links_in_str(page.extract_text())
@@ -35,10 +33,14 @@ def find_links_in_pdf(entry):
 
 
 total = {}
+files = [f for f in os.listdir("run/paper_pdf/")]
 sheets = google_sheet.read()
+sheets_with_pdf = [sheets[int(name.split(".")[0]) - 1] for name in files]
+
+print(f"Finding links in {len(sheets_with_pdf)} papers...")
 
 with concurrent.futures.ProcessPoolExecutor(multiprocessing.cpu_count()) as pool:
-    for e, urls in zip(sheets, pool.map(find_links_in_pdf, sheets)):
+    for e, urls in zip(sheets, pool.map(find_links_in_pdf, sheets_with_pdf)):
         if len(urls) == 0: continue
         total[e["uid"]] = urls
 
@@ -48,4 +50,5 @@ with open("run/github_links.csv", "w") as f:
     writer = csv.writer(f)
     writer.writerow(["uid", "urls"])
     for uid, urls in total.items():
-        writer.writerow([uid, ";".join(urls)])
+        for url in urls:
+            writer.writerow([uid, url])
