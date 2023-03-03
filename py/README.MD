@@ -19,3 +19,4 @@
 ## Credits
 - [Requests](https://requests.readthedocs.io/en/master/)
 - [Unpaywall](https://unpaywall.org/)
+- [pypdf](https://github.com/py-pdf/pypdf)
