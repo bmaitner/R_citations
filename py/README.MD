@@ -22,7 +22,7 @@
   - [x] Attempt to scrap the others because they might also be open access
   - [x] Find the paper on other website (e.g. libkey/Unpaywall)
 - [x] Find Github links
-  - [ ] Check repo code type
+  - [x] Check repo code type
 - [ ] Analyze by links
 - [ ] Analyze by keywords
 
