@@ -10,7 +10,7 @@ import google_sheet
 
 
 def find_links_in_str(s):
-    return list(re.findall(r"\b\S*github\.com/\S+", s))
+    return list(re.findall(r"github\.com/\S+", s))
 
 
 def find_links_in_pdf(entry):
@@ -21,7 +21,8 @@ def find_links_in_pdf(entry):
         reader = pypdf.PdfReader(file_path, strict=False)
         urls = []
         for page in reader.pages:
-            urls += find_links_in_str(page.extract_text())
+            for url in find_links_in_str(page.extract_text()):
+                urls.append(f"https://{url}")
 
         if len(urls) > 0:
             print(f"Found link in uid_{uid}: {urls}")
