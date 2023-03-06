@@ -7,21 +7,23 @@ import requests
 import google_sheet
 import utils
 
+# Read email address from file
 # noinspection PyBroadException
 try:
     with open("run/email.txt") as email_file:
         email_address = email_file.read().strip()
-except:
+except Exception as e:
     email_address = ""
 
 if email_address == "":
     print("Please enter your email address in run/email.txt for unpaywall api access.")
     exit()
 
+# Create folder for pdfs
 utils.create_if_not_exist("run/paper_pdf")
 
 
-# Download using unpaywall
+# Download pdf for a paper entry using unpaywall
 def download_entry(entry):
     uid = entry["uid"]
     doi = entry["doi_url"]
@@ -57,7 +59,9 @@ def download_entry(entry):
         print(f"Timeout while downloading uid_{uid}")
 
 
+# Download all pdfs
 def download():
+    print("Downloading pdfs...")
     sheet = google_sheet.read()
 
     with concurrent.futures.ThreadPoolExecutor(multiprocessing.cpu_count() * 8) as pool:

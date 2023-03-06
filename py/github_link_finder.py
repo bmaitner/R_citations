@@ -33,23 +33,24 @@ def find_links_in_pdf(entry):
         return []
 
 
-total = {}
-files = [f for f in os.listdir("run/paper_pdf/")]
-sheets = google_sheet.read()
-sheets_with_pdf = [sheets[int(name.split(".")[0]) - 1] for name in files]
+def run():
+    total = {}
+    files = [f for f in os.listdir("run/paper_pdf/")]
+    sheets = google_sheet.read()
+    sheets_with_pdf = [sheets[int(name.split(".")[0]) - 1] for name in files]
 
-print(f"Finding links in {len(sheets_with_pdf)} papers...")
+    print(f"Finding links in {len(sheets_with_pdf)} papers...")
 
-with concurrent.futures.ProcessPoolExecutor(multiprocessing.cpu_count()) as pool:
-    for e, urls in zip(sheets, pool.map(find_links_in_pdf, sheets_with_pdf)):
-        if len(urls) == 0: continue
-        total[e["uid"]] = urls
+    with concurrent.futures.ProcessPoolExecutor(multiprocessing.cpu_count()) as pool:
+        for e, urls in zip(sheets, pool.map(find_links_in_pdf, sheets_with_pdf)):
+            if len(urls) == 0: continue
+            total[e["uid"]] = urls
 
-print(f"Found links in {len(total)} papers")
+    print(f"Found links in {len(total)} papers")
 
-with open("run/github_links.csv", "w") as f:
-    writer = csv.writer(f)
-    writer.writerow(["uid", "urls"])
-    for uid, urls in total.items():
-        for url in urls:
-            writer.writerow([uid, url])
+    with open("run/github_links.csv", "w") as f:
+        writer = csv.writer(f)
+        writer.writerow(["uid", "urls"])
+        for uid, urls in total.items():
+            for url in urls:
+                writer.writerow([uid, url])
