@@ -34,3 +34,6 @@ def read():
             cached_sheets.append(dict(zip(header, row)))
 
     return cached_sheets
+
+if __name__ == "__main__":
+    print(read())
