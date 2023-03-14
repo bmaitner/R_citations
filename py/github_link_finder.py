@@ -11,14 +11,14 @@ import google_sheet
 
 # noinspection PyBroadException
 try:
-    with open("run/github_token.txt") as github_token_file:
+    with open("run/tokens/github.txt") as github_token_file:
         github_token = github_token_file.read().strip()
 except:
     github_token = ""
 
 if github_token == "":
     print(
-        "Please enter your Github token in run/github_token.txt for Github API access. The token only needs to have the 'repo' scope permission.")
+        "Please enter your Github token in run/github.txt for Github API access. The token only needs to have the 'repo' scope permission.")
     print(
         "Document for generating a token: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token")
     print(
