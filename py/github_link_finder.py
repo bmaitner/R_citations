@@ -9,6 +9,8 @@ import requests
 
 import google_sheet
 
+github_link_result_keys = ["uid", "url", "page_found", "invalid", "is_repo", "contains_r_code"]
+
 # noinspection PyBroadException
 try:
     with open("run/tokens/github.txt") as github_token_file:
@@ -42,6 +44,8 @@ def fix_link(link):
     if link.endswith(".git"):
         link = link[:-4]
 
+    link = link.replace("(", "").replace(")", "")
+
     # Don't know why, but some links have invalid characters
     fixed = link.replace("ﬁ", "fi").replace("ﬂ", "fl")
     if fixed != link:
@@ -50,9 +54,27 @@ def fix_link(link):
 
     return link
 
+
 # Find all Github links in a string
-def find_links_in_str(s):
-    return [fix_link(link) for link in re.findall(github_link_regex, s)]
+def find_links_by_text(page):
+    for link in re.findall(github_link_regex, page.extract_text()):
+        yield fix_link(link)
+
+
+def get_or(obj, key, default):
+    if key in obj.keys():
+        return obj[key]
+    else:
+        return default
+
+
+def find_links_by_annotation(page):
+    for annotation in get_or(page, "/Annots", []):
+        ank = get_or(annotation.get_object(), "/A", {})
+        for link in re.findall(github_link_regex, str(get_or(ank, "/URI", ""))):
+            yield fix_link(link)
+
+    return []
 
 
 # Check if a repo contains R code using GitHub API
@@ -80,24 +102,20 @@ def check_repo(result, user, repo):
 
 
 # Analyze a Github link
-def analyze_link(entry, link):
-    result = {
-        "uid": entry["uid"],
-        "url": f"https://{link}",
-        "invalid": "",
-        "is_repo": "",
-        "contains_r_code": ""
-    }
+def process_link(link_result):
+    link = link_result["url"][8:]
 
     repo_match = re.fullmatch(github_repo_regex, link)
 
     if repo_match:
-        result["is_repo"] = "y"
-        check_repo(result, repo_match.group(1), repo_match.group(2))
+        link_result["is_repo"] = "y"
+        check_repo(link_result, repo_match.group(1), repo_match.group(2))
     else:
-        result["is_repo"] = "n"
+        link_result["is_repo"] = "n"
 
-    return result
+    link_result["page_found"] = ",".join([str(page) for page in link_result["page_found"]])
+
+    return link_result
 
 
 # Find all Github links in a pdf
@@ -105,49 +123,65 @@ def find_links_in_pdf(entry):
     uid = entry["uid"]
 
     try:
-        file_path = f"run/paper_pdf/{uid}.pdf"
+        reader = pypdf.PdfReader(f"run/paper_pdf/{uid}.pdf", strict=False)
+        links_found = {}
 
-        reader = pypdf.PdfReader(file_path, strict=False)
-        links_found = set()
-        for page in reader.pages:
-            for link in find_links_in_str(page.extract_text()):
-                links_found.add(link)
+        def add_link_to_dict(link, page_num):
+            link_result = links_found.get(link, None)
 
-        results = [analyze_link(entry, link) for link in links_found]
+            if link_result is None:
+                link_result = dict(zip(github_link_result_keys, [
+                    entry["uid"],
+                    f"https://{link}",
+                    set(),
+                    "",
+                    "",
+                    ""
+                ]))
+                links_found[link] = link_result
 
-        if len(results) > 0:
-            print(f"Found link in uid_{uid}:")
-            for info in results:
-                print(f"    {info}")
+            link_result["page_found"].add(page_num)
 
-        return results
+        for page_num, page in enumerate(reader.pages):
+            for link in find_links_by_annotation(page):
+                add_link_to_dict(fix_link(link), page_num + 1)
+
+            # for link in find_links_by_text(page):
+            #     add_link_to_dict(fix_link(link), page_num + 1)
+
+        return [process_link(link) for link in links_found.values()]
     except Exception as e:
         print(f"Error in uid_{uid}: {e}")
         return []
 
 
 def run():
+    # Get the paper entries with pdf
     paper_with_link_count = 0
     results = []
     files = [f for f in os.listdir("run/paper_pdf/")]
     sheets = google_sheet.read()
     sheets_with_pdf = [sheets[int(name.split(".")[0]) - 1] for name in files]
+    sheets_with_pdf.sort(key=lambda x: int(x["uid"]))
 
     print(f"Finding links in {len(sheets_with_pdf)} papers...")
 
     with concurrent.futures.ProcessPoolExecutor(multiprocessing.cpu_count()) as pool:
-        for link_entries in pool.map(find_links_in_pdf, sheets_with_pdf):
+        for entry, link_entries in zip(sheets_with_pdf, pool.map(find_links_in_pdf, sheets_with_pdf)):
             if len(link_entries) > 0:
+                print(f"Found link in uid_{entry['uid']}:")
+                for info in link_entries:
+                    print(f"    {info}")
                 results += link_entries
                 paper_with_link_count += 1
 
     print(f"Found {len(results)} links in {paper_with_link_count} papers")
 
     with open("run/github_links.csv", "w") as f:
-        writer = csv.writer(f)
-        writer.writerow(["uid", "url", "invalid", "is_repo", "contains_r_code"])
+        writer = csv.DictWriter(f, fieldnames=github_link_result_keys)
+        writer.writeheader()
         for link_entry in results:
-            writer.writerow(link_entry.values())
+            writer.writerow(link_entry)
 
 
 if __name__ == "__main__":
