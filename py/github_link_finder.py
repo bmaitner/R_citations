@@ -184,5 +184,43 @@ def run():
             writer.writerow(link_entry)
 
 
+def plot():
+    files = [f for f in os.listdir("run/paper_pdf/")]
+    sheets = google_sheet.read()
+    sheets_with_pdf = [sheets[int(name.split(".")[0]) - 1] for name in files]
+    sheets_with_pdf.sort(key=lambda x: int(x["uid"]))
+
+    total = {}
+    r_code_on_github = {}
+
+    for entry in sheets_with_pdf:
+        k = int(entry["date"][:4])
+        total[k] = total.get(k, 0) + 1
+
+    counted_uid = set()
+
+    with open("run/github_links.csv", "r") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            uid = int(row["uid"])
+            if uid not in counted_uid:
+                counted_uid.add(uid)
+                k = int(sheets[uid - 1]["date"][:4])
+                r_code_on_github[k] = r_code_on_github.get(k, 0) + 1
+
+    import matplotlib.pyplot as plt
+
+    x = list(total.keys())
+    x.sort()
+    y = [(r_code_on_github.get(k, 0) / total.get(k, 0)) * 100.0 for k in x]
+
+    plt.figure(figsize=(10, 5))
+    plt.plot(x, y)
+    plt.xlabel("Year")
+    plt.ylabel("% of papers with R code on Github")
+    plt.xticks(x)
+    plt.show()
+
 if __name__ == "__main__":
     run()
+
