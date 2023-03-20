@@ -125,9 +125,13 @@ def check_repo(link_result):
         print(f"Timeout while requesting languages info for Github repo {user}/{repo}")
 
 
-def compute_score(input, expected):
-    l = len(expected)
-    return (textdistance.levenshtein.similarity(input, expected) / l * 0.5) + (textdistance.lcsstr.similarity(input, expected) / l * 0.5)
+def compute_score(input_text, expected_text):
+    if not input_text:
+        return 0.0
+    l = len(expected_text)
+    levenshtein = textdistance.levenshtein.similarity(input_text, expected_text)
+    lcsstr = textdistance.lcsstr.similarity(input_text, expected_text)
+    return (levenshtein / l * 0.5) + (lcsstr / l * 0.5)
 
 
 def compute_title_match_score(entry, link_result):
