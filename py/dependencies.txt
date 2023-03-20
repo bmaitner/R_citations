@@ -1,3 +1,4 @@
 requests
 pypdf
 pycryptodome
+textdistance

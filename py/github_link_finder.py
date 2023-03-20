@@ -6,10 +6,21 @@ import csv
 
 import pypdf
 import requests
+import textdistance
 
 import google_sheet
 
-github_link_result_keys = ["uid", "url", "page_found", "invalid", "is_repo", "contains_r_code"]
+github_link_result_keys = [
+    "uid",
+    "url",
+    "page_found",
+    "user",
+    "repo",
+    "valid",
+    "contains_r_code",
+    "readme_score",
+    "description_score"
+]
 
 # noinspection PyBroadException
 try:
@@ -31,7 +42,6 @@ github_api_headers = {
 }
 
 github_link_regex = re.compile(r"github.com/[^\s/]+(?:/[^\s/]*)?")
-github_repo_regex = re.compile(r"github.com/([^\s/]+)/([^\s/]+)")
 
 
 def fix_link(link):
@@ -77,43 +87,83 @@ def find_links_by_annotation(page):
     return []
 
 
+def request_github(url):
+    response = requests.get(url, headers=github_api_headers, timeout=15)
+    response.raise_for_status()
+    return response.json()
+
+
+def validate_link(link_result):
+    # noinspection PyBroadException
+    try:
+        requests.get(link_result["url"], timeout=15).raise_for_status()
+        link_result["valid"] = "y"
+    except Exception:
+        link_result["valid"] = "n"
+
+
+def extract_user_repo_info(link_result):
+    split = link_result["url"][8:].split("/")  # Removes https:// and splits into user and repo
+    link_result["user"] = split[1]
+    link_result["repo"] = split[2] if len(split) > 2 else ""
+
+
 # Check if a repo contains R code using GitHub API
-def check_repo(result, user, repo):
+def check_repo(link_result):
     if github_token == "":
         return
 
-    try:
-        url = f"https://api.github.com/repos/{user}/{repo}/languages"
-        response = requests.get(
-            url,
-            headers=github_api_headers,
-            timeout=15
-        )
+    user = link_result["user"]
+    repo = link_result["repo"]
 
-        response.raise_for_status()
-        languages = response.json()
-        result["contains_r_code"] = "y" if "R" in languages else "n"
-        result["invalid"] = "n"
+    try:
+        languages = request_github(f"https://api.github.com/repos/{user}/{repo}/languages")
+        link_result["contains_r_code"] = "y" if "R" in languages else "n"
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTPError while requesting languages info for Github repo {user}/{repo}", e)
+    except requests.exceptions.Timeout:
+        print(f"Timeout while requesting languages info for Github repo {user}/{repo}")
+
+
+def compute_score(input, expected):
+    l = len(expected)
+    return (textdistance.levenshtein.similarity(input, expected) / l * 0.5) + (textdistance.lcsstr.similarity(input, expected) / l * 0.5)
+
+
+def compute_title_match_score(entry, link_result):
+    if github_token == "":
+        return
+
+    user = link_result["user"]
+    repo = link_result["repo"]
+
+    try:
+        json_response = request_github(f"https://api.github.com/repos/{user}/{repo}")
+        default_branch = json_response["default_branch"]
+        readme_request = requests.get(f"https://raw.githubusercontent.com/{user}/{repo}/{default_branch}/README.md", timeout=15)
+
+        readme = readme_request.text
+        description = json_response["description"]
+        title = entry["title"]
+
+        link_result["readme_score"] = compute_score(readme, title)
+        link_result["description_score"] = compute_score(description, title)
     except requests.exceptions.HTTPError as e:
         print(f"HTTPError while requesting info for Github repo {user}/{repo}", e)
-        result["invalid"] = "y"
     except requests.exceptions.Timeout:
         print(f"Timeout while requesting info for Github repo {user}/{repo}")
 
 
 # Analyze a Github link
-def process_link(link_result):
-    link = link_result["url"][8:]
-
-    repo_match = re.fullmatch(github_repo_regex, link)
-
-    if repo_match:
-        link_result["is_repo"] = "y"
-        check_repo(link_result, repo_match.group(1), repo_match.group(2))
-    else:
-        link_result["is_repo"] = "n"
-
+def process_link(entry, link_result):
     link_result["page_found"] = ",".join([str(page) for page in link_result["page_found"]])
+
+    extract_user_repo_info(link_result)
+    validate_link(link_result)
+
+    if link_result["repo"] and link_result["valid"] == "y":
+        check_repo(link_result)
+        compute_title_match_score(entry, link_result)
 
     return link_result
 
@@ -136,6 +186,9 @@ def find_links_in_pdf(entry):
                     set(),
                     "",
                     "",
+                    "",
+                    "",
+                    "",
                     ""
                 ]))
                 links_found[link] = link_result
@@ -149,7 +202,7 @@ def find_links_in_pdf(entry):
             # for link in find_links_by_text(page):
             #     add_link_to_dict(fix_link(link), page_num + 1)
 
-        return [process_link(link) for link in links_found.values()]
+        return [process_link(entry, link) for link in links_found.values()]
     except Exception as e:
         print(f"Error in uid_{uid}: {e}")
         return []
@@ -166,7 +219,7 @@ def run():
 
     print(f"Finding links in {len(sheets_with_pdf)} papers...")
 
-    with concurrent.futures.ProcessPoolExecutor(multiprocessing.cpu_count()) as pool:
+    with concurrent.futures.ProcessPoolExecutor(multiprocessing.cpu_count() * 4) as pool:
         for entry, link_entries in zip(sheets_with_pdf, pool.map(find_links_in_pdf, sheets_with_pdf)):
             if len(link_entries) > 0:
                 print(f"Found link in uid_{entry['uid']}:")
@@ -184,7 +237,7 @@ def run():
             writer.writerow(link_entry)
 
 
-def plot():
+def plot_percentage_github():
     files = [f for f in os.listdir("run/paper_pdf/")]
     sheets = google_sheet.read()
     sheets_with_pdf = [sheets[int(name.split(".")[0]) - 1] for name in files]
@@ -221,6 +274,57 @@ def plot():
     plt.xticks(x)
     plt.show()
 
+
+def plot_score_scatter():
+    import matplotlib.pyplot as plt
+
+    x = []
+    y = []
+
+    with open("run/github_links.csv", "r") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row["readme_score"] and row["description_score"]:
+                x.append(float(row["readme_score"]))
+                y.append(float(row["description_score"]))
+
+    plt.title("Readme score vs Description score, total count: " + str(len(x)))
+    plt.scatter(x, y, s=2.0)
+    plt.xlabel("Readme score")
+    plt.ylabel("Description score")
+    plt.show()
+
+
+def plot_score_histo():
+    import matplotlib.pyplot as plt
+
+    readme_scores = []
+    description_scores = []
+
+    with open("run/github_links.csv", "r") as f:
+        reader = csv.DictReader(f)
+
+        for row in reader:
+            if row["readme_score"]:
+                readme_scores.append(float(row["readme_score"]))
+
+            if row["description_score"]:
+                description_scores.append(float(row["description_score"]))
+
+    plt.title("Readme score, total count: " + str(len(readme_scores)))
+    plt.hist(readme_scores, bins=20)
+    plt.xlabel("Readme score")
+    plt.ylabel("Count")
+    plt.show()
+
+    plt.title("Description score, total count: " + str(len(description_scores)))
+    plt.hist(description_scores, bins=20)
+    plt.xlabel("Description score")
+    plt.ylabel("Count")
+    plt.show()
+
 if __name__ == "__main__":
     run()
-
+    plot_percentage_github()
+    plot_score_scatter()
+    plot_score_histo()
