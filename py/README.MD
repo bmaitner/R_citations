@@ -23,8 +23,9 @@
   - [x] Find the paper on other website (e.g. libkey/Unpaywall)
 - [x] Find Github links
   - [x] Check repo code type
-- [ ] Analyze by links
+- [x] Analyze by links
 - [ ] Analyze by keywords
+  - [x] Find keywords in the paper
 
 ## Credits
 - [Unpaywall](https://unpaywall.org/)
