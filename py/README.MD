@@ -33,3 +33,4 @@
 - [pypdf](https://github.com/py-pdf/pypdf)
 - [PyCryptodome](https://www.pycryptodome.org/)
 - [textdistance](https://github.com/life4/textdistance)
+- [matplotlib](https://matplotlib.org/)

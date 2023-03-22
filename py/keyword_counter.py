@@ -7,6 +7,7 @@ import re
 import pypdf
 
 import google_sheet
+import paper_pdf
 
 keywords = []
 try:
@@ -42,10 +43,7 @@ def count_keywords_in_pdf(entry):
 def run():
     # Get the paper entries with pdf
     results = []
-    files = [f for f in os.listdir("run/paper_pdf/")]
-    sheets = google_sheet.read()
-    sheets_with_pdf = [sheets[int(name.split(".")[0]) - 1] for name in files]
-    sheets_with_pdf.sort(key=lambda x: int(x["uid"]))
+    sheets_with_pdf = paper_pdf.get_sheets_with_pdf()
 
     print("Keywords:", keywords)
     print(f"Counting keywords in {len(sheets_with_pdf)} papers...")

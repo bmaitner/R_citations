@@ -9,6 +9,7 @@ import requests
 import textdistance
 
 import google_sheet
+import paper_pdf
 
 github_link_result_keys = [
     "uid",
@@ -242,10 +243,8 @@ def run():
 
 
 def plot_percentage_github():
-    files = [f for f in os.listdir("run/paper_pdf/")]
     sheets = google_sheet.read()
-    sheets_with_pdf = [sheets[int(name.split(".")[0]) - 1] for name in files]
-    sheets_with_pdf.sort(key=lambda x: int(x["uid"]))
+    sheets_with_pdf = paper_pdf.get_sheets_with_pdf()
 
     total = {}
     r_code_on_github = {}
