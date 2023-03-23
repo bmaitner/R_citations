@@ -58,5 +58,12 @@ def run():
         for result in results:
             writer.writerow(result)
 
+
+def read_keyword_count():
+    with open("run/keyword_count.csv") as f:
+        reader = csv.DictReader(f)
+        return list(reader)
+
+
 if __name__ == "__main__":
     run()
