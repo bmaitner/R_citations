@@ -3,3 +3,4 @@ pypdf
 pycryptodome
 textdistance
 matplotlib
+pytorch

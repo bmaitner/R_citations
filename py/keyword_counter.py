@@ -1,12 +1,10 @@
 import concurrent.futures
 import csv
 import multiprocessing
-import os
 import re
 
 import pypdf
 
-import google_sheet
 import paper_pdf
 
 keywords = []
@@ -23,9 +21,11 @@ if len(keywords) == 0:
 result_keys = ["uid"] + keywords
 compiled_keywords = [re.compile(f"\\b{keyword}\\b", re.IGNORECASE) for keyword in keywords]
 
+
 def count_keywords_in_text(result, text):
     for keyword, regex in zip(keywords, compiled_keywords):
         result[keyword] += len(re.findall(regex, text))
+
 
 def count_keywords_in_pdf(entry):
     uid = entry["uid"]
@@ -39,6 +39,7 @@ def count_keywords_in_pdf(entry):
         print(f"Error in uid_{uid}: {e}")
 
     return result
+
 
 def run():
     # Get the paper entries with pdf

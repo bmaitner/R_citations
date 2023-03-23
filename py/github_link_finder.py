@@ -1,8 +1,8 @@
 import concurrent.futures
+import csv
 import multiprocessing
 import os
 import re
-import csv
 
 import pypdf
 import requests
@@ -145,7 +145,8 @@ def compute_title_match_score(entry, link_result):
     try:
         json_response = request_github(f"https://api.github.com/repos/{user}/{repo}")
         default_branch = json_response["default_branch"]
-        readme_request = requests.get(f"https://raw.githubusercontent.com/{user}/{repo}/{default_branch}/README.md", timeout=15)
+        readme_request = requests.get(f"https://raw.githubusercontent.com/{user}/{repo}/{default_branch}/README.md",
+                                      timeout=15)
 
         readme = readme_request.text
         description = json_response["description"]
@@ -325,6 +326,7 @@ def plot_score_histo():
     plt.xlabel("Description score")
     plt.ylabel("Count")
     plt.show()
+
 
 if __name__ == "__main__":
     run()

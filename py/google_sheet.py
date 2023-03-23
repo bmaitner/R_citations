@@ -5,6 +5,7 @@ import requests
 
 cached_sheets = None
 
+
 # Download the Google Sheet as a CSV file and save it in run/r_citations_sheet.csv
 def download():
     sheet_id = "1pYB_oJt-Sx__OKJdmlgEpBmDFLmGLxh9Rddp9qKNooE"
@@ -35,5 +36,7 @@ def read():
 
     return cached_sheets
 
+
 if __name__ == "__main__":
+    download()
     print(read())

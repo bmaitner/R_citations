@@ -10,11 +10,12 @@
 
 - Install dependencies
   - `pip install -r dependencies.txt`
-- Run the script
-  - `python main.py`
-  - Use `REFRESH_GOOGLE_SHEET` to refresh the locally cached Google Sheet
-  - Use `SKIP_PDF_DOWNLOAD` to skip downloading the pdfs, if they were already downloaded and you wish to skip this slow process
-  - Use `SKIP_GITHUB_LINK` to skip Github link search
+- Run the modules
+  - `google_sheet.py` for downloading the Google Sheet
+  - `paper_pdf.py` for downloading the paper as pdf
+  - `github_link_finder.py` for finding the GitHub links
+  - `keyword_counter.py` for generating the keyword count
+  - `keyword_analyzer.py` for analyzing the keywords
 
 ## TODO
 - [x] Downloads the Google Sheet as csv
@@ -24,7 +25,7 @@
 - [x] Find Github links
   - [x] Check repo code type
 - [x] Analyze by links
-- [ ] Analyze by keywords
+- [x] Analyze by keywords
   - [x] Find keywords in the paper
 
 ## Credits
@@ -34,3 +35,4 @@
 - [PyCryptodome](https://www.pycryptodome.org/)
 - [textdistance](https://github.com/life4/textdistance)
 - [matplotlib](https://matplotlib.org/)
+- [pytorch](https://pytorch.org/)

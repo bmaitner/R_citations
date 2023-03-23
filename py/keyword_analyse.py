@@ -1,11 +1,11 @@
 import csv
+import math
 
 import torch
 
 import google_sheet
 import keyword_counter
 import paper_pdf
-import math
 
 # Set the default dtype to float32
 torch.set_default_dtype(torch.float32)
@@ -63,9 +63,9 @@ def train(model, epoch):
 if __name__ == '__main__':
     keyword_list_size = len(keyword_counter.keywords)
     model = torch.nn.Sequential(
-        torch.nn.Linear(keyword_list_size, keyword_list_size**2),
+        torch.nn.Linear(keyword_list_size, keyword_list_size ** 2),
         torch.nn.ReLU(),
-        torch.nn.Linear(keyword_list_size**2, keyword_list_size),
+        torch.nn.Linear(keyword_list_size ** 2, keyword_list_size),
         torch.nn.ReLU(),
         torch.nn.Linear(keyword_list_size, 1),
         torch.nn.Sigmoid(),

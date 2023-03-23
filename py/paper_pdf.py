@@ -223,12 +223,14 @@ def download():
         for list_for_process in lists:
             process_pool.submit(download_entries, list_for_process)
 
+
 def get_sheets_with_pdf():
     files = [f for f in os.listdir("run/paper_pdf/")]
     sheets = google_sheet.read()
     sheets_with_pdf = [sheets[int(name.split(".")[0]) - 1] for name in files]
     sheets_with_pdf.sort(key=lambda x: int(x["uid"]))
     return sheets_with_pdf
+
 
 if __name__ == "__main__":
     download()
