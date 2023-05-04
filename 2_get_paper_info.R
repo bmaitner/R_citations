@@ -107,9 +107,41 @@ library(ggpubr)
     facet_wrap(~year,scales = "free")+
     xlab("R scripts available?")
 
-  summary(lm(data = cite_data,formula = citations ~ r_scripts_available*year))
-  AIC(lm(data = cite_data,formula = citations ~ r_scripts_available*year))
   AIC(lm(data = cite_data,formula = citations ~ r_scripts_available*year + open_access*r_scripts_available))
+  AIC(lm(data = cite_data,formula = citations ~ r_scripts_available*year))-  AIC(lm(data = cite_data,formula = citations ~ r_scripts_available*year + open_access*r_scripts_available))
+  AIC(lm(data = cite_data,formula = citations ~ r_scripts_available*year + open_access))-AIC(lm(data = cite_data,formula = citations ~ r_scripts_available*year + open_access*r_scripts_available))
   summary(lm(data = cite_data,formula = citations ~ r_scripts_available*year + open_access*r_scripts_available))
+  
+  pref_model <-lm(data = cite_data,formula = citations ~ r_scripts_available*year + open_access*r_scripts_available)
+  
+
+  
+  #Open access impacts likelihood of sharing?
+library(tidyverse)  
+  
+  cite_data %>%
+    dplyr::filter(r_scripts_available %in% c("yes","no"))%>%
+    group_by(year,open_access) %>%
+    summarise(n = n(),
+              n_scripts_available = sum(na.omit(r_scripts_available=="yes"))
+              )%>%
+    mutate(frac_w_scripts = n_scripts_available/n)%>%
+    ggplot(mapping = aes(x=year,y=frac_w_scripts,fill=open_access))+
+    geom_bar(stat = "identity",position = position_dodge())+
+    scale_x_continuous(limits = c(2010, 2022),
+                       breaks = seq(2010, 2022, 1),minor_breaks = NULL)
+  
+  
+  
+  
+  cite_data %>%
+    dplyr::filter(r_scripts_available %in% c("yes","no"))%>%
+    group_by(year,open_access) %>%
+    summarise(n = n(),
+              n_scripts_available = sum(na.omit(r_scripts_available=="yes"))
+    )%>%
+    mutate(frac_w_scripts = n_scripts_available/n)%>%
+    group_by(open_access)%>%
+    summarise(mean_frac_w_scripts = mean(frac_w_scripts))
   
   
