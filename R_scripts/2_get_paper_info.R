@@ -216,7 +216,7 @@ library(tidyverse)
   predicted_data %>%
     mutate('Years Since Publication' = abs(year-2022))%>%
   ggplot(mapping = aes(x=`Years Since Publication`,y=citations,color=access))+
-    geom_line()+
+    geom_line(size=1.5)+
     scale_x_continuous(limits = c(0,12),
                        breaks = seq(0,12, 1),minor_breaks = NULL)+
     ylab("Predicted Citations")+
@@ -224,7 +224,8 @@ library(tidyverse)
                                  'open code',
                                  'open publication',
                                  'full closed'))+
-    theme_bw()
+    theme_bw()+
+    scale_x_continuous(limits = c(0,12), expand = c(0, 0)) 
 
 
 
