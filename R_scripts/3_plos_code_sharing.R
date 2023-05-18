@@ -166,8 +166,23 @@ source("api_key.R")
     labs(color = "Subject Area")+
     scale_y_continuous(limits = c(0,1), expand = c(0, 0))
   
-    
-  
-    
 
     #####################
+  
+  #stats
+  plos %>%
+    filter(subj_area == "AGRI") %>%
+    mutate(data_shared = case_when(Data_Shared == "Yes" ~ 1,
+                                   Data_Shared == "No" ~ 0),
+           code_shared = case_when(Code_Shared == "Yes" ~ 1,
+                                   Code_Shared == "No" ~ 0,
+                                   Code_Shared == "" ~ 0)) %>%
+    summarise(n_w_code= sum(code_shared),
+              n_w_data = sum(data_shared),
+              total = n())%>%
+    mutate(pct_w_code = (n_w_code/total)*100,
+           pct_w_data = (n_w_data/total)*100)
+    
+  
+  plos$Code_Shared
+  

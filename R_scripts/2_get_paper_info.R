@@ -106,16 +106,37 @@ library(ggpubr)
                        vjust = +1)+
     facet_wrap(~year,scales = "free")+
     xlab("R scripts available?")
+  
+  cite_data %>%
+    mutate(log_cites = log10(as.numeric(citations)+1))->
+    cite_data
+    
+  
+  library(bbmle)
 
-  AIC(lm(data = cite_data,formula = citations ~ r_scripts_available*year + open_access*r_scripts_available))
-  AIC(lm(data = cite_data,formula = citations ~ r_scripts_available*year))-  AIC(lm(data = cite_data,formula = citations ~ r_scripts_available*year + open_access*r_scripts_available))
-  AIC(lm(data = cite_data,formula = citations ~ r_scripts_available*year + open_access))-AIC(lm(data = cite_data,formula = citations ~ r_scripts_available*year + open_access*r_scripts_available))
-  summary(lm(data = cite_data,formula = citations ~ r_scripts_available*year + open_access*r_scripts_available))
+  m5 <- lm(data = cite_data,
+           formula = log_cites ~ r_scripts_available*year + open_access*r_scripts_available + open_access*year)
   
-  pref_model <-lm(data = cite_data,formula = citations ~ r_scripts_available*year + open_access*r_scripts_available)
+  m4 <- lm(data = cite_data,
+           formula = log_cites ~ r_scripts_available*year + open_access*year)
   
+  m3 <- lm(data = cite_data,
+           formula = log_cites ~ r_scripts_available*year + open_access*r_scripts_available)
+  
+  m2 <- lm(data = cite_data,
+           formula = log_cites ~ r_scripts_available*year + open_access)
+  
+  m1 <- lm(data = cite_data,
+           formula = log_cites ~ r_scripts_available*year)
+  
+  AICtab(m1,m2,m3,m4,m5)
+  
+  #since models 4 and 5 have equivalent aics, we'll go with the more parsimonious
 
+  pref_model <- m4
   
+  summary(pref_model)
+
   #Open access impacts likelihood of sharing?
 library(tidyverse)  
   
@@ -132,8 +153,6 @@ library(tidyverse)
                        breaks = seq(2010, 2022, 1),minor_breaks = NULL)
   
   
-  
-  
   cite_data %>%
     dplyr::filter(r_scripts_available %in% c("yes","no"))%>%
     group_by(year,open_access) %>%
@@ -144,4 +163,80 @@ library(tidyverse)
     group_by(open_access)%>%
     summarise(mean_frac_w_scripts = mean(frac_w_scripts))
   
+#######################
+  
+  #Plotting preferred model
+  
+
+  full_open <- data.frame(r_scripts_available ="yes",
+                          year = 2010:2022,
+                          open_access="1")
+    
+  open_code <- data.frame(r_scripts_available ="yes",
+                          year = 2010:2022,
+                          open_access="0")
+  
+  open_pub <- data.frame(r_scripts_available ="no",
+                          year = 2010:2022,
+                          open_access="1")
+  
+  full_closed <- data.frame(r_scripts_available ="no",
+                         year = 2010:2022,
+                         open_access="0")
+  
+  
+  
+  predicted_data <-
+        bind_rows(  
+      
+        data.frame(year=2010:2022,
+                   access = "full open",
+                   citations = predict.lm(object = pref_model,newdata = full_open)),
+        
+        data.frame(year=2010:2022,
+                   access = "full closed",
+                   citations = predict.lm(object = pref_model,newdata = full_closed)),
+        
+        data.frame(year=2010:2022,
+                   access = "open code",
+                   citations = predict.lm(object = pref_model,newdata = open_code)),
+        
+        data.frame(year=2010:2022,
+                   access = "open publication",
+                   citations = predict.lm(object = pref_model,newdata = open_pub))
+        )
+
+  
+  #Transform citations back into original units
+
+    predicted_data %>%
+      mutate(citations = citations -1)%>%
+      mutate(citations = 10^citations) -> predicted_data
+  
+  predicted_data %>%
+    mutate('Years Since Publication' = abs(year-2022))%>%
+  ggplot(mapping = aes(x=`Years Since Publication`,y=citations,color=access))+
+    geom_line()+
+    scale_x_continuous(limits = c(0,12),
+                       breaks = seq(0,12, 1),minor_breaks = NULL)+
+    ylab("Predicted Citations")+
+    scale_color_discrete(breaks=c('full open',
+                                 'open code',
+                                 'open publication',
+                                 'full closed'))+
+    theme_bw()
+
+
+
+#############
+
+  
+  #cites are roughly normal after log transforming  
+  cite_data %>%
+    filter(year == 2020) %>%
+    mutate(citations = as.numeric(citations))%>%
+    mutate(citations=citations+1)|>
+    pull(citations)|>
+    log()%>%
+    hist()
   
