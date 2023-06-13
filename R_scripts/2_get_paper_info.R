@@ -47,11 +47,23 @@ cite_data %>%
                      breaks = seq(0,100,10),
                      expand = c(0,0))+
   theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=.9))+
-  geom_smooth(method = "lm",se = FALSE,lty=1,color="grey")+
+  geom_smooth(method = "lm",se = FALSE,lty=2,color="grey")+
   stat_poly_eq(aes(label = paste(after_stat(eq.label),
                                  after_stat(rr.label),
+                                 after_stat(p.value.label),
                                  sep = "*\", \"*")))+
   theme_bw()
+
+cite_data %>%
+  group_by(year) %>%
+  summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
+            n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
+            prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available),
+            pct_scripts_available = prop_scripts_available *100) %>%
+  ungroup() %>%
+  mutate(year=as.integer(year)) %>%
+  lm(data = .,prop_scripts_available ~ year) %>%
+  summary()
 
 
 # Total number of papers we've found scripts for
