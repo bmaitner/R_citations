@@ -1,19 +1,18 @@
-# in this script, the goal is to extract information from the manually-populated google sheet
+# in this script, the goal is to extract information from the manually-populated Google sheet
 
 # Data to be gathered includes:
 
 # 1) Number of papers with vs without scripts available over time
-# 2) A google sheet listing the packages used by each of the available scripts.  This will be used to assess correspondence between packages used and cited
-    # if possible, this should include both libraries called and dependencies, and should distinguish between the two
+# 2) Additional metadata about the scipt format 
 
 ################################################################################
 
 # Load libraries
-library(tidyverse)
-library(googledrive)
-library(googlesheets4)
-library(ggpmisc)
-library(bbmle)
+  library(tidyverse)
+  library(googledrive)
+  library(googlesheets4)
+  library(ggpmisc)
+  library(bbmle)
 
 # Pull the current version of the google sheet
 
@@ -32,66 +31,107 @@ library(bbmle)
 
 # Papers with scripts included over time
 
-cite_data %>%
-  group_by(year) %>%
-  summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
-            n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
-            prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available),
-            pct_scripts_available = prop_scripts_available *100) %>%
-  ungroup() %>%
-  mutate(year=as.integer(year)) %>%
-  ggplot(aes(x=year,
-             y=pct_scripts_available))+
-  #geom_line()+
-  geom_point()+
-  ylab("Papers with R Scripts Available (percent)")+
-  xlab("Year")+
-  scale_x_continuous(limits = c(2009.8, 2022.2),
-                     breaks = seq(2010, 2022, 1),
-                     expand = c(0,0))+
-  scale_y_continuous(limits=c(0,30),
-                     breaks = seq(0,30,5),
-                     expand = c(0,0))+
-  theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=.9))+
-  geom_smooth(method = "lm",se = FALSE,lty=2,color="grey")+
-  stat_poly_eq(aes(label = paste(after_stat(eq.label),
-                                 after_stat(rr.label),
-                                 after_stat(p.value.label),
-                                 sep = "*\", \"*")))+
-  theme_bw()
+  cite_data %>%
+    group_by(year) %>%
+    summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
+              n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
+              prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available),
+              pct_scripts_available = prop_scripts_available *100) %>%
+    ungroup() %>%
+    mutate(year=as.integer(year)) %>%
+    ggplot(aes(x=year,
+               y=pct_scripts_available))+
+    #geom_line()+
+    geom_point()+
+    ylab("Papers with R Scripts Available (percent)")+
+    xlab("Year")+
+    scale_x_continuous(limits = c(2009.8, 2022.2),
+                       breaks = seq(2010, 2022, 1),
+                       expand = c(0,0))+
+    scale_y_continuous(limits=c(0,30),
+                       breaks = seq(0,30,5),
+                       expand = c(0,0))+
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=.9))+
+    geom_smooth(method = "lm",se = FALSE,lty=2,color="grey")+
+    stat_poly_eq(aes(label = paste(after_stat(eq.label),
+                                   after_stat(rr.label),
+                                   after_stat(p.value.label),
+                                   sep = "*\", \"*")))+
+    theme_bw()
 
-cite_data %>%
-  group_by(year) %>%
-  summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
-            n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
-            prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available),
-            pct_scripts_available = prop_scripts_available *100) %>%
-  ungroup() %>%
-  mutate(year=as.integer(year)) %>%
-  lm(data = .,prop_scripts_available ~ year) %>%
-  summary()
+  cite_data %>%
+    group_by(year) %>%
+    summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
+              n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
+              prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available),
+              pct_scripts_available = prop_scripts_available *100) %>%
+    ungroup() %>%
+    mutate(year=as.integer(year)) %>%
+    ggplot(aes(x=year,
+               y=pct_scripts_available))+
+    #geom_line()+
+    geom_smooth(method = "lm",se = FALSE,lty=2,color="grey")+
+    geom_point(size=3)+
+    ylab("\n Papers with R Scripts Available (percent)")+
+    xlab("\nYear")+
+    scale_x_continuous(limits = c(2009.7, 2022.3),
+                       breaks = seq(2010, 2022, 1),
+                       expand = c(0,0),
+                       minor_breaks = NULL)+
+    scale_y_continuous(limits=c(0,15),
+                       breaks = seq(0,30,5),
+                       expand = c(0,1),
+                       minor_breaks = seq(0,30,1))+
+    
+    stat_poly_eq(aes(label = paste(after_stat(eq.label),
+                                   after_stat(rr.label),
+                                   after_stat(p.value.label),
+                                   sep = "*\", \"*")),size=5)+
+    theme_classic()+
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=.9,size=13),
+          axis.text.y = element_text(size=14),
+          axis.title.y = element_text(angle = 90, vjust=3,size=14),
+          axis.title.x = element_text(size=13)) -> fig1
+  
+  ggsave(plot = fig1, filename = "figures/figure1.svg",
+         width = 10,height = 5,units = "in",dpi = 600)
+  
+  ggsave(plot = fig1, filename = "figures/figure1.jpg",
+         width = 10,height = 5,units = "in",dpi = 600)
+  
+  
+  cite_data %>%
+    group_by(year) %>%
+    summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
+              n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
+              prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available),
+              pct_scripts_available = prop_scripts_available *100) %>%
+    ungroup() %>%
+    mutate(year=as.integer(year)) %>%
+    lm(data = .,prop_scripts_available ~ year) %>%
+    summary()
 
 
 #comparing AIC of linear vs exp
-cite_data %>%
-  group_by(year) %>%
-  summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
-            n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
-            prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available),
-            pct_scripts_available = prop_scripts_available *100) %>%
-  ungroup() %>%
-  mutate(year=as.integer(year))-> prop_data
+  cite_data %>%
+    group_by(year) %>%
+    summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
+              n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
+              prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available),
+              pct_scripts_available = prop_scripts_available *100) %>%
+    ungroup() %>%
+    mutate(year=as.integer(year))-> prop_data
 
-prop_m1 <- lm(data = prop_data%>%
-                mutate(year = year-2010), prop_scripts_available ~ year)
+  prop_m1 <- lm(data = prop_data%>%
+                  mutate(year = year-2010), prop_scripts_available ~ year)
 
 
-prop_m2 <- nls(data = prop_data%>%
-                 mutate(year = year-2010),
-               formula = prop_scripts_available ~ a*exp(r*year), 
-               start = list(a = 1, r = 0.01))
+  prop_m2 <- nls(data = prop_data%>%
+                   mutate(year = year-2010),
+                 formula = prop_scripts_available ~ a*exp(r*year), 
+                 start = list(a = 1, r = 0.01))
 
-bbmle::AICtab(prop_m1,prop_m2) # model comparable, so picking the less-complex
+  bbmle::AICtab(prop_m1,prop_m2) # model comparable, so picking the less-complex
 
 # Total number of papers we've found scripts for
 
@@ -151,7 +191,8 @@ bbmle::AICtab(prop_m1,prop_m2) # model comparable, so picking the less-complex
   impact_factors <- read.csv(file = "data/manual_downloads/impact_factors.csv",sep = ";")
   
   cite_data %>%
-    left_join(y = impact_factors,by = c("journal" = "needed_journals")) -> cite_data
+    left_join(y = impact_factors,
+              by = c("journal" = "needed_journals")) -> cite_data
   
   
   ######################
@@ -168,8 +209,8 @@ bbmle::AICtab(prop_m1,prop_m2) # model comparable, so picking the less-complex
   cite_data %>%
     mutate(age = 2023-year) -> cite_data
   
-  cite_data$age_scaled = scale(cite_data$age)
-  cite_data$ImpactFactor_scaled = scale(cite_data$ImpactFactor)
+  cite_data$age_scaled <- scale(cite_data$age)
+  cite_data$ImpactFactor_scaled <- scale(cite_data$ImpactFactor)
   
   age_scaling = data.frame(scale =    attr(cite_data$age_scaled,"scaled:scale"),
                            center=   attr(cite_data$age_scaled,"scaled:center"))
@@ -212,33 +253,15 @@ bbmle::AICtab(prop_m1,prop_m2) # model comparable, so picking the less-complex
              open_access*r_scripts_available ) #include NS age x open access 
   
   
-  pref_model <- m4
-  
-  
-  colnames(cite_data)
   AICtab(m1,m2,m3,m4,m5)
   summary(m5)
   summary(m4)
+  pref_model <- m4 #selecting this because it is simpler (also has lower AIC)
   
   
-  ################################################
-  summary(m4)
-  
-  mean(cite_data$ImpactFactor)
-  median(cite_data$ImpactFactor)
-  mean(cite_data$ImpactFactor_scaled)
-  cite_data$ImpactFactor_scaled
-  
-  ?scale
-  
-  attr(cite_data$ImpactFactor_scaled,"scaled:scale")
-  attr(cite_data$ImpactFactor_scaled,"scaled:center")
-  
-  mean(cite_data$ImpactFactor)
-  mean(cite_data$ImpactFactor_scaled)*attr(cite_data$ImpactFactor_scaled,"scaled:scale")+attr(cite_data$ImpactFactor_scaled,"scaled:center")
-  
-  r1 <- d4 * attr(d4, 'scaled:scale')[col(d4)] + attr(d4, 'scaled:center')[col(d4)]
-  
+################################################
+
+  # Predicted data for plotting
   
   fully_open <- data.frame(r_scripts_available ="yes",
                            age_scaled = unique(cite_data$age_scaled),
@@ -303,13 +326,108 @@ bbmle::AICtab(prop_m1,prop_m2) # model comparable, so picking the less-complex
                        breaks = seq(0,100, 10),
                        minor_breaks = NULL,
                        expand = c(0, 0))+
+    ylab("\nPredicted Cumulative Citations")+
+    xlab("\nAge (Years)")+
+    scale_color_discrete(breaks=c('fully open',
+                                  'open code',
+                                  'open publication',
+                                  'fully closed'))+
+    theme_bw()+
+    theme(axis.text.x = element_text(vjust = 0.9, size=13),
+          axis.text.y = element_text(size=14),
+          axis.title.y = element_text(vjust=3,size=14),
+          axis.title.x = element_text(size=13),
+          legend.text = element_text(size=13),
+          legend.title = element_text(size=13)) -> fig2
+  
+  ggsave(plot = fig2, filename = "figures/figure2.svg",
+         width = 10,height = 5,units = "in",dpi = 600)
+  
+  ggsave(plot = fig2, filename = "figures/figure2.jpg",
+         width = 10,height = 5,units = "in",dpi = 600)
+  
+  
+#############  
+  
+  # Predicted data for plotting
+  
+  fully_open_low_if <- data.frame(r_scripts_available ="yes",
+                           age_scaled = unique(cite_data$age_scaled),
+                           open_access="1",
+                           ImpactFactor_scaled = as.numeric(quantile(cite_data$ImpactFactor_scaled,probs = 0.1)))
+  
+  
+  open_code_low_if <- data.frame(r_scripts_available ="yes",
+                          age_scaled = unique(cite_data$age_scaled),
+                          open_access="0",
+                          ImpactFactor_scaled =quantile(cite_data$ImpactFactor_scaled,probs = 0.1)|>as.numeric())
+  
+  open_pub_low_if <- data.frame(r_scripts_available ="no",
+                         age_scaled = unique(cite_data$age_scaled),
+                         open_access="1",
+                         ImpactFactor_scaled = quantile(cite_data$ImpactFactor_scaled,probs = 0.1)|>as.numeric())
+  
+  fully_closed_high_if <- data.frame(r_scripts_available ="no",
+                             age_scaled = unique(cite_data$age_scaled),
+                             open_access="0",
+                             ImpactFactor_scaled = quantile(cite_data$ImpactFactor_scaled,probs = 0.9)|>as.numeric())
+
+  
+  
+  
+  
+  predicted_data_if <-
+    bind_rows(  
+      
+      data.frame(year=2010:2022,
+                 age_scaled = fully_open_low_if$age_scaled,
+                 access = "fully open",
+                 log_citations = predict.lm(object = pref_model,newdata = fully_open_low_if)),
+      
+      data.frame(year=2010:2022,
+                 age_scaled = fully_closed_high_if$age_scaled,
+                 access = "fully closed",
+                 log_citations = predict.lm(object = pref_model,newdata = fully_closed_high_if)),
+      
+      data.frame(year=2010:2022,
+                 age_scaled = open_code_low_if$age_scaled,
+                 access = "open code",
+                 log_citations = predict.lm(object = pref_model,newdata = open_code_low_if)),
+      
+      data.frame(year=2010:2022,
+                 age_scaled = open_pub_low_if$age_scaled,
+                 access = "open publication",
+                 log_citations = predict.lm(object = pref_model,newdata = open_pub_low_if))
+    )
+  
+  
+  predicted_data_if$age <- predicted_data_if$age_scaled*age_scaling$scale + age_scaling$center
+  
+  predicted_data_if %>%
+    mutate(citations = (10^log_citations)-1) -> predicted_data_if
+  
+  predicted_data_if %>%
+    ggplot(mapping = aes(x=`age`,y=citations,color=access))+
+    geom_line(size=1.5)+
+    scale_x_continuous(limits = c(1,13),
+                       breaks = seq(1,13, 1),
+                       minor_breaks = NULL,
+                       expand = c(0, 0))+
+    scale_y_continuous(limits = c(0,100),
+                       breaks = seq(0,100, 10),
+                       minor_breaks = NULL,
+                       expand = c(0, 0))+
     ylab("Predicted Cumulative Citations")+
     xlab("Age")+
     scale_color_discrete(breaks=c('fully open',
                                   'open code',
                                   'open publication',
-                                  'fully closed'))+
+                                  'fully closed'),labels = c('fully open, low IF',
+                                                             'open code, low IF',
+                                                             'open publication, low IF',
+                                                             'fully closed, high IF'))+
     theme_bw()
+  
   
 
 #############
@@ -344,5 +462,16 @@ bbmle::AICtab(prop_m1,prop_m2) # model comparable, so picking the less-complex
     mutate(percent = counts / sum(counts)*100)
   
   table(cite_data$journal)
+  
+##################################
+  
+  # Testing whether open vs closed access differ in likelihood of code inclusion
+    
+    set.seed(2005) #because Transformers: The Movie is set in that year.
+    chisq.test(x = as.factor(cite_data$open_access),
+               y = as.factor(cite_data$r_scripts_available),
+               simulate.p.value = TRUE,B = 10000)
+  
+  
   
   

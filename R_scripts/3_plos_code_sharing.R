@@ -122,19 +122,20 @@ source("api_key.R")
               n_total = n(),
               frac_w_data = n_w_data/n_total,
               frac_w_code = n_w_code/n_total) %>%
+    mutate(pct_w_code = frac_w_code*100) %>%
     ggplot(mapping = aes(x = Publication_Year,
-                         y = frac_w_code,
+                         y = pct_w_code,
                          color = subj_area))+
     geom_point()+
     geom_line()+
-    ylab("Fraction with Code")+
+    ylab("Papers with Code Available (Percent)")+
     xlab("Year")+
     theme_bw()+
     labs(color = "Subject Area")+
-    scale_y_continuous(limits = c(0,1), expand = c(0, 0)) 
-    
-  
-  
+    scale_y_continuous(limits=c(0,30),
+                       breaks = seq(0,30,5))
+                       
+
   plos %>%
     mutate(data_shared = case_when(Data_Shared == "Yes" ~ 1,
                                    Data_Shared == "No" ~ 0),
@@ -154,17 +155,18 @@ source("api_key.R")
               n_w_code = sum(code_shared),
               n_total = n(),
               frac_w_data = n_w_data/n_total,
-              frac_w_code = n_w_code/n_total) %>%
+              frac_w_code = n_w_code/n_total,
+              pct_w_data =  frac_w_data*100) %>%
     ggplot(mapping = aes(x = Publication_Year,
-                         y = frac_w_data,
+                         y = pct_w_data,
                          color = subj_area))+
     geom_point()+
     geom_line()+
-    ylab("Fraction with Data")+
+    ylab("Papers with Data Available (Percent)")+
     xlab("Year")+
     theme_bw()+
     labs(color = "Subject Area")+
-    scale_y_continuous(limits = c(0,1), expand = c(0, 0))
+    scale_y_continuous(limits = c(0,100), expand = c(0, 0))
   
 
     #####################
