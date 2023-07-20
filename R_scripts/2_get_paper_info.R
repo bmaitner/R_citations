@@ -72,16 +72,19 @@
     #geom_line()+
     geom_smooth(method = "lm",se = FALSE,lty=2,color="grey")+
     geom_point(size=3)+
-    ylab("\n Papers with R Scripts Available (percent)")+
+    #ylab("\n Papers with R Scripts Available (percent)")+
+    ggtitle("Percentage of Papers with R Scripts Available")+
+    ylab(NULL)+
     xlab("\nYear")+
     scale_x_continuous(limits = c(2009.7, 2022.3),
                        breaks = seq(2010, 2022, 1),
                        expand = c(0,0),
                        minor_breaks = NULL)+
     scale_y_continuous(limits=c(0,15),
-                       breaks = seq(0,30,5),
+                       breaks = seq(0,15,5),
                        expand = c(0,1),
-                       minor_breaks = seq(0,30,1))+
+                       minor_breaks = seq(0,30,1),
+                       labels = c("0%","5%","10%","15%"))+
     
     stat_poly_eq(aes(label = paste(after_stat(eq.label),
                                    after_stat(rr.label),
@@ -91,7 +94,8 @@
     theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=.9,size=13),
           axis.text.y = element_text(size=14),
           axis.title.y = element_text(angle = 90, vjust=3,size=14),
-          axis.title.x = element_text(size=13)) -> fig1
+          axis.title.x = element_text(size=13),
+          title = element_text(size=14)) -> fig1
   
   ggsave(plot = fig1, filename = "figures/figure1.svg",
          width = 10,height = 5,units = "in",dpi = 600)
