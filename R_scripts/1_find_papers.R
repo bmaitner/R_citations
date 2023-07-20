@@ -1,44 +1,38 @@
-#This first step of the workflow should
+#'@author Brian Maitner
 
-# 1) pull a list of all eco/evo papers published in the last 10 years or so
-# 2) randomly order them
-# 3) assign unique IDs
-# 4) create empty google drive folders for each
-# 5) Publish list of papers as google doc
+#'@description
+#' This code is designed to:
+#' 
+#' 1) pull a list of all eco/evo papers published since 2010 that cite R
+#' 2) randomly order them
+#' 3) assign unique IDs
+#' 4) create empty google drive folders for each publication
+#' 5) Publish the list of papers as google doc
+#'
+# Next, there is a manual step:
+#'
+# 6) Manual step: look into papers, recording information on any papers that included R code.
 
-# 6) Manual step: look into papers, download R files where possible
-
-# 7) identify packages used by papers
-# 8) generate a google docs spreadsheet for e.g. the first 100 papers, should list all the packages used
 ################################################################################
 
 
-library(wosr)#doesn't work?
-library(pubmedR)
 library(rscopus)
 library(tidyverse)
 library(googledrive)
 library(googlesheets4)
 
-#wosr package seems out of date
-  # auth(username = NULL,
-  #      password = NULL)
+
+# Getting publication data via scopus
 
 
-#pubmed #meh
-
-
-#scopus
-
-
-  #set year thresholds
+  # set year thresholds
     min_year <- 2010
     max_year <- 2022
   
-  #prep empty output    
+  # prep empty output    
     out_df <- NULL
 
-  #search by year (broken down by year because of 5k limit on records)  
+  # search by year (broken down by year because of 5k limit on records)
     
     for(i in min_year:max_year){
     
@@ -60,49 +54,53 @@ library(googlesheets4)
     
     }#year loop
     
-  #cleanup
+  # clean up
+    
     rm(i, n_records, res, min_year, max_year)
 
-# save df of articles
+#  save df of articles
   # saveRDS(object = out_df,
   #         file = "data/search_results_2022_08_19.RDS")
   
-#read in if needed  
+# read in df if needed  
   
   papers <- readRDS(file = "data/search_results_2022_08_19.RDS")
 
 # reorder articles so that they are stratified
   
-  papers <- 
-  papers %>%
-    dplyr::select(c("dc:title",
-                    "dc:creator",
-                    "prism:publicationName",
-                    "prism:issn",
-                    "prism:volume",
-                    "prism:pageRange",
-                    "prism:coverDate",
-                    "prism:coverDisplayDate",
-                    "prism:doi",
-                    "citedby-count",
-                    "subtypeDescription",
-                    "openaccess")) %>%
-    rename(title =  'dc:title',
-           author = 'dc:creator',
-           journal = 'prism:publicationName',
-           issn = 'prism:issn',
-           volume = 'prism:volume',
-           pages = 'prism:pageRange',
-           date = 'prism:coverDate',
-           display_date = 'prism:coverDisplayDate',
-           doi = 'prism:doi',
-           citations = 'citedby-count',
-           article_type = subtypeDescription,
-           open_access = openaccess ) %>%
-      mutate(year = lubridate::year(date))
+  # toss unnecessary fields and rename others for convenience
+  
+    papers <- 
+    papers %>%
+      dplyr::select(c("dc:title",
+                      "dc:creator",
+                      "prism:publicationName",
+                      "prism:issn",
+                      "prism:volume",
+                      "prism:pageRange",
+                      "prism:coverDate",
+                      "prism:coverDisplayDate",
+                      "prism:doi",
+                      "citedby-count",
+                      "subtypeDescription",
+                      "openaccess")) %>%
+      rename(title =  'dc:title',
+             author = 'dc:creator',
+             journal = 'prism:publicationName',
+             issn = 'prism:issn',
+             volume = 'prism:volume',
+             pages = 'prism:pageRange',
+             date = 'prism:coverDate',
+             display_date = 'prism:coverDisplayDate',
+             doi = 'prism:doi',
+             citations = 'citedby-count',
+             article_type = subtypeDescription,
+             open_access = openaccess ) %>%
+        mutate(year = lubridate::year(date))
 
   
-  #randomize order
+  # randomize order of publications
+  
     papers <- papers[sample(x = 1:nrow(papers),size = nrow(papers),replace = FALSE),]
   
   #stratify sampling by year
@@ -189,13 +187,6 @@ library(googlesheets4)
     # 
     # drive_trash("R_citations_2022_08_19.tmp")
 
-  # change field settings and options on google sheets
-    
+  # change field settings and options on google sheets manually and then fill in by hand.
 
     
-    
-    
-
-  
-
-
