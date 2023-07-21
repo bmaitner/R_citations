@@ -482,7 +482,16 @@
     chisq.test(x = as.factor(cite_data$open_access),
                y = as.factor(cite_data$r_scripts_available),
                simulate.p.value = TRUE,B = 10000)
-  
-  
-  
-  
+    
+  # Testing whether shared code is disproportionately in high-impact journals
+
+    aov(data = cite_data,
+      formula = ImpactFactor_scaled ~ r_scripts_available ) -> aov_res
+    summary(aov_res)
+
+    cite_data %>%
+      group_by(r_scripts_available) %>%
+      summarise(mean_if = mean(ImpactFactor))
+      
+      
+
