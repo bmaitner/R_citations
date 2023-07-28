@@ -89,9 +89,9 @@
     #geom_line()+
     geom_smooth(method = "lm",se = FALSE,lty=2,color="grey")+
     geom_point(size=3)+
-    #ylab("\n Papers with R Scripts Available (percent)")+
-    ggtitle("Percentage of Papers with R Scripts Available")+
-    ylab(NULL)+
+    ylab("\n Code-sharing papers")+
+    #ggtitle("Percentage of Papers with R Scripts Available")+
+    #ylab(NULL)+
     xlab("\nYear")+
     scale_x_continuous(limits = c(2009.7, 2022.3),
                        breaks = seq(2010, 2022, 1),
@@ -109,9 +109,9 @@
                                    sep = "*\", \"*")),size=5)+
     theme_classic()+
     theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=.9,size=13),
-          axis.text.y = element_text(size=14),
+          axis.text.y = element_text(size=15),
           axis.title.y = element_text(angle = 90, vjust=3,size=14),
-          axis.title.x = element_text(size=13),
+          axis.title.x = element_text(size=15),
           title = element_text(size=14)) -> fig1
   
   ggsave(plot = fig1, filename = "figures/figure1.svg",
@@ -331,19 +331,68 @@
   predicted_data %>%
     mutate(citations = (10^log_citations)-1) -> predicted_data
   
+  #add access column
+  
+  cite_data %>%
+    mutate(access = case_when(open_access == "1" &
+                                r_scripts_available == "yes" ~ "fully open",
+                              open_access == "0" &
+                                r_scripts_available == "yes" ~ "open code",
+                              open_access == "1" &
+                                r_scripts_available == "no" ~ "open publication",
+                              open_access == "0" &
+                                r_scripts_available == "no" ~ "fully closed"
+    )
+    ) ->cite_data
+  
+  
+  # predicted_data %>%
+  #   ggplot(mapping = aes(x=`age`,y=citations,color=access))+
+  #   geom_line(size=1.5)+
+  #   scale_x_continuous(limits = c(1,13),
+  #                      breaks = seq(1,13, 1),
+  #                      minor_breaks = NULL,
+  #                      expand = c(0, 0))+
+  #   scale_y_continuous(limits = c(0,100),
+  #                      breaks = seq(0,100, 10),
+  #                      minor_breaks = NULL,
+  #                      expand = c(0, 0))+
+  #   ylab("\nPredicted Cumulative Citations")+
+  #   xlab("\nAge (Years)")+
+  #   scale_color_discrete(breaks=c('fully open',
+  #                                 'open code',
+  #                                 'open publication',
+  #                                 'fully closed'))+
+  #   theme_bw()+
+  #   theme(axis.text.x = element_text(vjust = 0.9, size=13),
+  #         axis.text.y = element_text(size=14),
+  #         axis.title.y = element_text(vjust=3,size=14),
+  #         axis.title.x = element_text(size=13),
+  #         legend.text = element_text(size=13),
+  #         legend.title = element_text(size=13)) -> fig2
+  
+  
   predicted_data %>%
-    ggplot(mapping = aes(x=`age`,y=citations,color=access))+
+    ggplot(mapping = aes(x=`age`,
+                         y=citations,
+                         color=access))+
+    geom_boxplot(data = cite_data,
+                 mapping = aes(x=age,
+                               y=citations,
+                               color=access,
+                               group = interaction(access,age)))+
     geom_line(size=1.5)+
     scale_x_continuous(limits = c(1,13),
                        breaks = seq(1,13, 1),
                        minor_breaks = NULL,
                        expand = c(0, 0))+
-    scale_y_continuous(limits = c(0,100),
-                       breaks = seq(0,100, 10),
-                       minor_breaks = NULL,
-                       expand = c(0, 0))+
-    ylab("\nPredicted Cumulative Citations")+
-    xlab("\nAge (Years)")+
+    scale_y_continuous(limits = c(1,350),
+                       #breaks = seq(0,100, 10),
+                       minor_breaks = seq(0,350, 10),
+                       expand = c(0, 0),
+                       trans = "log10")+
+    ylab("\nCumulative Citations")+
+    xlab("\nYears Since Publication")+
     scale_color_discrete(breaks=c('fully open',
                                   'open code',
                                   'open publication',
@@ -355,6 +404,7 @@
           axis.title.x = element_text(size=13),
           legend.text = element_text(size=13),
           legend.title = element_text(size=13)) -> fig2
+  
   
   ggsave(plot = fig2, filename = "figures/figure2.svg",
          width = 10,height = 5,units = "in",dpi = 600)
@@ -493,5 +543,97 @@
       group_by(r_scripts_available) %>%
       summarise(mean_if = mean(ImpactFactor))
       
-      
+############################################################################
+    
+  # Alternate versions of figure 1 that I aren't in the ms, but look cool
+    
+    
+    
+    line_hex <- "#F990E8"
+    point_hex <- "#bf00ff"
+    trend_hex <- "#0BD2D3"
+    
+    cite_data %>%
+      group_by(year) %>%
+      summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
+                n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
+                prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available),
+                pct_scripts_available = prop_scripts_available *100) %>%
+      ungroup() %>%
+      mutate(year=as.integer(year)) %>%
+      ggplot(aes(x=year,
+                 y=pct_scripts_available))+
+      #geom_line()+
+      geom_point(color=point_hex)+
+      ylab("Papers with R Scripts Available (percent)")+
+      xlab("Year")+
+      scale_x_continuous(limits = c(2009.8, 2022.2),
+                         breaks = seq(2010, 2022, 1),
+                         expand = c(0,0))+
+      scale_y_continuous(limits=c(0,30),
+                         breaks = seq(0,30,5),
+                         expand = c(0,0))+
+      theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=.9))+
+      geom_smooth(method = "lm",se = FALSE,lty=2,color=trend_hex)+
+      stat_poly_eq(aes(label = paste(after_stat(eq.label),
+                                     after_stat(rr.label),
+                                     after_stat(p.value.label),
+                                     sep = "*\", \"*")))+
+      theme_bw()+
+      theme(
+        panel.grid = element_line(colour=line_hex),
+        panel.border = element_rect(colour=line_hex),
+        axis.ticks = element_line(colour=line_hex),
+      )-> fig1_neon
+    
+    
+    cite_data %>%
+      group_by(year) %>%
+      summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
+                n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
+                prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available),
+                pct_scripts_available = prop_scripts_available *100) %>%
+      ungroup() %>%
+      mutate(year=as.integer(year)) %>%
+      ggplot(aes(x=year,
+                 y=pct_scripts_available))+
+      #geom_line()+
+      geom_point(color=point_hex)+
+      ylab("Papers with R Scripts Available (percent)")+
+      xlab("Year")+
+      scale_x_continuous(limits = c(2009.8, 2022.2),
+                         breaks = seq(2010, 2022, 1),
+                         expand = c(0,0))+
+      scale_y_continuous(limits=c(0,30),
+                         breaks = seq(0,30,5),
+                         expand = c(0,0))+
+      theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=.9))+
+      geom_smooth(method = "lm",se = FALSE,lty=2,color=trend_hex)+
+      stat_poly_eq(aes(label = paste(after_stat(eq.label),
+                                     after_stat(rr.label),
+                                     after_stat(p.value.label),
+                                     sep = "*\", \"*")),color="white")+
+      theme_bw()+
+      theme(
+        panel.grid = element_line(colour=line_hex),
+        panel.border = element_rect(colour=line_hex),
+        axis.ticks = element_line(colour=line_hex),
+        panel.background = element_rect(fill="black")
+      ) -> fig1_dark
+    
+    
+    
+    ggsave(plot = fig1_neon, filename = "figures/figure1_neon.svg",
+           width = 10,height = 5,units = "in",dpi = 600)
+    
+    ggsave(plot = fig1_neon, filename = "figures/figure1_neon.jpg",
+           width = 10,height = 5,units = "in",dpi = 600)
+    
+    
+    ggsave(plot = fig1_dark, filename = "figures/figure1_dark.svg",
+           width = 10,height = 5,units = "in",dpi = 600)
+    
+    ggsave(plot = fig1_dark, filename = "figures/figure1_dark.jpg",
+           width = 10,height = 5,units = "in",dpi = 600)
+    
 
