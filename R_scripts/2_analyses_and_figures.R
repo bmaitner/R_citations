@@ -87,7 +87,7 @@
     ggplot(aes(x=year,
                y=pct_scripts_available))+
     #geom_line()+
-    geom_smooth(method = "lm",se = FALSE,lty=2,color="grey")+
+    geom_smooth(method = "lm",se = TRUE,lty=2,color="grey")+
     geom_point(size=3)+
     ylab("\n Code-sharing papers")+
     #ggtitle("Percentage of Papers with R Scripts Available")+
@@ -97,23 +97,22 @@
                        breaks = seq(2010, 2022, 1),
                        expand = c(0,0),
                        minor_breaks = NULL)+
-    scale_y_continuous(limits=c(0,15),
+    scale_y_continuous(limits=c(-2,15),
                        breaks = seq(0,15,5),
                        expand = c(0,1),
                        minor_breaks = seq(0,30,1),
                        labels = c("0%","5%","10%","15%"))+
-    
-    stat_poly_eq(aes(label = paste(after_stat(eq.label),
-                                   after_stat(rr.label),
-                                   after_stat(p.value.label),
-                                   sep = "*\", \"*")),size=5)+
+    # stat_poly_eq(aes(label = paste(after_stat(eq.label),
+    #                                after_stat(rr.label),
+    #                                after_stat(p.value.label),
+    #                                sep = "*\", \"*")),size=5)+
     theme_classic()+
-    theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=.9,size=13),
-          axis.text.y = element_text(size=15),
-          axis.title.y = element_text(angle = 90, vjust=3,size=14),
-          axis.title.x = element_text(size=15),
-          title = element_text(size=14)) -> fig1
-  
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=.9,size=20),
+          axis.text.y = element_text(size=20),
+          axis.title.y = element_text(angle = 90, vjust=3,size=20),
+          axis.title.x = element_text(size=20),
+          title = element_text(size=20)) -> fig1
+  fig1
   ggsave(plot = fig1, filename = "figures/figure1.svg",
          width = 10,height = 5,units = "in",dpi = 600)
   
@@ -143,17 +142,21 @@
     ungroup() %>%
     mutate(year=as.integer(year))-> prop_data
 
-  prop_m1 <- lm(data = prop_data%>%
-                  mutate(year = year-2010), prop_scripts_available ~ year)
+  prop_m1 <- lm(data = prop_data %>%
+                  mutate(year = year-2010),
+                prop_scripts_available ~ year)
 
 
   prop_m2 <- nls(data = prop_data%>%
                    mutate(year = year-2010),
                  formula = prop_scripts_available ~ a*exp(r*year), 
                  start = list(a = 1, r = 0.01))
-
+  
   bbmle::AICtab(prop_m1,prop_m2) # model comparable, so picking the less-complex
-
+  
+  summary(prop_m1)
+  summary(prop_m2)
+  
 # Total number of papers we've found scripts for
 
   cite_data %>%
@@ -306,42 +309,56 @@
       
       data.frame(year=2010:2022,
                  age_scaled = fully_open$age_scaled,
-                 access = "fully open",
-                 log_citations = predict.lm(object = pref_model,newdata = fully_open)),
+                 Access = "Fully open",
+                 log_citations = predict.lm(object = pref_model,
+                                            newdata = fully_open,
+                                            interval = "confidence",
+                                            level = 0.95)),
       
       data.frame(year=2010:2022,
                  age_scaled = fully_closed$age_scaled,
-                 access = "fully closed",
-                 log_citations = predict.lm(object = pref_model,newdata = fully_closed)),
+                 Access = "Fully closed",
+                 log_citations = predict.lm(object = pref_model,
+                                            newdata = fully_closed,
+                                            interval = "confidence",
+                                            level = 0.95)),
       
       data.frame(year=2010:2022,
                  age_scaled = open_code$age_scaled,
-                 access = "open code",
-                 log_citations = predict.lm(object = pref_model,newdata = open_code)),
+                 Access = "Open code",
+                 log_citations = predict.lm(object = pref_model,
+                                            newdata = open_code,
+                                            interval = "confidence",
+                                            level = 0.95)),
       
       data.frame(year=2010:2022,
                  age_scaled = open_pub$age_scaled,
-                 access = "open publication",
-                 log_citations = predict.lm(object = pref_model,newdata = open_pub))
+                 Access = "Open publication",
+                 log_citations = predict.lm(object = pref_model,
+                                            newdata = open_pub,
+                                            interval = "confidence",
+                                            level = 0.95))
     )
   
   
   predicted_data$age <- predicted_data$age_scaled*age_scaling$scale + age_scaling$center
   
   predicted_data %>%
-    mutate(citations = (10^log_citations)-1) -> predicted_data
+    mutate(citations = (10^log_citations.fit)-1,
+           citations_upper = (10^log_citations.upr)-1,
+           citations_lower = (10^log_citations.lwr)-1) -> predicted_data
   
   #add access column
   
   cite_data %>%
-    mutate(access = case_when(open_access == "1" &
-                                r_scripts_available == "yes" ~ "fully open",
+    mutate(Access = case_when(open_access == "1" &
+                                r_scripts_available == "yes" ~ "Fully open",
                               open_access == "0" &
-                                r_scripts_available == "yes" ~ "open code",
+                                r_scripts_available == "yes" ~ "Open code",
                               open_access == "1" &
-                                r_scripts_available == "no" ~ "open publication",
+                                r_scripts_available == "no" ~ "Open publication",
                               open_access == "0" &
-                                r_scripts_available == "no" ~ "fully closed"
+                                r_scripts_available == "no" ~ "Fully closed"
     )
     ) ->cite_data
   
@@ -375,28 +392,36 @@
   predicted_data %>%
     ggplot(mapping = aes(x=`age`,
                          y=citations,
-                         color=access))+
+                         color=Access))+
     geom_boxplot(data = cite_data,
                  mapping = aes(x=age,
                                y=citations,
-                               color=access,
-                               group = interaction(access,age)))+
+                               color=Access,
+                               group = interaction(Access,age)))+
     geom_line(size=1.5)+
+    # geom_ribbon(mapping = aes(ymin=citations_lower,
+    #                           ymax=citations_upper,
+    #                           fill=Access),alpha=0.5)+
     scale_x_continuous(limits = c(1,13),
                        breaks = seq(1,13, 1),
                        minor_breaks = NULL,
                        expand = c(0, 0))+
-    scale_y_continuous(limits = c(1,350),
+    scale_y_continuous(limits = c(1,170),
                        #breaks = seq(0,100, 10),
-                       minor_breaks = seq(0,350, 10),
-                       expand = c(0, 0),
-                       trans = "log10")+
+                       minor_breaks = seq(0,170, 10),
+                       expand = c(0, 0)
+                       ,trans = "log10"
+    )+
     ylab("\nCumulative Citations")+
     xlab("\nYears Since Publication")+
-    scale_color_discrete(breaks=c('fully open',
-                                  'open code',
-                                  'open publication',
-                                  'fully closed'))+
+    scale_color_discrete(breaks=c('Fully open',
+                                  'Open code',
+                                  'Open publication',
+                                  'Fully closed'))+
+    scale_fill_discrete(breaks=c('Fully open',
+                                 'Open code',
+                                 'Open publication',
+                                 'Fully closed'))+
     theme_bw()+
     theme(axis.text.x = element_text(vjust = 0.9, size=13),
           axis.text.y = element_text(size=14),
@@ -404,6 +429,7 @@
           axis.title.x = element_text(size=13),
           legend.text = element_text(size=13),
           legend.title = element_text(size=13)) -> fig2
+  fig2
   
   
   ggsave(plot = fig2, filename = "figures/figure2.svg",
@@ -411,6 +437,114 @@
   
   ggsave(plot = fig2, filename = "figures/figure2.jpg",
          width = 10,height = 5,units = "in",dpi = 600)
+  
+  
+  
+  
+  predicted_data %>%
+    ggplot(mapping = aes(x=`age`,
+                         y=citations,
+                         color=Access))+
+    # geom_boxplot(data = cite_data,
+    #              mapping = aes(x=age,
+    #                            y=citations,
+    #                            color=access,
+    #                            group = interaction(access,age)))+
+    geom_line(size=1.5)+
+    geom_ribbon(mapping = aes(ymin=citations_lower,
+                              ymax=citations_upper,
+                              fill=Access,color=NULL),alpha=0.25)+
+    scale_x_continuous(limits = c(1,13),
+                       breaks = seq(1,13, 1),
+                       minor_breaks = NULL,
+                       expand = c(0, 0))+
+    scale_y_continuous(limits = c(0.2,170),
+                       #breaks = seq(0,100, 10),
+                       minor_breaks = seq(0,170, 10),
+                       expand = c(0, 0)
+                       #,trans = "log10"
+                       )+
+    ylab("\nCumulative Citations")+
+    xlab("\nYears Since Publication")+
+    scale_color_discrete(breaks=c('Fully open',
+                                  'Open code',
+                                  'Open publication',
+                                  'Fully closed'))+
+    scale_fill_discrete(breaks=c('Fully open',
+                                  'Open code',
+                                  'Open publication',
+                                  'Fully closed'))+
+    theme_bw()+
+    theme(axis.text.x = element_text(vjust = 0.9, size=20),
+          axis.text.y = element_text(size=20),
+          axis.title.y = element_text(vjust=3,size=20),
+          axis.title.x = element_text(size=20),
+          legend.text = element_text(size=20),
+          legend.title = element_text(size=20)) -> fig2b
+  fig2b
+  
+  
+  ggsave(plot = fig2b, filename = "figures/figure2b.svg",
+         width = 10,height = 5,units = "in",dpi = 600)
+  
+  ggsave(plot = fig2b, filename = "figures/figure2b.jpg",
+         width = 10,height = 5,units = "in",dpi = 600)
+  
+
+  
+  #trying to make a version of figure 2 where its easier to tell open pub and fully closed apart
+  predicted_data %>%
+    ggplot(mapping = aes(x=`age`,
+                         y=citations,
+                         color=Access))+
+    # geom_boxplot(data = cite_data,
+    #              mapping = aes(x=age,
+    #                            y=citations,
+    #                            color=access,
+    #                            group = interaction(access,age)))+
+    geom_line(size=0.75)+
+    geom_ribbon(mapping = aes(ymin=citations_lower,
+                              ymax=citations_upper,
+                              fill=Access,color=NULL),alpha=0.25)+
+    scale_x_continuous(limits = c(1,13),
+                       breaks = seq(1,13, 1),
+                       minor_breaks = NULL,
+                       expand = c(0, 0))+
+    scale_y_continuous(limits = c(0.2,170),
+                       #breaks = seq(0,100, 10),
+                       minor_breaks = seq(0,170, 10),
+                       expand = c(0, 0)
+                       #,trans = "log10"
+    )+
+    ylab("\nCumulative Citations")+
+    xlab("\nYears Since Publication")+
+    scale_color_discrete(breaks=c('Fully open',
+                                  'Open code',
+                                  'Open publication',
+                                  'Fully closed'))+
+    scale_fill_discrete(breaks=c('Fully open',
+                                 'Open code',
+                                 'Open publication',
+                                 'Fully closed'))+
+    theme_bw()+
+    theme(axis.text.x = element_text(vjust = 0.9, size=20),
+          axis.text.y = element_text(size=20),
+          axis.title.y = element_text(vjust=3,size=20),
+          axis.title.x = element_text(size=20),
+          legend.text = element_text(size=20),
+          legend.title = element_text(size=20)) -> fig2c
+  fig2c
+  
+  
+  ggsave(plot = fig2c, filename = "figures/figure2c.svg",
+         width = 10,height = 5,units = "in",dpi = 600)
+  
+  ggsave(plot = fig2c, filename = "figures/figure2c.jpg",
+         width = 10,height = 5,units = "in",dpi = 600)
+  
+    
+  
+  
   
   
 #############  
@@ -422,6 +556,10 @@
                            open_access="1",
                            ImpactFactor_scaled = as.numeric(quantile(cite_data$ImpactFactor_scaled,probs = 0.1)))
   
+  fully_open_high_if <- data.frame(r_scripts_available ="yes",
+                                  age_scaled = unique(cite_data$age_scaled),
+                                  open_access="1",
+                                  ImpactFactor_scaled = as.numeric(quantile(cite_data$ImpactFactor_scaled,probs = 0.9)))
   
   open_code_low_if <- data.frame(r_scripts_available ="yes",
                           age_scaled = unique(cite_data$age_scaled),
@@ -437,6 +575,12 @@
                              age_scaled = unique(cite_data$age_scaled),
                              open_access="0",
                              ImpactFactor_scaled = quantile(cite_data$ImpactFactor_scaled,probs = 0.9)|>as.numeric())
+  
+  fully_closed_low_if <- data.frame(r_scripts_available ="no",
+                                     age_scaled = unique(cite_data$age_scaled),
+                                     open_access="0",
+                                     ImpactFactor_scaled = quantile(cite_data$ImpactFactor_scaled,probs = 0.1)|>as.numeric())
+  
 
   
   predicted_data_if <-
@@ -444,55 +588,179 @@
       
       data.frame(year=2010:2022,
                  age_scaled = fully_open_low_if$age_scaled,
-                 access = "fully open",
-                 log_citations = predict.lm(object = pref_model,newdata = fully_open_low_if)),
+                 Access = "Fully open",
+                 Impact = "Low",
+                 log_citations = predict.lm(object = pref_model,
+                                            newdata = fully_open_low_if,
+                                            interval = "confidence",
+                                            level = 0.95)),
+      
+      data.frame(year=2010:2022,
+                 age_scaled = fully_open_high_if$age_scaled,
+                 Access = "Fully open",
+                 Impact = "High",
+                 log_citations = predict.lm(object = pref_model,
+                                            newdata = fully_open_high_if,
+                                            interval = "confidence",
+                                            level = 0.95)),
+      
       
       data.frame(year=2010:2022,
                  age_scaled = fully_closed_high_if$age_scaled,
-                 access = "fully closed",
-                 log_citations = predict.lm(object = pref_model,newdata = fully_closed_high_if)),
+                 Access = "Fully closed",
+                 Impact = "High",
+                 log_citations = predict.lm(object = pref_model,
+                                            newdata = fully_closed_high_if,
+                                            interval = "confidence",
+                                            level = 0.95)),
+      data.frame(year=2010:2022,
+                 age_scaled = fully_closed_low_if$age_scaled,
+                 Access = "Fully closed",
+                 Impact = "Low",
+                 log_citations = predict.lm(object = pref_model,
+                                            newdata = fully_closed_low_if,
+                                            interval = "confidence",
+                                            level = 0.95)),
+      
+      
       
       data.frame(year=2010:2022,
                  age_scaled = open_code_low_if$age_scaled,
-                 access = "open code",
-                 log_citations = predict.lm(object = pref_model,newdata = open_code_low_if)),
+                 Access = "Open code",
+                 Impact = "Low",
+                 log_citations = predict.lm(object = pref_model,
+                                            newdata = open_code_low_if,
+                                            interval = "confidence",
+                                            level = 0.95)),
       
       data.frame(year=2010:2022,
                  age_scaled = open_pub_low_if$age_scaled,
-                 access = "open publication",
-                 log_citations = predict.lm(object = pref_model,newdata = open_pub_low_if))
+                 Access = "Open publication",
+                 Impact = "Low",
+                 log_citations = predict.lm(object = pref_model,
+                                            newdata = open_pub_low_if,
+                                            interval = "confidence",
+                                            level = 0.95))
     )
   
   
   predicted_data_if$age <- predicted_data_if$age_scaled*age_scaling$scale + age_scaling$center
   
   predicted_data_if %>%
-    mutate(citations = (10^log_citations)-1) -> predicted_data_if
+    mutate(citations = (10^log_citations.fit)-1,
+           citations_lower = (10^log_citations.lwr)-1,
+           citations_upper = (10^log_citations.upr)-1) -> predicted_data_if
   
+
   predicted_data_if %>%
-    ggplot(mapping = aes(x=`age`,y=citations,color=access))+
-    geom_line(size=1.5)+
+    filter(!(Impact == "High" & Access == "Fully open"),
+           !(Impact == "Low" & Access == "Fully closed"))%>%
+    ggplot(mapping = aes(x=`age`,y=citations,color=Access))+
+    geom_line(size=0.75)+
+    geom_ribbon(mapping = aes(ymin=citations_lower,
+                              ymax=citations_upper,
+                              fill=Access,color=NULL),
+                alpha=0.25)+
     scale_x_continuous(limits = c(1,13),
                        breaks = seq(1,13, 1),
                        minor_breaks = NULL,
                        expand = c(0, 0))+
-    scale_y_continuous(limits = c(0,100),
-                       breaks = seq(0,100, 10),
+    scale_y_continuous(limits = c(0,120),
+                       breaks = seq(0,120, 10),
                        minor_breaks = NULL,
                        expand = c(0, 0))+
     ylab("Predicted Cumulative Citations")+
     xlab("Age")+
-    scale_color_discrete(breaks=c('fully open',
-                                  'open code',
-                                  'open publication',
-                                  'fully closed'),labels = c('fully open, low IF',
-                                                             'open code, low IF',
-                                                             'open publication, low IF',
-                                                             'fully closed, high IF'))+
-    theme_bw()
+    scale_color_discrete(breaks=c('Fully open',
+                                  'Open code',
+                                  'Open publication',
+                                  'Fully closed'),
+                         labels = c('Fully open,\n low IF',
+                                    'Open code,\n low IF',
+                                    'Open publication,\n low IF',
+                                    'Fully closed,\n high IF'))+
+    scale_fill_discrete(breaks=c('Fully open',
+                                  'Open code',
+                                  'Open publication',
+                                  'Fully closed'),
+                        labels = c('Fully open,\n low IF',
+                                   'Open code,\n low IF',
+                                   'Open publication,\n low IF',
+                                   'Fully closed,\n high IF'))+
+    
+    theme_bw()+
+    theme(axis.text.x = element_text(vjust = 0.9, size=20),
+          axis.text.y = element_text(size=20),
+          axis.title.y = element_text(vjust=3,size=20),
+          axis.title.x = element_text(size=20),
+          legend.text = element_text(size=20),
+          legend.title = element_text(size=15)) -> fig3
+  fig3
+
   
+  
+  predicted_data_if %>%
+    filter(Access %in% c("Fully open","Fully closed"))%>%
+    ggplot(mapping = aes(x=`age`,
+                         y=citations,
+                         lty=Impact,
+                         color=Access))+
+    geom_line(size=0.75)+
+    geom_ribbon(mapping = aes(ymin=citations_lower,
+                              ymax=citations_upper,
+                              fill=Access,
+                              color=NULL),
+                alpha=0.25)+
+    scale_x_continuous(limits = c(1,13),
+                       breaks = seq(1,13, 1),
+                       minor_breaks = NULL,
+                       expand = c(0, 0))+
+    # scale_y_continuous(limits = c(0,120),
+    #                    breaks = seq(0,120, 10),
+    #                    minor_breaks = NULL,
+    #                    expand = c(0, 0))+
+    ylab("Cumulative Citations")+
+    xlab("Age")+
+    scale_color_discrete(breaks=c('Fully open',
+                                  #'Open code',
+                                  #'Open publication',
+                                  'Fully closed'),
+                         type = c("#F8766D","#7CAE00"))+
+    scale_fill_discrete(breaks=c('Fully open',
+                                 #'Open code',
+                                 #'Open publication',
+                                 'Fully closed'),
+                        type = c("#F8766D","#7CAE00"))+
+    
+    theme_bw()+
+    theme(axis.text.x = element_text(vjust = 0.9, size=20),
+          axis.text.y = element_text(size=20),
+          axis.title.y = element_text(vjust=2,size=20),
+          axis.title.x = element_text(size=20),
+          legend.text = element_text(size=20),
+          legend.title = element_text(size=15)) -> fig3b
+  
+  fig3b  
+
+  ggsave(plot = fig3b, filename = "figures/figure3b.svg",
+         width = 10,height = 5,units = "in",dpi = 600)
+  
+  ggsave(plot = fig3b, filename = "figures/figure3b.jpg",
+         width = 10,height = 5,units = "in",dpi = 600)
+  
+#############
+  
+  # How many more citations do you get from fully open vs fully closed?
+  
+    predicted_data %>%
+    filter(age==13,
+           Access %in% c("Fully open", "Fully closed")) %>%
+    pull(citations)%>%
+    diff() #56 more citations after 13 years for going fully open vs fully closed
   
 
+  
+    
 #############
 
 # Where is the code being stored?
