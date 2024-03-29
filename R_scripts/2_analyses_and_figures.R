@@ -48,9 +48,94 @@
 # Save the data so I don't have to re-download it
   
   # saveRDS(object = cite_data,file = "data/cite_data.RDS")
-  cite_data <- readRDS("data/cite_data.RDS")
-  
+  cite_data <- readRDS("data/cite_data.RDS") %>% ungroup()
 
+  
+######################################################################################
+  
+  cite_data %>%
+    group_by(year) %>%
+    summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
+              n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
+              prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available),
+              pct_scripts_available = prop_scripts_available *100,
+              
+              n_open_access_pub = sum(open_access=="1"),
+              n_closed_access_pub = sum(open_access=="0"),
+              prop_open_access_pub = n_open_access_pub / (n_open_access_pub + n_closed_access_pub),
+              pct_open_access_pub = prop_open_access_pub *100,
+              
+              n_data_available = sum(na.omit(data_available=="yes")),
+              n_data_not_available = sum(na.omit(data_available=="no")),
+              prop_data_available = n_data_available / (n_data_available + n_data_not_available),
+              pct_data_available = prop_data_available *100
+    ) %>%
+    ungroup() %>%
+    mutate(year=as.integer(year)) %>%
+    
+    select(year,
+           pct_scripts_available,
+           pct_open_access_pub,
+           pct_data_available) %>%
+    rename('Open Code' = pct_scripts_available,
+           'Open Publication' = pct_open_access_pub,
+           'Open Data' = pct_data_available) %>%
+    pivot_longer(cols = 2:4,names_to = "Availability") -> temp
+  
+  # order availability to match lines: pub, then data, then code
+  
+  temp$Availability <- factor(x = temp$Availability,levels = c("Open Publication", "Open Data", "Open Code"))
+  
+  temp %>%
+    mutate(sig = case_when(Availability %in% c("Open Publication", "Open Code") ~ 2,
+                           Availability %in% c("Open Data") ~ 1)) -> temp
+  
+  temp %>%
+    ggplot(aes(x=year,
+               y=value,
+               color = Availability))+
+    #geom_line()+
+    geom_point(size=3)+
+    geom_smooth(mapping = aes(lty = as.character(sig)),method = "lm",se = TRUE,show.legend = FALSE)+
+    ylab("Availability")+
+    xlab("Year")+
+    xlab("\nYear")+
+    scale_x_continuous(limits = c(2009.7, 2022.3),
+                       breaks = seq(2010, 2022, 1),
+                       expand = c(0,0),
+                       minor_breaks = NULL)+
+    scale_y_continuous(limits=c(-3,41),
+                       breaks = seq(0,40,5),
+                       expand = c(0,1),
+                       minor_breaks = seq(0,40,1),
+                       labels = c("0%","5%","10%","15%","20%","25%","30%","35%","40%"))+
+    stat_poly_eq(aes(label = paste(after_stat(eq.label),
+                                   after_stat(rr.label),
+                                   after_stat(p.value.label),
+                                   sep = "*\", \"*")))+
+    theme_classic()+
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=.9,size=20),
+          axis.text.y = element_text(size=20),
+          axis.title.y = element_text(angle = 90, vjust=3,size=20),
+          axis.title.x = element_text(size=20),
+          title = element_text(size=20),
+          legend.title=element_blank(),
+          legend.text = element_text(size=20))->fig1_rev
+  
+  fig1_rev
+  
+  ggsave(plot = fig1_rev, filename = "figures/figure1_rev.svg",
+         width = 10,height = 5,units = "in",dpi = 600)
+  
+  ggsave(plot = fig1_rev, filename = "figures/figure1_rev.jpg",
+         width = 10,height = 5,units = "in",dpi = 600)
+  
+  
+  
+######################################################################################  
+
+# Figure 1 (origina)  
+      
 # Papers with scripts included over time
 
   cite_data %>%
@@ -137,31 +222,37 @@
     lm(data = .,prop_scripts_available ~ year) %>%
     summary()
 
-
-#comparing AIC of linear vs exp
-  cite_data %>%
-    group_by(year) %>%
-    summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")),
-              n_scripts_not_available = sum(na.omit(r_scripts_available=="no")),
-              prop_scripts_available = n_scripts_available / (n_scripts_available + n_scripts_not_available),
-              pct_scripts_available = prop_scripts_available *100) %>%
-    ungroup() %>%
-    mutate(year=as.integer(year))-> prop_data
-
-  prop_m1 <- lm(data = prop_data %>%
-                  mutate(year = year-2010),
-                prop_scripts_available ~ year)
-
-
-  prop_m2 <- nls(data = prop_data%>%
-                   mutate(year = year-2010),
-                 formula = prop_scripts_available ~ a*exp(r*year), 
-                 start = list(a = 1, r = 0.01))
+#######################################################################
   
-  bbmle::AICtab(prop_m1,prop_m2) # model comparable, so picking the less-complex
+
+  # Papers with data as a function of the year, model as proportion data
   
-  summary(prop_m1)
-  summary(prop_m2)
+    cite_data %>%
+      mutate(r_scripts_available_binary = case_when(r_scripts_available == "yes" ~ 1,
+                                                    r_scripts_available == "no" ~ 0))%>%
+      mutate(year = year-2010) %>%
+      glm(formula = r_scripts_available_binary ~ year,
+          family = "binomial") -> cite_v_year_binary
+  
+  summary(cite_v_year_binary)
+  
+
+
+  new_binary <- data.frame(year = 0:12,
+                           r_scripts_available_binary = 1)
+  
+  binary_logit_preds <- predict(object = cite_v_year_binary,
+          newdata = new_binary)
+  
+
+  prob.predictions <- 1 / (1 + exp(-binary_logit_preds))
+  
+
+  plot()
+
+  lm(prob.predictions~new_binary$year)
+  
+    
   
 # Total number of papers we've found scripts for
 
@@ -179,6 +270,97 @@
     summarise(n_scripts_available = sum(na.omit(r_scripts_available=="yes")))/
     cite_data %>%
     summarise(n_papers_evaluated = sum(na.omit(r_scripts_available %in% c("yes","no"))))
+  
+# Where is the code being stored?
+  
+  cite_data %>%
+    filter(r_scripts_available == "yes")%>%
+    select(`code location`,`code format`) -> code_storage
+  
+  # Let's lump the appendix with the CI
+  code_storage <-
+    code_storage %>%
+    mutate(`code location` = case_when(`code location`=="appendix" ~ "SI",
+                                       `code location`!="appendix" ~ `code location`))
+  
+  # Let's lump the rmd with R
+  code_storage <-
+    code_storage %>%
+    mutate(`code format` = case_when(`code format`=="rmd" ~ "R",
+                                     `code format`!="rmd" ~ `code format`))
+  
+  code_storage %>%
+    group_by(`code location`)%>%
+    summarise(counts= n())%>%
+    mutate(percent = counts / sum(counts)*100)%>%
+    arrange(-percent)
+  
+  code_storage %>%
+    group_by(`code format`)%>%
+    summarise(counts= n())%>%
+    mutate(percent = counts / sum(counts)*100)
+  
+##################################
+
+  #Open access vs code sharing?
+  
+  # Testing whether open vs closed access differ in likelihood of code inclusion
+  
+  set.seed(2005) #because Transformers: The Movie is set in that year.
+  chisq.test(x = as.factor(cite_data$open_access),
+             y = as.factor(cite_data$r_scripts_available),
+             simulate.p.value = TRUE,B = 10000)
+  
+  # what proportion of OA papers have data?
+  
+  cite_data %>%
+    filter(cite_data$open_access == "1") %>%
+    group_by(r_scripts_available) %>%
+    summarise(n = n())%>%
+    mutate(prop = n/ sum(n))
+  
+  cite_data %>%
+    filter(cite_data$open_access == "0") %>%
+    group_by(r_scripts_available) %>%
+    summarise(n = n())%>%
+    mutate(prop = n/ sum(n))
+  
+  8.5/4.24
+    
+  #open data vs code sharing?
+  
+  set.seed(2005) #because Transformers: The Movie is set in that year.
+  chisq.test(x = as.factor(cite_data$data_available),
+             y = as.factor(cite_data$r_scripts_available),
+             simulate.p.value = TRUE,B = 10000)
+  
+  
+  cite_data %>%
+    filter(cite_data$data_available == "yes") %>%
+    group_by(r_scripts_available) %>%
+    summarise(n = n())%>%
+    mutate(prop = n/ sum(n))
+  
+  cite_data %>%
+    filter(cite_data$data_available == "no") %>%
+    group_by(r_scripts_available) %>%
+    summarise(n = n())%>%
+    mutate(prop = n/ sum(n))
+  26.5/2.2
+  
+  # Testing whether shared code is disproportionately in high-impact journals
+  
+  aov(data = cite_data,
+      formula = ImpactFactor_scaled ~ r_scripts_available ) -> aov_res
+  summary(aov_res)
+  
+  cite_data %>%
+    group_by(r_scripts_available) %>%
+    summarise(mean_if = mean(ImpactFactor))
+  
+  
+    
+###############
   
 # Samples per year
 
@@ -199,7 +381,8 @@
   # We need to get impact factors for the journals so we can account for that in our models
 
   # needed_journals <- unique(cite_data$journal)
-  # impact_factors <- scholar::get_impactfactor(journals = needed_journals,max.distance = 0.01)
+  # impact_factors <- scholar::get_impactfactor(journals = needed_journals,
+  #                                             max.distance = 0.01)
   # impact_factors <- cbind(needed_journals,impact_factors)
   
   #the scholar package is currently returning some questionable matches well above the max.distance.
@@ -767,55 +950,7 @@
 
   
     
-#############
-
-# Where is the code being stored?
-  
-  cite_data %>%
-    filter(r_scripts_available == "yes")%>%
-    select(`code location`,`code format`) -> code_storage
-  
-  # Let's lump the appendix with the CI
-    code_storage <-
-    code_storage %>%
-      mutate(`code location` = case_when(`code location`=="appendix" ~ "SI",
-                                         `code location`!="appendix" ~ `code location`))
-    
-  # Let's lump the rmd with R
-    code_storage <-
-      code_storage %>%
-      mutate(`code format` = case_when(`code format`=="rmd" ~ "R",
-                                         `code format`!="rmd" ~ `code format`))
-  
-    
-  code_storage %>%
-    group_by(`code location`)%>%
-    summarise(counts= n())%>%
-    mutate(percent = counts / sum(counts)*100)
-
-  code_storage %>%
-    group_by(`code format`)%>%
-    summarise(counts= n())%>%
-    mutate(percent = counts / sum(counts)*100)
-  
-##################################
-  
-  # Testing whether open vs closed access differ in likelihood of code inclusion
-    
-    set.seed(2005) #because Transformers: The Movie is set in that year.
-    chisq.test(x = as.factor(cite_data$open_access),
-               y = as.factor(cite_data$r_scripts_available),
-               simulate.p.value = TRUE,B = 10000)
-    
-  # Testing whether shared code is disproportionately in high-impact journals
-
-    aov(data = cite_data,
-      formula = ImpactFactor_scaled ~ r_scripts_available ) -> aov_res
-    summary(aov_res)
-
-    cite_data %>%
-      group_by(r_scripts_available) %>%
-      summarise(mean_if = mean(ImpactFactor))
+###############################  
       
 ############################################################################
     
