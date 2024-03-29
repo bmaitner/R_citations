@@ -35,9 +35,15 @@
   #cite_data <- read_sheet("1pYB_oJt-Sx__OKJdmlgEpBmDFLmGLxh9Rddp9qKNooE")
   
 # Limit the data to the comprehensive sampling at the beginning (to avoid any biases due to more freely-available journals)
+# Also omitting papers that cite but don't use R (n=3)
+# Dividing the sample size of 1001 evenly across years (77 per year)
 
   # cite_data %>%
-  #   slice_head(n = 1001) -> cite_data #1001 samples so that each paper gets 77 samples (77 samples per year * 13 years = 1001)
+  #   filter(!is.na(r_scripts_available),
+  #          !is.na(data_available),
+  #          r_used == "yes") %>%
+  #   group_by(year) %>%
+  #   slice_head(n=77) -> cite_data
 
 # Save the data so I don't have to re-download it
   
