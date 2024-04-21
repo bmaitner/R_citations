@@ -4,7 +4,7 @@ This repository contains code for investigating how often manuscripts in Ecology
 # Important Data
 
 ## Citation Data
-The main datafile in this repository is "data/cite_data.RDS". This is an RDS file containing information on citation counts for R files and associated predictor variables.  Many of the variables are returned from the Rscopus package (https://cran.r-project.org/web/packages/rscopus/index.html) using the scopus API (https://dev.elsevier.com/sc_apis.html). Metadata on fields returned by the scopus API is available at https://dev.elsevier.com/sc_apis.html.  Below, we provide information on fields which are NOT returned by the scopus API (i.e., data which we collected).
+The main data file in this repository is [cite_data.RDS](https://github.com/bmaitner/R_citations/blob/main/data/cite_data.RDS). This is an RDS file containing information on citation counts for R files and associated predictor variables.  Many of the variables are returned from the Rscopus package (https://cran.r-project.org/web/packages/rscopus/index.html) using the scopus API (https://dev.elsevier.com/sc_apis.html). Metadata on fields returned by the scopus API is available at https://dev.elsevier.com/sc_apis.html.  Below, we provide information on fields which are NOT returned by the scopus API (i.e., data which we collected).
 
 * uid = A unique ID assigned to each record.
 * r_scripts_available = A binary variable (yes/no) describing whether any R code was shared as part of the publication.
@@ -32,7 +32,7 @@ See https://dev.elsevier.com/sc_apis.html for information on the following field
 * open_access
 
 ## Impact Factor Data
-The other important data file in this repository is https://github.com/bmaitner/R_citations/blob/main/data/manual_downloads/impact_factors.csv. This is a CSV file containing information on the impact factors of journals used in this work, as recorded on June 16, 2023. This information on impact factor was provided by the R package "scholar" (https://cran.r-project.org/web/packages/scholar/index.html). Below we provide information on the fields included.
+The other important data file in this repository is [impact_factor.csv](https://github.com/bmaitner/R_citations/blob/main/data/manual_downloads/impact_factors.csv). This is a CSV file containing information on the impact factors of journals used in this work, as recorded on June 16, 2023. This information on impact factor was provided by the R package "scholar" (https://cran.r-project.org/web/packages/scholar/index.html). Below we provide information on the fields included.
 
 * needed_journals = The list of journals submitted to the scholar R package. These were extracted from the "journal" field of the file cite_data.RDS (see above).
 * Journal = The journal title matched by scholar.
@@ -40,6 +40,11 @@ The other important data file in this repository is https://github.com/bmaitner/
 * ImpactFactor = The journal's impact factor.
 * Eigenfactor = The journal's Eigenfactor.
 * dist = The distance between the submitted journal name and the returned journal name, as calcualted by scholar.
+
+# Important Code
+
+There are two important R scripts in this repository: [1_data_collection.R](https://github.com/bmaitner/R_citations/blob/main/R_scripts/1_data_collection.R) and [2_analyses_and_figures.R](https://github.com/bmaitner/R_citations/blob/main/R_scripts/2_analyses_and_figures.R). The former file was used to select publications for the study (along with relevant metadata). The latter file contains code underlying analyses and visualizations.
+
 
 [![DOI](https://zenodo.org/badge/526320931.svg)](https://zenodo.org/badge/latestdoi/526320931)
 
