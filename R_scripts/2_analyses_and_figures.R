@@ -44,7 +44,7 @@
   #          r_used == "yes") %>%
   #   group_by(year) %>%
   #   slice_head(n=77) -> cite_data
-  # 
+
     
 # Remove unnecessary fields
 
