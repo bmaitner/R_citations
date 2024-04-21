@@ -44,9 +44,10 @@
   #          r_used == "yes") %>%
   #   group_by(year) %>%
   #   slice_head(n=77) -> cite_data
- 
+  # 
   #   cite_data %>%
-  #     select(-folder_link) -> cite_data
+  #     select(-folder) %>%
+  #     select(-folder_link) -> cite_data2
 
 # Save the data so I don't have to re-download it
   
@@ -1142,4 +1143,35 @@
     ggsave(plot = fig1_dark, filename = "figures/figure1_dark.jpg",
            width = 10,height = 5,units = "in",dpi = 600)
     
+###########################################
+    
+  # code to check what packages I've used
+    
+    library(questionr)
+    packages_used <- questionr::qscan(list.files(pattern = ".R",
+                                                 recursive = TRUE,
+                                                 full.names = TRUE),
+                                      load = FALSE) %>%
+      unlist() %>%
+      as.character()%>%
+      unique()
+  
+    packages_used
+    
+    packageVersion("stringdist") #0.9.12
+    packageVersion("tidyverse") #2.0.0
+    packageVersion("googledrive") #2.1.1
+    packageVersion("googlesheets4") #1.1.1
+    
+    packageVersion("bbmle") #1.0.25.1
+    packageVersion("MuMIn") #1.47.5     
+    packageVersion("rscopus") #0.6.6
+    packageVersion("rsq") #2.6
+    packageVersion("scholar") #0.2.4
+    packageVersion("stats") #4.3.0
+
+    packageVersion("ggplot2") #3.4.4
+    packageVersion("ggpmisc") #0.5.5
+    
+    packageVersion("questionr") #0.7.8
 
