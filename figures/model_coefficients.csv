@@ -1,0 +1,14 @@
+"","Estimate","Std. Error","z value","Pr(>|z|)"
+"(Intercept)",2.696757,0.011259,239.519706,0
+"ImpactFactor_scaled",0.326398,0.006472,50.429429,0
+"age_scaled",0.626261,0.010294,60.836734,0
+"r_scripts_availableyes",-1.425857,0.094131,-15.147623,0
+"open_access1",0.069522,0.020333,3.419069,0.000628
+"data_availableyes",-0.07596,0.033893,-2.24119,0.025014
+"ImpactFactor_scaled:age_scaled",0.001585,0.006358,0.249364,0.803079
+"age_scaled:r_scripts_availableyes",0.562521,0.037058,15.179344,0
+"age_scaled:open_access1",0.022175,0.017498,1.267351,0.20503
+"age_scaled:data_availableyes",0.212861,0.02383,8.932315,0
+"r_scripts_availableyes:data_availableyes",1.468237,0.069624,21.088149,0
+"r_scripts_availableyes:open_access1",1.454602,0.070556,20.616195,0
+"open_access1:data_availableyes",0.174743,0.043125,4.052042,5.1e-05

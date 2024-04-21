@@ -1,361 +1,362 @@
-needed_journals;Journal;Cites;ImpactFactor;Eigenfactor;dist
-Ecography;ECOGRAPHY;10103;4.52;0.01818;0
-Journal of Raptor Research;JOURNAL OF RAPTOR RESEARCH;825;0.699;0.00064;0
-Marine Ecology Progress Series;MARINE ECOLOGY PROGRESS SERIES;36229;2.276;0.02751;0
-Applied Animal Behaviour Science;APPLIED ANIMAL BEHAVIOUR SCIENCE;8022;1.548;0.00578;0
-Journal of Evolutionary Biology;JOURNAL OF EVOLUTIONARY BIOLOGY;10778;2.538;0.01786;0
-New Zealand Journal of Forestry Science;NEW ZEALAND JOURNAL OF FORESTRY SCIENCE;594;1.333;0.00051;0
-Agronomy for Sustainable Development;Agronomy for Sustainable Development;3580;4.503;0.00671;0
-Parasitology Research;PARASITOLOGY RESEARCH;12003;2.558;0.01901;0
-Journal of Asia-Pacific Entomology;JOURNAL OF ASIA-PACIFIC ENTOMOLOGY;963;0.875;0.00195;0
-Biological Conservation;BIOLOGICAL CONSERVATION;28274;4.66;0.03624;0
-Geoderma;GEODERMA;18686;3.74;0.02027;0
-Evolutionary Ecology;EVOLUTIONARY ECOLOGY;3729;2.133;0.00427;0
-Behavioral Ecology and Sociobiology;BEHAVIORAL ECOLOGY AND SOCIOBIOLOGY;12110;2.473;0.01123;0
-Journal of Insect Conservation;JOURNAL OF INSECT CONSERVATION;1953;1.562;0.0036;0
-Journal of Biogeography;JOURNAL OF BIOGEOGRAPHY;15146;4.154;0.0228;0
-International Journal of Primatology;INTERNATIONAL JOURNAL OF PRIMATOLOGY;3165;1.278;0.00261;0
-Forest Ecology and Management;FOREST ECOLOGY AND MANAGEMENT;32513;3.169;0.03297;0
-PeerJ;PeerJ;7377;2.118;0.0316;0
-Oecologia;OECOLOGIA;32672;3.127;0.02627;0
-Industrial Crops and Products;INDUSTRIAL CROPS AND PRODUCTS;19421;3.849;0.03281;0
-Marine Biology;MARINE BIOLOGY;17167;2.215;0.01183;0
-Journal of Experimental Botany;JOURNAL OF EXPERIMENTAL BOTANY;40585;5.354;0.05792;0
-Forestry;FORESTRY;2397;2.638;0.00291;0
-ZooKeys;ZooKeys;3668;1.079;0.01189;0
-Plant Systematics and Evolution;PLANT SYSTEMATICS AND EVOLUTION;4562;1.452;0.00441;0
-Journal of Forest Research;Journal of Forest Research;939;0.908;0.00074;0
-Marine Environmental Research;MARINE ENVIRONMENTAL RESEARCH;5682;3.159;0.00728;0
-Food Research International;FOOD RESEARCH INTERNATIONAL;22125;3.52;0.03282;0
-Poultry Science;POULTRY SCIENCE;19149;2.216;0.01298;0
-Ecology;ECOLOGY;60825;4.617;0.04415;0
-Agricultural and Forest Entomology;AGRICULTURAL AND FOREST ENTOMOLOGY;1342;1.49;0.00178;0
-PLoS ONE;PLoS One;582877;2.766;1.86235;0
-Journal of Sea Research;JOURNAL OF SEA RESEARCH;3051;1.729;0.0044;0
-Fisheries Research;FISHERIES RESEARCH;7849;1.874;0.00911;0
-Aquaculture;AQUACULTURE;32468;2.71;0.01953;0
-Canadian Journal of Forest Research;CANADIAN JOURNAL OF FOREST RESEARCH;11536;1.887;0.00649;0
-American Naturalist;AMERICAN NATURALIST;29269;4.265;0.02053;0
-Ecosystems;ECOSYSTEMS;8825;4.03;0.01116;0
-Current Biology;CURRENT BIOLOGY;56595;9.251;0.1372;0
-Journal of Economic Entomology;JOURNAL OF ECONOMIC ENTOMOLOGY;12772;1.936;0.01032;0
-Environmental and Experimental Botany;ENVIRONMENTAL AND EXPERIMENTAL BOTANY;8583;3.666;0.00989;0
-Plant Cell and Environment;PLANT CELL AND ENVIRONMENT;20478;5.415;0.02272;0
-Functional Ecology;FUNCTIONAL ECOLOGY;14638;5.491;0.02176;0
-Evolution and Human Behavior;EVOLUTION AND HUMAN BEHAVIOR;4043;3.623;0.00673;0
-Canadian Journal of Fisheries and Aquatic Sciences;CANADIAN JOURNAL OF FISHERIES AND AQUATIC SCIENCES;16760;2.631;0.01004;0
-Global Ecology and Conservation;Global Ecology and Conservation;649;2.174;0.00282;0
-Biological Invasions;BIOLOGICAL INVASIONS;8978;3.054;0.0144;0
-Phycologia;PHYCOLOGIA;2724;1.798;0.00199;0
-Quaternary Science Reviews;QUATERNARY SCIENCE REVIEWS;21248;4.334;0.03735;0
-Agricultural Systems;AGRICULTURAL SYSTEMS;5624;3.004;0.00644;0
-Journal of Ecology;JOURNAL OF ECOLOGY;18409;5.172;0.02482;0
-BioControl;BIOCONTROL;2245;1.924;0.00266;0
-Evolution;EVOLUTION;32227;3.818;0.03223;0
-Annals of Forest Science;ANNALS OF FOREST SCIENCE;3341;2.357;0.00381;0
-Environmental Biology of Fishes;ENVIRONMENTAL BIOLOGY OF FISHES;5681;1.514;0.00444;0
-Aquatic Toxicology;AQUATIC TOXICOLOGY;15035;3.884;0.01534;0
-Precision Agriculture;PRECISION AGRICULTURE;1534;2.435;0.00195;0
-Apidologie;APIDOLOGIE;3943;2.856;0.00307;0
-Wildlife Biology;WILDLIFE BIOLOGY;1423;2.081;0.00154;0
-Journal of Arachnology;JOURNAL OF ARACHNOLOGY;1363;1.236;0.00095;0
-Conservation Biology;CONSERVATION BIOLOGY;20885;5.89;0.02035;0
-BMC Ecology;BMC ECOLOGY;1055;2.315;0.00222;0
-South African Journal of Botany;SOUTH AFRICAN JOURNAL OF BOTANY;3059;1.442;0.00413;0
-Journal of Great Lakes Research;JOURNAL OF GREAT LAKES RESEARCH;4423;2.354;0.00602;0
-Marine Pollution Bulletin;MARINE POLLUTION BULLETIN;25474;3.241;0.02731;0
-Ecology and Evolution;Ecology and Evolution;6915;2.34;0.02926;0
-ICES Journal of Marine Science;ICES JOURNAL OF MARINE SCIENCE;9838;2.906;0.01295;0
-Animal Behaviour;ANIMAL BEHAVIOUR;27186;3.067;0.02408;0
-Limnologica;LIMNOLOGICA;1360;1.814;0.00201;0
-Ecological Indicators;ECOLOGICAL INDICATORS;13782;3.983;0.02862;0
-Ecological Research;ECOLOGICAL RESEARCH;3185;1.531;0.0035;0
-Taiwania;TAIWANIA;455;0.421;0.00049;0
-Ecological Informatics;Ecological Informatics;1507;1.82;0.00324;0
-Journal of Experimental Marine Biology and Ecology;JOURNAL OF EXPERIMENTAL MARINE BIOLOGY AND ECOLOGY;15335;1.99;0.01016;0
-Dendrochronologia;DENDROCHRONOLOGIA;1331;2.055;0.00181;0
-ISME Journal;ISME Journal;19791;9.52;0.05672;0
-Plant and Soil;PLANT AND SOIL;30111;3.306;0.02556;0
-BMC Plant Biology;BMC PLANT BIOLOGY;10552;3.93;0.02315;0
-Behavioural Processes;BEHAVIOURAL PROCESSES;4337;1.555;0.00698;0
-European Journal of Wildlife Research;EUROPEAN JOURNAL OF WILDLIFE RESEARCH;1660;1.453;0.00322;0
-Fundamental and Applied Limnology;Fundamental and Applied Limnology;805;1.361;0.0012;0
-Population Ecology;POPULATION ECOLOGY;1132;1.644;0.00197;0
-Crop Science;CROP SCIENCE;17363;1.635;0.0095;0
-Basic and Applied Ecology;BASIC AND APPLIED ECOLOGY;2944;2.144;0.00392;0
-Journal of Human Evolution;JOURNAL OF HUMAN EVOLUTION;9100;3.992;0.01118;0
-Aquatic Sciences;AQUATIC SCIENCES;2673;3.622;0.00372;0
-Frontiers in Zoology;Frontiers in Zoology;2088;3.627;0.00541;0
-Molecular Biology and Evolution;MOLECULAR BIOLOGY AND EVOLUTION;44664;10.217;0.10156;0
-Hydrobiologia;HYDROBIOLOGIA;23964;2.165;0.01655;0
-Herpetological Journal;HERPETOLOGICAL JOURNAL;733;1.268;0.00098;0
-Theoretical and Applied Genetics;THEORETICAL AND APPLIED GENETICS;19565;3.93;0.01588;0
-Journal of Mammalogy;JOURNAL OF MAMMALOGY;8274;2.139;0.00634;0
-Preventive Veterinary Medicine;PREVENTIVE VETERINARY MEDICINE;6639;1.924;0.00966;0
-Insect Biochemistry and Molecular Biology;INSECT BIOCHEMISTRY AND MOLECULAR BIOLOGY;7821;3.562;0.00893;0
-American Journal of Primatology;AMERICAN JOURNAL OF PRIMATOLOGY;4666;2.288;0.00523;0
-Folia Zoologica;FOLIA ZOOLOGICA;664;0.467;0.00053;0
-Journal of Shellfish Research;JOURNAL OF SHELLFISH RESEARCH;2656;0.951;0.00184;0
-Marine and Freshwater Research;MARINE AND FRESHWATER RESEARCH;4737;1.674;0.00478;0
-Biotropica;BIOTROPICA;5956;2.281;0.00541;0
-Zoological Journal of the Linnean Society;ZOOLOGICAL JOURNAL OF THE LINNEAN SOCIETY;4824;2.685;0.00639;0
-Ichthyological Research;ICHTHYOLOGICAL RESEARCH;678;0.765;0.00083;0
-Science of Nature;Science of Nature;324;1.789;0.00126;0
-Copeia;COPEIA;5666;1.22;0.00216;0
-North American Journal of Fisheries Management;NORTH AMERICAN JOURNAL OF FISHERIES MANAGEMENT;4574;1.519;0.00306;0
-Boreas;BOREAS;2633;2.638;0.00334;0
-Helgoland Marine Research;HELGOLAND MARINE RESEARCH;1474;0.949;0.00117;0
-Behaviour;BEHAVIOUR;5274;1.484;0.00326;0
-Journal of Insect Physiology;JOURNAL OF INSECT PHYSIOLOGY;8699;2.733;0.00821;0
-Crop Protection;CROP PROTECTION;7329;1.92;0.00844;0
-Biological Journal of the Linnean Society;BIOLOGICAL JOURNAL OF THE LINNEAN SOCIETY;9534;2.532;0.01108;0
-Aquatic Microbial Ecology;AQUATIC MICROBIAL ECOLOGY;4151;2.024;0.00275;0
-Evolutionary Applications;Evolutionary Applications;3417;4.694;0.01084;0
-Remote Sensing of Environment;REMOTE SENSING OF ENVIRONMENT;44168;6.457;0.05291;0
-Biological Control;BIOLOGICAL CONTROL;6566;2.112;0.00628;0
-Plant Biotechnology Reports;Plant Biotechnology Reports;578;1.301;0.0011;0
-European Journal of Soil Biology;EUROPEAN JOURNAL OF SOIL BIOLOGY;2627;2.068;0.00359;0
-Global Ecology and Biogeography;GLOBAL ECOLOGY AND BIOGEOGRAPHY;10294;5.958;0.02317;0
-Fungal Ecology;Fungal Ecology;1937;3.736;0.00526;0
-Regional Studies in Marine Science;Regional Studies in Marine Science;226;1.152;0.00069;0
-Biodiversity and Conservation;BIODIVERSITY AND CONSERVATION;10172;2.828;0.01189;0
-Paleobiology;PALEOBIOLOGY;3804;2.4;0.00309;0
-European Journal of Forest Research;EUROPEAN JOURNAL OF FOREST RESEARCH;2491;2.409;0.00458;0
-Land Use Policy;LAND USE POLICY;8536;3.194;0.0142;0
-Bulletin of Entomological Research;BULLETIN OF ENTOMOLOGICAL RESEARCH;3583;1.721;0.00291;0
-Journal of Agronomy and Crop Science;JOURNAL OF AGRONOMY AND CROP SCIENCE;2267;2.571;0.00207;0
-Ecosphere;Ecosphere;4205;2.671;0.01608;0
-Antarctic Science;ANTARCTIC SCIENCE;2095;1.394;0.00252;0
-Journal of Zoology;JOURNAL OF ZOOLOGY;8384;1.955;0.00515;0
-Progress in Oceanography;PROGRESS IN OCEANOGRAPHY;7444;4.27;0.0115;0
-mSystems;mSystems;428;5.75;0.00201;0
-Journal of Arid Environments;JOURNAL OF ARID ENVIRONMENTS;8043;1.989;0.00677;0
-Waterbirds;WATERBIRDS;1235;0.669;0.00102;0
-Transactions of the American Fisheries Society;TRANSACTIONS OF THE AMERICAN FISHERIES SOCIETY;7087;1.406;0.0044;0
-Pesquisa Agropecuaria Brasileira;PESQUISA AGROPECUARIA BRASILEIRA;3677;0.546;0.00285;0
-Polar Biology;POLAR BIOLOGY;5890;1.954;0.00749;0
-Journal of Animal Ecology;JOURNAL OF ANIMAL ECOLOGY;16148;4.459;0.01795;0
-Plant Ecology and Evolution;Plant Ecology and Evolution;336;1.138;0.00089;0
-HortScience;HORTSCIENCE;8054;0.83;0.00374;0
-Plant Biosystems;PLANT BIOSYSTEMS;1618;1.203;0.0025;0
-Drewno;Drewno;74;0.311;0.00013;0
-Genetics Selection Evolution;GENETICS SELECTION EVOLUTION;2701;3.743;0.00487;0
-Wilson Journal of Ornithology;Wilson Journal of Ornithology;803;0.483;0.00153;0
-Canadian Journal of Zoology;CANADIAN JOURNAL OF ZOOLOGY;11183;1.184;0.00428;0
-Journal of Virology;JOURNAL OF VIROLOGY;89382;4.368;0.11449;0
-Plant Ecology;PLANT ECOLOGY;5643;1.759;0.00548;0
-Ecology Letters;ECOLOGY LETTERS;30928;9.137;0.05119;0
-Forest Systems;Forest Systems;521;0.96;0.00115;0
-Food Control;FOOD CONTROL;17079;3.667;0.02808;0
-Forests;Forests;2285;1.956;0.00652;0
-American Journal of Botany;AMERICAN JOURNAL OF BOTANY;17024;2.788;0.01545;0
-Coral Reefs;CORAL REEFS;6839;3.095;0.00738;0
-Journal of Applied Entomology;JOURNAL OF APPLIED ENTOMOLOGY;2898;1.629;0.00294;0
-NeoBiota;NeoBiota;343;3.405;0.00098;0
-Journal of Plant Research;JOURNAL OF PLANT RESEARCH;2329;2;0.00326;0
-Acta Chiropterologica;ACTA CHIROPTEROLOGICA;703;1.097;0.00096;0
-Environmental Entomology;ENVIRONMENTAL ENTOMOLOGY;7712;1.661;0.00557;0
-North-Western Journal of Zoology;North-Western Journal of Zoology;352;0.596;0.00084;0
-Soil Science and Plant Nutrition;SOIL SCIENCE AND PLANT NUTRITION;2779;1.122;0.00193;0
-Mycorrhiza;MYCORRHIZA;3255;2.778;0.0031;0
-Agricultural and Forest Meteorology;AGRICULTURAL AND FOREST METEOROLOGY;15550;4.039;0.01997;0
-Journal of Chemical Ecology;JOURNAL OF CHEMICAL ECOLOGY;9956;2.419;0.00786;0
-Ardea;ARDEA;1205;0.95;0.00045;0
-Behavior Genetics;BEHAVIOR GENETICS;3236;2.036;0.00461;0
-Microbial Ecology;MICROBIAL ECOLOGY;9672;3.614;0.01193;0
-Avian Diseases;AVIAN DISEASES;4733;1.328;0.00311;0
-Annals of Botany;ANNALS OF BOTANY;19918;3.646;0.02;0
-Freshwater Biology;FRESHWATER BIOLOGY;15165;3.767;0.01396;0
-Systematics and Biodiversity;SYSTEMATICS AND BIODIVERSITY;906;2.215;0.00187;0
-General and Comparative Endocrinology;GENERAL AND COMPARATIVE ENDOCRINOLOGY;12015;2.564;0.01314;0
-PLoS Genetics;PLoS Genetics;42988;5.54;0.17104;0
-Condor;CONDOR;5245;2.722;0.00284;0
-Biogeosciences;Biogeosciences;15078;3.441;0.04806;0
-Plant Physiology;PLANT PHYSIOLOGY;75249;5.949;0.07102;0
-Conservation Genetics;CONSERVATION GENETICS;4091;2.025;0.00538;0
-Estuaries and Coasts;Estuaries and Coasts;3455;2.421;0.00756;0
-Harmful Algae;HARMFUL ALGAE;4669;4.138;0.00739;0
-Journal of Ornithology;JOURNAL OF ORNITHOLOGY;3070;1.954;0.00576;0
-Agronomy Journal;AGRONOMY JOURNAL;13569;1.897;0.00817;0
-PLoS Biology;PLOS BIOLOGY;28750;9.163;0.05868;0
-Applied and Environmental Microbiology;APPLIED AND ENVIRONMENTAL MICROBIOLOGY;100091;3.633;0.07189;0
-Systematic and Applied Microbiology;SYSTEMATIC AND APPLIED MICROBIOLOGY;5083;3.899;0.00545;0
-Botanical Journal of the Linnean Society;BOTANICAL JOURNAL OF THE LINNEAN SOCIETY;4668;3.124;0.00682;0
-Spanish Journal of Agricultural Research;SPANISH JOURNAL OF AGRICULTURAL RESEARCH;1270;0.811;0.00162;0
-Annales Zoologici Fennici;ANNALES ZOOLOGICI FENNICI;1573;0.732;7e-04;0
-Salamandra;SALAMANDRA;351;1.46;0.00067;0
-Limnology;LIMNOLOGY;687;1.13;0.00062;0
-Entomological Science;ENTOMOLOGICAL SCIENCE;623;1.069;0.0013;0
-Journal of Experimental Biology;JOURNAL OF EXPERIMENTAL BIOLOGY;32317;3.179;0.03455;0
-Cybium;CYBIUM;802;0.346;0.00053;0
-Molecular Breeding;MOLECULAR BREEDING;5028;2.077;0.00886;0
-Journal of Applied Ichthyology;JOURNAL OF APPLIED ICHTHYOLOGY;3920;0.774;0.0042;0
-Fire Ecology;Fire Ecology;480;1.756;0.00076;0
-Soil Science Society of America Journal;SOIL SCIENCE SOCIETY OF AMERICA JOURNAL;21836;1.92;0.00903;0
-Marine Genomics;Marine Genomics;847;1.937;0.00274;0
-Acta Tropica;ACTA TROPICA;8010;2.509;0.01147;0
-BMC Biology;BMC BIOLOGY;5144;5.77;0.01721;0
-Molecular Phylogenetics and Evolution;MOLECULAR PHYLOGENETICS AND EVOLUTION;18604;4.412;0.02949;0
-Biologia;BIOLOGIA;1977;0.696;0.0022;0
-African Journal of Aquatic Science;AFRICAN JOURNAL OF AQUATIC SCIENCE;454;0.706;0.00058;0
-Journal of Integrative Agriculture;Journal of Integrative Agriculture;1680;1.042;0.00523;0
-Agricultural and Food Science;AGRICULTURAL AND FOOD SCIENCE;550;0.58;0.00071;0
-Marine Policy;MARINE POLICY;5991;2.109;0.01074;0
-New Zealand Journal of Ecology;NEW ZEALAND JOURNAL OF ECOLOGY;1113;1.309;0.00105;0
-Vegetation History and Archaeobotany;VEGETATION HISTORY AND ARCHAEOBOTANY;1782;2.232;0.0021;0
-Journal of Thermal Biology;JOURNAL OF THERMAL BIOLOGY;3302;2.093;0.00399;0
-Field Crops Research;FIELD CROPS RESEARCH;14126;3.127;0.01565;0
-Forest Ecosystems;Forest Ecosystems;229;2.426;0.00088;0
-Forest Policy and Economics;FOREST POLICY AND ECONOMICS;3378;2.496;0.00497;0
-Journal of Wildlife Management;JOURNAL OF WILDLIFE MANAGEMENT;11207;2.055;0.00715;0
-Journal of Paleolimnology;JOURNAL OF PALEOLIMNOLOGY;3718;2.168;0.00319;0
-European Journal of Agronomy;EUROPEAN JOURNAL OF AGRONOMY;6230;3.192;0.00729;0
-Photosynthetica;PHOTOSYNTHETICA;2698;1.74;0.00238;0
-Forest Science;FOREST SCIENCE;4302;1.364;0.00285;0
-Experimental and Applied Acarology;EXPERIMENTAL AND APPLIED ACAROLOGY;3356;1.929;0.00414;0
-Diversity and Distributions;DIVERSITY AND DISTRIBUTIONS;7404;4.614;0.01308;0
-Journal of Limnology;JOURNAL OF LIMNOLOGY;1214;1.277;0.00233;0
-Journal of Wildlife Diseases;JOURNAL OF WILDLIFE DISEASES;4842;1.247;0.00444;0
-Journal of Mammalian Evolution;JOURNAL OF MAMMALIAN EVOLUTION;813;2.755;0.00149;0
-Agricultural Water Management;AGRICULTURAL WATER MANAGEMENT;12043;3.182;0.01253;0
-Austral Ecology;AUSTRAL ECOLOGY;3832;1.73;0.00405;0
-Journal of Insect Behavior;JOURNAL OF INSECT BEHAVIOR;1517;0.966;0.00129;0
-Journal of Animal Science and Biotechnology;Journal of Animal Science and Biotechnology;950;3.205;0.00319;0
-Revista Brasileira de Entomologia;REVISTA BRASILEIRA DE ENTOMOLOGIA;1410;0.88;0.00141;0
-Movement Ecology;Movement Ecology;438;3.286;0.00201;0
-European Journal of Plant Pathology;EUROPEAN JOURNAL OF PLANT PATHOLOGY;5289;1.466;0.0066;0
-Preslia;PRESLIA;1017;2.706;0.00145;0
-Ibis;IBIS;4891;2.234;0.00387;0
-Archives of Animal Nutrition;ARCHIVES OF ANIMAL NUTRITION;1038;1.887;0.00127;0
-International Journal of Tropical Insect Science;INTERNATIONAL JOURNAL OF TROPICAL INSECT SCIENCE;329;0.659;0.00037;0
-Applied Geography;APPLIED GEOGRAPHY;5701;3.117;0.01201;0
-Tree Physiology;TREE PHYSIOLOGY;9476;3.389;0.00839;0
-Silvae Genetica;SILVAE GENETICA;869;0.277;0.00022;0
-Journal of Theoretical Biology;JOURNAL OF THEORETICAL BIOLOGY;19404;1.833;0.01972;0
-Journal of Ethology;JOURNAL OF ETHOLOGY;854;1.127;0.00122;0
-Plant Physiology and Biochemistry;PLANT PHYSIOLOGY AND BIOCHEMISTRY;9745;2.718;0.01457;0
-Limnology and Oceanography;LIMNOLOGY AND OCEANOGRAPHY;26993;3.595;0.01663;0
-New Zealand Entomologist;NEW ZEALAND ENTOMOLOGIST;214;0.615;0.00019;0
-Plant Species Biology;PLANT SPECIES BIOLOGY;654;1.673;0.00082;0
-Physiological and Biochemical Zoology;PHYSIOLOGICAL AND BIOCHEMICAL ZOOLOGY;3122;2.291;0.00318;0
-Scientia Horticulturae;SCIENTIA HORTICULTURAE;11536;1.76;0.01406;0
-Insect Science;Insect Science;1563;2.091;0.00333;0
-Florida Entomologist;FLORIDA ENTOMOLOGIST;2859;1.052;0.00378;0
-Journal of Field Ornithology;JOURNAL OF FIELD ORNITHOLOGY;1461;1.394;0.00113;0
-Plant Growth Regulation;PLANT GROWTH REGULATION;4294;2.081;0.00332;0
-California Cooperative Oceanic Fisheries Investigations Reports;CALIFORNIA COOPERATIVE OCEANIC FISHERIES INVESTIGATIONS REPORTS;489;1.231;0.00026;0
-Journal of the Marine Biological Association of the United Kingdom;JOURNAL OF THE MARINE BIOLOGICAL ASSOCIATION OF THE UNITED KINGDOM;5769;1.403;0.0042;0
-Acta Amazonica;ACTA AMAZONICA;1434;0.837;0.00091;0
-Applied Soil Ecology;APPLIED SOIL ECOLOGY;7486;2.916;0.0097;0
-Mammalian Biology;MAMMALIAN BIOLOGY;1271;1.443;0.00232;0
-Revista Brasileira de Fruticultura;Revista Brasileira de Fruticultura;1636;0.475;0.0013;0
-Food Chemistry;FOOD CHEMISTRY;90665;4.946;0.10112;0
-Aquatic Ecology;AQUATIC ECOLOGY;1648;1.978;0.00169;0
-Ethology;ETHOLOGY;4487;1.697;0.00495;0
-Mammal Research;Mammal Research;125;1.299;0.00048;0
-Journal of Marine Systems;JOURNAL OF MARINE SYSTEMS;6047;2.506;0.00823;0
-Current Forestry Reports;Current Forestry Reports;163;3.548;6e-04;0
-International Journal of Phytoremediation;INTERNATIONAL JOURNAL OF PHYTOREMEDIATION;2125;1.886;0.00256;0
-Acta Ethologica;ACTA ETHOLOGICA;446;1.625;0.00093;0
-Journal of Pest Science;JOURNAL OF PEST SCIENCE;2074;4.402;0.00448;0
-New Phytologist;NEW PHYTOLOGIST;44994;7.433;0.07783;0
-Genetica;GENETICA;3125;1.366;0.00154;0
-Nova Hedwigia;NOVA HEDWIGIA;1873;0.904;0.00146;0
-Pedobiologia;PEDOBIOLOGIA;2386;2.288;0.00149;0
-Saudi Journal of Biological Sciences;SAUDI JOURNAL OF BIOLOGICAL SCIENCES;1787;3.138;0.00347;0
-Zoologischer Anzeiger;ZOOLOGISCHER ANZEIGER;1915;1.345;0.00156;0
-New Forests;NEW FORESTS;1562;2.664;0.00213;0
-Agroforestry Systems;AGROFORESTRY SYSTEMS;3094;1.201;0.00258;0
-Pakistan Journal of Botany;PAKISTAN JOURNAL OF BOTANY;4073;0.75;0.00333;0
-Journal International des Sciences de la Vigne et du Vin;JOURNAL INTERNATIONAL DES SCIENCES DE LA VIGNE ET DU VIN;430;0.848;0.00045;0
-Ticks and Tick-borne Diseases;Ticks and Tick-Borne Diseases;2243;2.612;0.00731;0
-Invertebrate Biology;INVERTEBRATE BIOLOGY;760;1.333;8e-04;0
-BMC Evolutionary Biology;BMC EVOLUTIONARY BIOLOGY;12388;3.027;0.02386;0
-Phytotaxa;Phytotaxa;3730;1.185;0.0098;0
-Integrative Zoology;Integrative Zoology;774;1.856;0.0019;0
-Biology and Fertility of Soils;BIOLOGY AND FERTILITY OF SOILS;8076;3.808;0.00658;0
-International Journal of Wildland Fire;INTERNATIONAL JOURNAL OF WILDLAND FIRE;4171;2.445;0.00517;0
-Plant Science;PLANT SCIENCE;12750;3.712;0.01446;0
-Conservation Genetics Resources;Conservation Genetics Resources;1625;0.742;0.00567;0
-Tropical Animal Health and Production;TROPICAL ANIMAL HEALTH AND PRODUCTION;3220;0.975;0.00488;0
-South American Journal of Herpetology;South American Journal of Herpetology;310;0.596;0.00051;0
-Zoology;ZOOLOGY;1461;1.938;0.00213;0
-Applied Entomology and Zoology;APPLIED ENTOMOLOGY AND ZOOLOGY;1889;0.857;0.00133;0
-Studies in Mycology;STUDIES IN MYCOLOGY;2777;11.633;0.00414;0
-Seed Science Research;SEED SCIENCE RESEARCH;1645;2.03;0.00132;0
-Journal of Molluscan Studies;JOURNAL OF MOLLUSCAN STUDIES;1819;1.483;0.0016;0
-Revista Arvore;REVISTA ARVORE;1548;0.392;0.00101;0
-Herpetological Conservation and Biology;Herpetological Conservation and Biology;536;0.835;0.00116;0
-PLoS Computational Biology;PLoS Computational Biology;23758;3.955;0.08279;0
-Acta Zoologica Academiae Scientiarum Hungaricae;ACTA ZOOLOGICA ACADEMIAE SCIENTIARUM HUNGARICAE;668;0.846;0.00033;0
-Meat Science;MEAT SCIENCE;18481;2.821;0.01523;0
-Journal of Herpetology;JOURNAL OF HERPETOLOGY;3464;0.865;0.00202;0
-Journal of Dairy Science;JOURNAL OF DAIRY SCIENCE;45612;2.749;0.03146;0
-Behavioral Ecology;BEHAVIORAL ECOLOGY;10126;3.347;0.01494;0
-Bosque;BOSQUE;416;0.409;0.00061;0
-Phytochemistry;PHYTOCHEMISTRY;30812;3.186;0.01297;0
-International Journal of Food Microbiology;INTERNATIONAL JOURNAL OF FOOD MICROBIOLOGY;23973;3.451;0.02028;0
-Northwest Science;NORTHWEST SCIENCE;765;0.706;0.00043;0
-Tuexenia;TUEXENIA;236;1.125;0.00045;0
-Journal of Forestry Research;JOURNAL OF FORESTRY RESEARCH;986;0.748;0.00161;0
-Restoration Ecology;RESTORATION ECOLOGY;4704;2.544;0.00482;0
-Canadian Entomologist;CANADIAN ENTOMOLOGIST;2896;0.948;0.00118;0
-Fishery Bulletin;FISHERY BULLETIN;3322;1.216;0.00103;0
-Aquatic Botany;AQUATIC BOTANY;5466;1.787;0.00301;0
-Marine Biodiversity;Marine Biodiversity;855;2.077;0.00181;0
-Entomologia Experimentalis et Applicata;ENTOMOLOGIA EXPERIMENTALIS ET APPLICATA;5242;1.454;0.00412;0
-American Journal of Human Biology;AMERICAN JOURNAL OF HUMAN BIOLOGY;3199;1.575;0.00418;0
-Diseases of Aquatic Organisms;DISEASES OF AQUATIC ORGANISMS;6014;1.543;0.00431;0
-Journal of Invertebrate Pathology;JOURNAL OF INVERTEBRATE PATHOLOGY;6060;2.511;0.00548;0
-Estuarine, Coastal and Shelf Science;ESTUARINE COASTAL AND SHELF SCIENCE;15400;2.413;0.01587;1
-Infection, Genetics and Evolution;INFECTION GENETICS AND EVOLUTION;7542;2.545;0.0193;1
-Amphibia Reptilia;AMPHIBIA-REPTILIA;1398;1.105;0.00142;1
-Acta Oecologica;;;1.93;;
-International Journal of Ecology;;;0.493;;
-Rendiconti Lincei;;;1.81;;
-Annales de Limnologie;;;0.944;;
-Human Nature;;;2.75;;
-Algal Research;;;5.276;;
-LWT;;;6.056;;
-Biochar;;;11.452;;
-Soil Biology and Biochemistry;;;5.795;;
-Palaeogeography, Palaeoclimatology, Palaeoecology;;;3.565;;
-Agriculture, Ecosystems and Environment;;;6.576;;
-Rhizosphere;;;3.437;;
-Acta Agriculturae Scandinavica Section B: Soil and Plant Science;;;1.931;;
-Deep-Sea Research Part I: Oceanographic Research Papers;;;3.101;;
-Proceedings of the Royal Society B: Biological Sciences;;;5.531;;
-Comparative Biochemistry and Physiology -Part A : Molecular and Integrative Physiology;;;2.888;;
-Frontiers in Ecology and Evolution;;;4.496;;
-Gayana - Botanica;;;1.302;;
-Rangeland Ecology and Management;;;2.398;;
-Journal of Agricultural, Biological, and Environmental Statistics;;;1.524;;
-Urban Forestry and Urban Greening;;;5.766;;
-Plant Ecology and Diversity;;;2.763;;
-Acta Ecologica Sinica;;;0.252;;
-Arthropod Structure and Development;;;2.075;;
-Trees - Structure and Function;;;2.888;;
-Philosophical Transactions of the Royal Society B: Biological Sciences;;;6.671;;
-Tree Genetics and Genomes;;;2.398;;
-Geoderma Regional;;;4.201;;
-Aquaculture Reports;;;3.385;;
-Plant Diversity;;;3.359;;
-Frontiers of Biogeography;;;0.862;;
-Journal of Integrated Coastal Zone Management;;;0.244;;
-Communications Biology;;;6.548;;
-Agriculture and Natural Resources;;;0.263;;
-Flora: Morphology, Distribution, Functional Ecology of Plants;;;2.22;;
-Ocean and Coastal Management;;;4.33;;
-Journal of Comparative Physiology A: Neuroethology, Sensory, Neural, and Behavioral Physiology;;;2.389;;
-Annals of Agricultural Sciences;;;7.241;;
-Aquaculture and Fisheries;;;3.59;;
-North American Fungi;;;0;;
-Ecological Management and Restoration;;;2.211;;
-Biomass and Bioenergy;;;5.774;;
-Indian Phytopathology;;;0.96;;
-CCAMLR Science;;;0;;
-Zeitschrift fur Pflanzenernahrung und Bodenkunde;;;2.566;;
-Cogent Food and Agriculture;;;2.28;;
-Northern Journal of Applied Forestry;;;0;;
-Ecologia Austral;;;0.95;;
-Frontiers in Marine Science;;;5.247;;
+"needed_journals","Journal","Cites","ImpactFactor","Eigenfactor","dist"
+"Ecography","ECOGRAPHY",10103,4.52,0.01818,0
+"Journal of Raptor Research","JOURNAL OF RAPTOR RESEARCH",825,0.699,0.00064,0
+"Marine Ecology Progress Series","MARINE ECOLOGY PROGRESS SERIES",36229,2.276,0.02751,0
+"Applied Animal Behaviour Science","APPLIED ANIMAL BEHAVIOUR SCIENCE",8022,1.548,0.00578,0
+"Journal of Evolutionary Biology","JOURNAL OF EVOLUTIONARY BIOLOGY",10778,2.538,0.01786,0
+"New Zealand Journal of Forestry Science","NEW ZEALAND JOURNAL OF FORESTRY SCIENCE",594,1.333,0.00051,0
+"Agronomy for Sustainable Development","Agronomy for Sustainable Development",3580,4.503,0.00671,0
+"Parasitology Research","PARASITOLOGY RESEARCH",12003,2.558,0.01901,0
+"Journal of Asia-Pacific Entomology","JOURNAL OF ASIA-PACIFIC ENTOMOLOGY",963,0.875,0.00195,0
+"Biological Conservation","BIOLOGICAL CONSERVATION",28274,4.66,0.03624,0
+"Geoderma","GEODERMA",18686,3.74,0.02027,0
+"Evolutionary Ecology","EVOLUTIONARY ECOLOGY",3729,2.133,0.00427,0
+"Behavioral Ecology and Sociobiology","BEHAVIORAL ECOLOGY AND SOCIOBIOLOGY",12110,2.473,0.01123,0
+"Journal of Insect Conservation","JOURNAL OF INSECT CONSERVATION",1953,1.562,0.0036,0
+"Journal of Biogeography","JOURNAL OF BIOGEOGRAPHY",15146,4.154,0.0228,0
+"International Journal of Primatology","INTERNATIONAL JOURNAL OF PRIMATOLOGY",3165,1.278,0.00261,0
+"Forest Ecology and Management","FOREST ECOLOGY AND MANAGEMENT",32513,3.169,0.03297,0
+"PeerJ","PeerJ",7377,2.118,0.0316,0
+"Oecologia","OECOLOGIA",32672,3.127,0.02627,0
+"Industrial Crops and Products","INDUSTRIAL CROPS AND PRODUCTS",19421,3.849,0.03281,0
+"Marine Biology","MARINE BIOLOGY",17167,2.215,0.01183,0
+"Journal of Experimental Botany","JOURNAL OF EXPERIMENTAL BOTANY",40585,5.354,0.05792,0
+"Forestry","FORESTRY",2397,2.638,0.00291,0
+"ZooKeys","ZooKeys",3668,1.079,0.01189,0
+"Plant Systematics and Evolution","PLANT SYSTEMATICS AND EVOLUTION",4562,1.452,0.00441,0
+"Journal of Forest Research","Journal of Forest Research",939,0.908,0.00074,0
+"Marine Environmental Research","MARINE ENVIRONMENTAL RESEARCH",5682,3.159,0.00728,0
+"Food Research International","FOOD RESEARCH INTERNATIONAL",22125,3.52,0.03282,0
+"Poultry Science","POULTRY SCIENCE",19149,2.216,0.01298,0
+"Ecology","ECOLOGY",60825,4.617,0.04415,0
+"Agricultural and Forest Entomology","AGRICULTURAL AND FOREST ENTOMOLOGY",1342,1.49,0.00178,0
+"PLoS ONE","PLoS One",582877,2.766,1.86235,0
+"Journal of Sea Research","JOURNAL OF SEA RESEARCH",3051,1.729,0.0044,0
+"Fisheries Research","FISHERIES RESEARCH",7849,1.874,0.00911,0
+"Aquaculture","AQUACULTURE",32468,2.71,0.01953,0
+"Canadian Journal of Forest Research","CANADIAN JOURNAL OF FOREST RESEARCH",11536,1.887,0.00649,0
+"American Naturalist","AMERICAN NATURALIST",29269,4.265,0.02053,0
+"Ecosystems","ECOSYSTEMS",8825,4.03,0.01116,0
+"Current Biology","CURRENT BIOLOGY",56595,9.251,0.1372,0
+"Journal of Economic Entomology","JOURNAL OF ECONOMIC ENTOMOLOGY",12772,1.936,0.01032,0
+"Environmental and Experimental Botany","ENVIRONMENTAL AND EXPERIMENTAL BOTANY",8583,3.666,0.00989,0
+"Plant Cell and Environment","PLANT CELL AND ENVIRONMENT",20478,5.415,0.02272,0
+"Functional Ecology","FUNCTIONAL ECOLOGY",14638,5.491,0.02176,0
+"Evolution and Human Behavior","EVOLUTION AND HUMAN BEHAVIOR",4043,3.623,0.00673,0
+"Canadian Journal of Fisheries and Aquatic Sciences","CANADIAN JOURNAL OF FISHERIES AND AQUATIC SCIENCES",16760,2.631,0.01004,0
+"Global Ecology and Conservation","Global Ecology and Conservation",649,2.174,0.00282,0
+"Biological Invasions","BIOLOGICAL INVASIONS",8978,3.054,0.0144,0
+"Phycologia","PHYCOLOGIA",2724,1.798,0.00199,0
+"Quaternary Science Reviews","QUATERNARY SCIENCE REVIEWS",21248,4.334,0.03735,0
+"Agricultural Systems","AGRICULTURAL SYSTEMS",5624,3.004,0.00644,0
+"Journal of Ecology","JOURNAL OF ECOLOGY",18409,5.172,0.02482,0
+"BioControl","BIOCONTROL",2245,1.924,0.00266,0
+"Evolution","EVOLUTION",32227,3.818,0.03223,0
+"Annals of Forest Science","ANNALS OF FOREST SCIENCE",3341,2.357,0.00381,0
+"Environmental Biology of Fishes","ENVIRONMENTAL BIOLOGY OF FISHES",5681,1.514,0.00444,0
+"Aquatic Toxicology","AQUATIC TOXICOLOGY",15035,3.884,0.01534,0
+"Precision Agriculture","PRECISION AGRICULTURE",1534,2.435,0.00195,0
+"Apidologie","APIDOLOGIE",3943,2.856,0.00307,0
+"Wildlife Biology","WILDLIFE BIOLOGY",1423,2.081,0.00154,0
+"Journal of Arachnology","JOURNAL OF ARACHNOLOGY",1363,1.236,0.00095,0
+"Conservation Biology","CONSERVATION BIOLOGY",20885,5.89,0.02035,0
+"BMC Ecology","BMC ECOLOGY",1055,2.315,0.00222,0
+"South African Journal of Botany","SOUTH AFRICAN JOURNAL OF BOTANY",3059,1.442,0.00413,0
+"Journal of Great Lakes Research","JOURNAL OF GREAT LAKES RESEARCH",4423,2.354,0.00602,0
+"Marine Pollution Bulletin","MARINE POLLUTION BULLETIN",25474,3.241,0.02731,0
+"Ecology and Evolution","Ecology and Evolution",6915,2.34,0.02926,0
+"ICES Journal of Marine Science","ICES JOURNAL OF MARINE SCIENCE",9838,2.906,0.01295,0
+"Animal Behaviour","ANIMAL BEHAVIOUR",27186,3.067,0.02408,0
+"Limnologica","LIMNOLOGICA",1360,1.814,0.00201,0
+"Ecological Indicators","ECOLOGICAL INDICATORS",13782,3.983,0.02862,0
+"Ecological Research","ECOLOGICAL RESEARCH",3185,1.531,0.0035,0
+"Taiwania","TAIWANIA",455,0.421,0.00049,0
+"Ecological Informatics","Ecological Informatics",1507,1.82,0.00324,0
+"Journal of Experimental Marine Biology and Ecology","JOURNAL OF EXPERIMENTAL MARINE BIOLOGY AND ECOLOGY",15335,1.99,0.01016,0
+"Dendrochronologia","DENDROCHRONOLOGIA",1331,2.055,0.00181,0
+"ISME Journal","ISME Journal",19791,9.52,0.05672,0
+"Plant and Soil","PLANT AND SOIL",30111,3.306,0.02556,0
+"BMC Plant Biology","BMC PLANT BIOLOGY",10552,3.93,0.02315,0
+"Behavioural Processes","BEHAVIOURAL PROCESSES",4337,1.555,0.00698,0
+"European Journal of Wildlife Research","EUROPEAN JOURNAL OF WILDLIFE RESEARCH",1660,1.453,0.00322,0
+"Fundamental and Applied Limnology","Fundamental and Applied Limnology",805,1.361,0.0012,0
+"Population Ecology","POPULATION ECOLOGY",1132,1.644,0.00197,0
+"Crop Science","CROP SCIENCE",17363,1.635,0.0095,0
+"Basic and Applied Ecology","BASIC AND APPLIED ECOLOGY",2944,2.144,0.00392,0
+"Journal of Human Evolution","JOURNAL OF HUMAN EVOLUTION",9100,3.992,0.01118,0
+"Aquatic Sciences","AQUATIC SCIENCES",2673,3.622,0.00372,0
+"Frontiers in Zoology","Frontiers in Zoology",2088,3.627,0.00541,0
+"Molecular Biology and Evolution","MOLECULAR BIOLOGY AND EVOLUTION",44664,10.217,0.10156,0
+"Hydrobiologia","HYDROBIOLOGIA",23964,2.165,0.01655,0
+"Herpetological Journal","HERPETOLOGICAL JOURNAL",733,1.268,0.00098,0
+"Theoretical and Applied Genetics","THEORETICAL AND APPLIED GENETICS",19565,3.93,0.01588,0
+"Journal of Mammalogy","JOURNAL OF MAMMALOGY",8274,2.139,0.00634,0
+"Preventive Veterinary Medicine","PREVENTIVE VETERINARY MEDICINE",6639,1.924,0.00966,0
+"Insect Biochemistry and Molecular Biology","INSECT BIOCHEMISTRY AND MOLECULAR BIOLOGY",7821,3.562,0.00893,0
+"American Journal of Primatology","AMERICAN JOURNAL OF PRIMATOLOGY",4666,2.288,0.00523,0
+"Folia Zoologica","FOLIA ZOOLOGICA",664,0.467,0.00053,0
+"Journal of Shellfish Research","JOURNAL OF SHELLFISH RESEARCH",2656,0.951,0.00184,0
+"Marine and Freshwater Research","MARINE AND FRESHWATER RESEARCH",4737,1.674,0.00478,0
+"Biotropica","BIOTROPICA",5956,2.281,0.00541,0
+"Zoological Journal of the Linnean Society","ZOOLOGICAL JOURNAL OF THE LINNEAN SOCIETY",4824,2.685,0.00639,0
+"Ichthyological Research","ICHTHYOLOGICAL RESEARCH",678,0.765,0.00083,0
+"Science of Nature","Science of Nature",324,1.789,0.00126,0
+"Copeia","COPEIA",5666,1.22,0.00216,0
+"North American Journal of Fisheries Management","NORTH AMERICAN JOURNAL OF FISHERIES MANAGEMENT",4574,1.519,0.00306,0
+"Boreas","BOREAS",2633,2.638,0.00334,0
+"Helgoland Marine Research","HELGOLAND MARINE RESEARCH",1474,0.949,0.00117,0
+"Behaviour","BEHAVIOUR",5274,1.484,0.00326,0
+"Journal of Insect Physiology","JOURNAL OF INSECT PHYSIOLOGY",8699,2.733,0.00821,0
+"Crop Protection","CROP PROTECTION",7329,1.92,0.00844,0
+"Biological Journal of the Linnean Society","BIOLOGICAL JOURNAL OF THE LINNEAN SOCIETY",9534,2.532,0.01108,0
+"Aquatic Microbial Ecology","AQUATIC MICROBIAL ECOLOGY",4151,2.024,0.00275,0
+"Evolutionary Applications","Evolutionary Applications",3417,4.694,0.01084,0
+"Remote Sensing of Environment","REMOTE SENSING OF ENVIRONMENT",44168,6.457,0.05291,0
+"Biological Control","BIOLOGICAL CONTROL",6566,2.112,0.00628,0
+"Plant Biotechnology Reports","Plant Biotechnology Reports",578,1.301,0.0011,0
+"European Journal of Soil Biology","EUROPEAN JOURNAL OF SOIL BIOLOGY",2627,2.068,0.00359,0
+"Global Ecology and Biogeography","GLOBAL ECOLOGY AND BIOGEOGRAPHY",10294,5.958,0.02317,0
+"Fungal Ecology","Fungal Ecology",1937,3.736,0.00526,0
+"Regional Studies in Marine Science","Regional Studies in Marine Science",226,1.152,0.00069,0
+"Biodiversity and Conservation","BIODIVERSITY AND CONSERVATION",10172,2.828,0.01189,0
+"Paleobiology","PALEOBIOLOGY",3804,2.4,0.00309,0
+"European Journal of Forest Research","EUROPEAN JOURNAL OF FOREST RESEARCH",2491,2.409,0.00458,0
+"Land Use Policy","LAND USE POLICY",8536,3.194,0.0142,0
+"Bulletin of Entomological Research","BULLETIN OF ENTOMOLOGICAL RESEARCH",3583,1.721,0.00291,0
+"Journal of Agronomy and Crop Science","JOURNAL OF AGRONOMY AND CROP SCIENCE",2267,2.571,0.00207,0
+"Ecosphere","Ecosphere",4205,2.671,0.01608,0
+"Antarctic Science","ANTARCTIC SCIENCE",2095,1.394,0.00252,0
+"Journal of Zoology","JOURNAL OF ZOOLOGY",8384,1.955,0.00515,0
+"Progress in Oceanography","PROGRESS IN OCEANOGRAPHY",7444,4.27,0.0115,0
+"mSystems","mSystems",428,5.75,0.00201,0
+"Journal of Arid Environments","JOURNAL OF ARID ENVIRONMENTS",8043,1.989,0.00677,0
+"Waterbirds","WATERBIRDS",1235,0.669,0.00102,0
+"Transactions of the American Fisheries Society","TRANSACTIONS OF THE AMERICAN FISHERIES SOCIETY",7087,1.406,0.0044,0
+"Pesquisa Agropecuaria Brasileira","PESQUISA AGROPECUARIA BRASILEIRA",3677,0.546,0.00285,0
+"Polar Biology","POLAR BIOLOGY",5890,1.954,0.00749,0
+"Journal of Animal Ecology","JOURNAL OF ANIMAL ECOLOGY",16148,4.459,0.01795,0
+"Plant Ecology and Evolution","Plant Ecology and Evolution",336,1.138,0.00089,0
+"HortScience","HORTSCIENCE",8054,0.83,0.00374,0
+"Plant Biosystems","PLANT BIOSYSTEMS",1618,1.203,0.0025,0
+"Drewno","Drewno",74,0.311,0.00013,0
+"Genetics Selection Evolution","GENETICS SELECTION EVOLUTION",2701,3.743,0.00487,0
+"Wilson Journal of Ornithology","Wilson Journal of Ornithology",803,0.483,0.00153,0
+"Canadian Journal of Zoology","CANADIAN JOURNAL OF ZOOLOGY",11183,1.184,0.00428,0
+"Journal of Virology","JOURNAL OF VIROLOGY",89382,4.368,0.11449,0
+"Plant Ecology","PLANT ECOLOGY",5643,1.759,0.00548,0
+"Ecology Letters","ECOLOGY LETTERS",30928,9.137,0.05119,0
+"Forest Systems","Forest Systems",521,0.96,0.00115,0
+"Food Control","FOOD CONTROL",17079,3.667,0.02808,0
+"Forests","Forests",2285,1.956,0.00652,0
+"American Journal of Botany","AMERICAN JOURNAL OF BOTANY",17024,2.788,0.01545,0
+"Coral Reefs","CORAL REEFS",6839,3.095,0.00738,0
+"Journal of Applied Entomology","JOURNAL OF APPLIED ENTOMOLOGY",2898,1.629,0.00294,0
+"NeoBiota","NeoBiota",343,3.405,0.00098,0
+"Journal of Plant Research","JOURNAL OF PLANT RESEARCH",2329,2,0.00326,0
+"Acta Chiropterologica","ACTA CHIROPTEROLOGICA",703,1.097,0.00096,0
+"Environmental Entomology","ENVIRONMENTAL ENTOMOLOGY",7712,1.661,0.00557,0
+"North-Western Journal of Zoology","North-Western Journal of Zoology",352,0.596,0.00084,0
+"Soil Science and Plant Nutrition","SOIL SCIENCE AND PLANT NUTRITION",2779,1.122,0.00193,0
+"Mycorrhiza","MYCORRHIZA",3255,2.778,0.0031,0
+"Agricultural and Forest Meteorology","AGRICULTURAL AND FOREST METEOROLOGY",15550,4.039,0.01997,0
+"Journal of Chemical Ecology","JOURNAL OF CHEMICAL ECOLOGY",9956,2.419,0.00786,0
+"Ardea","ARDEA",1205,0.95,0.00045,0
+"Behavior Genetics","BEHAVIOR GENETICS",3236,2.036,0.00461,0
+"Microbial Ecology","MICROBIAL ECOLOGY",9672,3.614,0.01193,0
+"Avian Diseases","AVIAN DISEASES",4733,1.328,0.00311,0
+"Annals of Botany","ANNALS OF BOTANY",19918,3.646,0.02,0
+"Freshwater Biology","FRESHWATER BIOLOGY",15165,3.767,0.01396,0
+"Systematics and Biodiversity","SYSTEMATICS AND BIODIVERSITY",906,2.215,0.00187,0
+"General and Comparative Endocrinology","GENERAL AND COMPARATIVE ENDOCRINOLOGY",12015,2.564,0.01314,0
+"PLoS Genetics","PLoS Genetics",42988,5.54,0.17104,0
+"Condor","CONDOR",5245,2.722,0.00284,0
+"Biogeosciences","Biogeosciences",15078,3.441,0.04806,0
+"Plant Physiology","PLANT PHYSIOLOGY",75249,5.949,0.07102,0
+"Conservation Genetics","CONSERVATION GENETICS",4091,2.025,0.00538,0
+"Estuaries and Coasts","Estuaries and Coasts",3455,2.421,0.00756,0
+"Harmful Algae","HARMFUL ALGAE",4669,4.138,0.00739,0
+"Journal of Ornithology","JOURNAL OF ORNITHOLOGY",3070,1.954,0.00576,0
+"Agronomy Journal","AGRONOMY JOURNAL",13569,1.897,0.00817,0
+"PLoS Biology","PLOS BIOLOGY",28750,9.163,0.05868,0
+"Applied and Environmental Microbiology","APPLIED AND ENVIRONMENTAL MICROBIOLOGY",100091,3.633,0.07189,0
+"Systematic and Applied Microbiology","SYSTEMATIC AND APPLIED MICROBIOLOGY",5083,3.899,0.00545,0
+"Botanical Journal of the Linnean Society","BOTANICAL JOURNAL OF THE LINNEAN SOCIETY",4668,3.124,0.00682,0
+"Spanish Journal of Agricultural Research","SPANISH JOURNAL OF AGRICULTURAL RESEARCH",1270,0.811,0.00162,0
+"Annales Zoologici Fennici","ANNALES ZOOLOGICI FENNICI",1573,0.732,7e-04,0
+"Salamandra","SALAMANDRA",351,1.46,0.00067,0
+"Limnology","LIMNOLOGY",687,1.13,0.00062,0
+"Entomological Science","ENTOMOLOGICAL SCIENCE",623,1.069,0.0013,0
+"Journal of Experimental Biology","JOURNAL OF EXPERIMENTAL BIOLOGY",32317,3.179,0.03455,0
+"Cybium","CYBIUM",802,0.346,0.00053,0
+"Molecular Breeding","MOLECULAR BREEDING",5028,2.077,0.00886,0
+"Journal of Applied Ichthyology","JOURNAL OF APPLIED ICHTHYOLOGY",3920,0.774,0.0042,0
+"Fire Ecology","Fire Ecology",480,1.756,0.00076,0
+"Soil Science Society of America Journal","SOIL SCIENCE SOCIETY OF AMERICA JOURNAL",21836,1.92,0.00903,0
+"Marine Genomics","Marine Genomics",847,1.937,0.00274,0
+"Acta Tropica","ACTA TROPICA",8010,2.509,0.01147,0
+"BMC Biology","BMC BIOLOGY",5144,5.77,0.01721,0
+"Molecular Phylogenetics and Evolution","MOLECULAR PHYLOGENETICS AND EVOLUTION",18604,4.412,0.02949,0
+"Biologia","BIOLOGIA",1977,0.696,0.0022,0
+"African Journal of Aquatic Science","AFRICAN JOURNAL OF AQUATIC SCIENCE",454,0.706,0.00058,0
+"Journal of Integrative Agriculture","Journal of Integrative Agriculture",1680,1.042,0.00523,0
+"Agricultural and Food Science","AGRICULTURAL AND FOOD SCIENCE",550,0.58,0.00071,0
+"Marine Policy","MARINE POLICY",5991,2.109,0.01074,0
+"New Zealand Journal of Ecology","NEW ZEALAND JOURNAL OF ECOLOGY",1113,1.309,0.00105,0
+"Vegetation History and Archaeobotany","VEGETATION HISTORY AND ARCHAEOBOTANY",1782,2.232,0.0021,0
+"Journal of Thermal Biology","JOURNAL OF THERMAL BIOLOGY",3302,2.093,0.00399,0
+"Field Crops Research","FIELD CROPS RESEARCH",14126,3.127,0.01565,0
+"Forest Ecosystems","Forest Ecosystems",229,2.426,0.00088,0
+"Forest Policy and Economics","FOREST POLICY AND ECONOMICS",3378,2.496,0.00497,0
+"Journal of Wildlife Management","JOURNAL OF WILDLIFE MANAGEMENT",11207,2.055,0.00715,0
+"Journal of Paleolimnology","JOURNAL OF PALEOLIMNOLOGY",3718,2.168,0.00319,0
+"European Journal of Agronomy","EUROPEAN JOURNAL OF AGRONOMY",6230,3.192,0.00729,0
+"Photosynthetica","PHOTOSYNTHETICA",2698,1.74,0.00238,0
+"Forest Science","FOREST SCIENCE",4302,1.364,0.00285,0
+"Experimental and Applied Acarology","EXPERIMENTAL AND APPLIED ACAROLOGY",3356,1.929,0.00414,0
+"Diversity and Distributions","DIVERSITY AND DISTRIBUTIONS",7404,4.614,0.01308,0
+"Journal of Limnology","JOURNAL OF LIMNOLOGY",1214,1.277,0.00233,0
+"Journal of Wildlife Diseases","JOURNAL OF WILDLIFE DISEASES",4842,1.247,0.00444,0
+"Journal of Mammalian Evolution","JOURNAL OF MAMMALIAN EVOLUTION",813,2.755,0.00149,0
+"Agricultural Water Management","AGRICULTURAL WATER MANAGEMENT",12043,3.182,0.01253,0
+"Austral Ecology","AUSTRAL ECOLOGY",3832,1.73,0.00405,0
+"Journal of Insect Behavior","JOURNAL OF INSECT BEHAVIOR",1517,0.966,0.00129,0
+"Journal of Animal Science and Biotechnology","Journal of Animal Science and Biotechnology",950,3.205,0.00319,0
+"Revista Brasileira de Entomologia","REVISTA BRASILEIRA DE ENTOMOLOGIA",1410,0.88,0.00141,0
+"Movement Ecology","Movement Ecology",438,3.286,0.00201,0
+"European Journal of Plant Pathology","EUROPEAN JOURNAL OF PLANT PATHOLOGY",5289,1.466,0.0066,0
+"Preslia","PRESLIA",1017,2.706,0.00145,0
+"Ibis","IBIS",4891,2.234,0.00387,0
+"Archives of Animal Nutrition","ARCHIVES OF ANIMAL NUTRITION",1038,1.887,0.00127,0
+"International Journal of Tropical Insect Science","INTERNATIONAL JOURNAL OF TROPICAL INSECT SCIENCE",329,0.659,0.00037,0
+"Applied Geography","APPLIED GEOGRAPHY",5701,3.117,0.01201,0
+"Tree Physiology","TREE PHYSIOLOGY",9476,3.389,0.00839,0
+"Silvae Genetica","SILVAE GENETICA",869,0.277,0.00022,0
+"Journal of Theoretical Biology","JOURNAL OF THEORETICAL BIOLOGY",19404,1.833,0.01972,0
+"Journal of Ethology","JOURNAL OF ETHOLOGY",854,1.127,0.00122,0
+"Plant Physiology and Biochemistry","PLANT PHYSIOLOGY AND BIOCHEMISTRY",9745,2.718,0.01457,0
+"Limnology and Oceanography","LIMNOLOGY AND OCEANOGRAPHY",26993,3.595,0.01663,0
+"New Zealand Entomologist","NEW ZEALAND ENTOMOLOGIST",214,0.615,0.00019,0
+"Plant Species Biology","PLANT SPECIES BIOLOGY",654,1.673,0.00082,0
+"Physiological and Biochemical Zoology","PHYSIOLOGICAL AND BIOCHEMICAL ZOOLOGY",3122,2.291,0.00318,0
+"Scientia Horticulturae","SCIENTIA HORTICULTURAE",11536,1.76,0.01406,0
+"Insect Science","Insect Science",1563,2.091,0.00333,0
+"Florida Entomologist","FLORIDA ENTOMOLOGIST",2859,1.052,0.00378,0
+"Journal of Field Ornithology","JOURNAL OF FIELD ORNITHOLOGY",1461,1.394,0.00113,0
+"Plant Growth Regulation","PLANT GROWTH REGULATION",4294,2.081,0.00332,0
+"California Cooperative Oceanic Fisheries Investigations Reports","CALIFORNIA COOPERATIVE OCEANIC FISHERIES INVESTIGATIONS REPORTS",489,1.231,0.00026,0
+"Journal of the Marine Biological Association of the United Kingdom","JOURNAL OF THE MARINE BIOLOGICAL ASSOCIATION OF THE UNITED KINGDOM",5769,1.403,0.0042,0
+"Acta Amazonica","ACTA AMAZONICA",1434,0.837,0.00091,0
+"Applied Soil Ecology","APPLIED SOIL ECOLOGY",7486,2.916,0.0097,0
+"Mammalian Biology","MAMMALIAN BIOLOGY",1271,1.443,0.00232,0
+"Revista Brasileira de Fruticultura","Revista Brasileira de Fruticultura",1636,0.475,0.0013,0
+"Food Chemistry","FOOD CHEMISTRY",90665,4.946,0.10112,0
+"Aquatic Ecology","AQUATIC ECOLOGY",1648,1.978,0.00169,0
+"Ethology","ETHOLOGY",4487,1.697,0.00495,0
+"Mammal Research","Mammal Research",125,1.299,0.00048,0
+"Journal of Marine Systems","JOURNAL OF MARINE SYSTEMS",6047,2.506,0.00823,0
+"Current Forestry Reports","Current Forestry Reports",163,3.548,6e-04,0
+"International Journal of Phytoremediation","INTERNATIONAL JOURNAL OF PHYTOREMEDIATION",2125,1.886,0.00256,0
+"Acta Ethologica","ACTA ETHOLOGICA",446,1.625,0.00093,0
+"Journal of Pest Science","JOURNAL OF PEST SCIENCE",2074,4.402,0.00448,0
+"New Phytologist","NEW PHYTOLOGIST",44994,7.433,0.07783,0
+"Genetica","GENETICA",3125,1.366,0.00154,0
+"Nova Hedwigia","NOVA HEDWIGIA",1873,0.904,0.00146,0
+"Pedobiologia","PEDOBIOLOGIA",2386,2.288,0.00149,0
+"Saudi Journal of Biological Sciences","SAUDI JOURNAL OF BIOLOGICAL SCIENCES",1787,3.138,0.00347,0
+"Zoologischer Anzeiger","ZOOLOGISCHER ANZEIGER",1915,1.345,0.00156,0
+"New Forests","NEW FORESTS",1562,2.664,0.00213,0
+"Agroforestry Systems","AGROFORESTRY SYSTEMS",3094,1.201,0.00258,0
+"Pakistan Journal of Botany","PAKISTAN JOURNAL OF BOTANY",4073,0.75,0.00333,0
+"Journal International des Sciences de la Vigne et du Vin","JOURNAL INTERNATIONAL DES SCIENCES DE LA VIGNE ET DU VIN",430,0.848,0.00045,0
+"Ticks and Tick-borne Diseases","Ticks and Tick-Borne Diseases",2243,2.612,0.00731,0
+"Invertebrate Biology","INVERTEBRATE BIOLOGY",760,1.333,8e-04,0
+"BMC Evolutionary Biology","BMC EVOLUTIONARY BIOLOGY",12388,3.027,0.02386,0
+"Phytotaxa","Phytotaxa",3730,1.185,0.0098,0
+"Integrative Zoology","Integrative Zoology",774,1.856,0.0019,0
+"Biology and Fertility of Soils","BIOLOGY AND FERTILITY OF SOILS",8076,3.808,0.00658,0
+"International Journal of Wildland Fire","INTERNATIONAL JOURNAL OF WILDLAND FIRE",4171,2.445,0.00517,0
+"Plant Science","PLANT SCIENCE",12750,3.712,0.01446,0
+"Conservation Genetics Resources","Conservation Genetics Resources",1625,0.742,0.00567,0
+"Tropical Animal Health and Production","TROPICAL ANIMAL HEALTH AND PRODUCTION",3220,0.975,0.00488,0
+"South American Journal of Herpetology","South American Journal of Herpetology",310,0.596,0.00051,0
+"Zoology","ZOOLOGY",1461,1.938,0.00213,0
+"Applied Entomology and Zoology","APPLIED ENTOMOLOGY AND ZOOLOGY",1889,0.857,0.00133,0
+"Studies in Mycology","STUDIES IN MYCOLOGY",2777,11.633,0.00414,0
+"Seed Science Research","SEED SCIENCE RESEARCH",1645,2.03,0.00132,0
+"Journal of Molluscan Studies","JOURNAL OF MOLLUSCAN STUDIES",1819,1.483,0.0016,0
+"Revista Arvore","REVISTA ARVORE",1548,0.392,0.00101,0
+"Herpetological Conservation and Biology","Herpetological Conservation and Biology",536,0.835,0.00116,0
+"PLoS Computational Biology","PLoS Computational Biology",23758,3.955,0.08279,0
+"Acta Zoologica Academiae Scientiarum Hungaricae","ACTA ZOOLOGICA ACADEMIAE SCIENTIARUM HUNGARICAE",668,0.846,0.00033,0
+"Meat Science","MEAT SCIENCE",18481,2.821,0.01523,0
+"Journal of Herpetology","JOURNAL OF HERPETOLOGY",3464,0.865,0.00202,0
+"Journal of Dairy Science","JOURNAL OF DAIRY SCIENCE",45612,2.749,0.03146,0
+"Behavioral Ecology","BEHAVIORAL ECOLOGY",10126,3.347,0.01494,0
+"Bosque","BOSQUE",416,0.409,0.00061,0
+"Phytochemistry","PHYTOCHEMISTRY",30812,3.186,0.01297,0
+"International Journal of Food Microbiology","INTERNATIONAL JOURNAL OF FOOD MICROBIOLOGY",23973,3.451,0.02028,0
+"Northwest Science","NORTHWEST SCIENCE",765,0.706,0.00043,0
+"Tuexenia","TUEXENIA",236,1.125,0.00045,0
+"Journal of Forestry Research","JOURNAL OF FORESTRY RESEARCH",986,0.748,0.00161,0
+"Restoration Ecology","RESTORATION ECOLOGY",4704,2.544,0.00482,0
+"Canadian Entomologist","CANADIAN ENTOMOLOGIST",2896,0.948,0.00118,0
+"Fishery Bulletin","FISHERY BULLETIN",3322,1.216,0.00103,0
+"Aquatic Botany","AQUATIC BOTANY",5466,1.787,0.00301,0
+"Marine Biodiversity","Marine Biodiversity",855,2.077,0.00181,0
+"Entomologia Experimentalis et Applicata","ENTOMOLOGIA EXPERIMENTALIS ET APPLICATA",5242,1.454,0.00412,0
+"American Journal of Human Biology","AMERICAN JOURNAL OF HUMAN BIOLOGY",3199,1.575,0.00418,0
+"Diseases of Aquatic Organisms","DISEASES OF AQUATIC ORGANISMS",6014,1.543,0.00431,0
+"Journal of Invertebrate Pathology","JOURNAL OF INVERTEBRATE PATHOLOGY",6060,2.511,0.00548,0
+"Estuarine, Coastal and Shelf Science","ESTUARINE COASTAL AND SHELF SCIENCE",15400,2.413,0.01587,1
+"Infection, Genetics and Evolution","INFECTION GENETICS AND EVOLUTION",7542,2.545,0.0193,1
+"Amphibia Reptilia","AMPHIBIA-REPTILIA",1398,1.105,0.00142,1
+"Acta Oecologica","",NA,1.93,NA,NA
+"International Journal of Ecology","",NA,0.493,NA,NA
+"Rendiconti Lincei","",NA,1.81,NA,NA
+"Annales de Limnologie","",NA,0.944,NA,NA
+"Human Nature","",NA,2.75,NA,NA
+"Algal Research","",NA,5.276,NA,NA
+"LWT","",NA,6.056,NA,NA
+"Biochar","",NA,11.452,NA,NA
+"Soil Biology and Biochemistry","",NA,5.795,NA,NA
+"Palaeogeography, Palaeoclimatology, Palaeoecology","",NA,3.565,NA,NA
+"Agriculture, Ecosystems and Environment","",NA,6.576,NA,NA
+"Rhizosphere","",NA,3.437,NA,NA
+"Acta Agriculturae Scandinavica Section B: Soil and Plant Science","",NA,1.931,NA,NA
+"Deep-Sea Research Part I: Oceanographic Research Papers","",NA,3.101,NA,NA
+"Proceedings of the Royal Society B: Biological Sciences","",NA,5.531,NA,NA
+"Comparative Biochemistry and Physiology -Part A : Molecular and Integrative Physiology","",NA,2.888,NA,NA
+"Frontiers in Ecology and Evolution","",NA,4.496,NA,NA
+"Gayana - Botanica","",NA,1.302,NA,NA
+"Rangeland Ecology and Management","",NA,2.398,NA,NA
+"Journal of Agricultural, Biological, and Environmental Statistics","",NA,1.524,NA,NA
+"Urban Forestry and Urban Greening","",NA,5.766,NA,NA
+"Plant Ecology and Diversity","",NA,2.763,NA,NA
+"Acta Ecologica Sinica","",NA,0.252,NA,NA
+"Arthropod Structure and Development","",NA,2.075,NA,NA
+"Trees - Structure and Function","",NA,2.888,NA,NA
+"Philosophical Transactions of the Royal Society B: Biological Sciences","",NA,6.671,NA,NA
+"Tree Genetics and Genomes","",NA,2.398,NA,NA
+"Geoderma Regional","",NA,4.201,NA,NA
+"Aquaculture Reports","",NA,3.385,NA,NA
+"Plant Diversity","",NA,3.359,NA,NA
+"Frontiers of Biogeography","",NA,0.862,NA,NA
+"Journal of Integrated Coastal Zone Management","",NA,0.244,NA,NA
+"Communications Biology","",NA,6.548,NA,NA
+"Agriculture and Natural Resources","",NA,0.263,NA,NA
+"Flora: Morphology, Distribution, Functional Ecology of Plants","",NA,2.22,NA,NA
+"Ocean and Coastal Management","",NA,4.33,NA,NA
+"Journal of Comparative Physiology A: Neuroethology, Sensory, Neural, and Behavioral Physiology","",NA,2.389,NA,NA
+"Annals of Agricultural Sciences","",NA,7.241,NA,NA
+"Aquaculture and Fisheries","",NA,3.59,NA,NA
+"North American Fungi","",NA,0,NA,NA
+"Ecological Management and Restoration","",NA,2.211,NA,NA
+"Biomass and Bioenergy","",NA,5.774,NA,NA
+"Indian Phytopathology","",NA,0.96,NA,NA
+"CCAMLR Science","",NA,0,NA,NA
+"Zeitschrift fur Pflanzenernahrung und Bodenkunde","",NA,2.566,NA,NA
+"Cogent Food and Agriculture","",NA,2.28,NA,NA
+"Northern Journal of Applied Forestry","",NA,0,NA,NA
+"Ecologia Austral","",NA,0.95,NA,NA
+"Frontiers in Marine Science","",NA,5.247,NA,NA
+"Botany","Botany",NA,1.1,0.00102,0
