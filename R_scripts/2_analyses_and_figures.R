@@ -45,9 +45,13 @@
   #   group_by(year) %>%
   #   slice_head(n=77) -> cite_data
   # 
-  #   cite_data %>%
-  #     select(-folder) %>%
-  #     select(-folder_link) -> cite_data2
+    
+# Remove unnecessary fields
+
+    # cite_data %>%
+    #   select(-folder) %>%
+    #   select(-folder_link) %>%
+    #   select(-recorded_by) -> cite_data
 
 # Save the data so I don't have to re-download it
   
