@@ -59,8 +59,8 @@ library(googlesheets4)
     rm(i, n_records, res, min_year, max_year)
 
 #  save df of articles
-  # saveRDS(object = out_df,
-  #         file = "data/search_results_2022_08_19.RDS")
+# saveRDS(object = out_df,
+#         file = "data/search_results_2022_08_19.RDS")
   
 # read in df if needed  
   
