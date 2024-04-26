@@ -159,4 +159,20 @@ rm(i, n_records, res, min_year, max_year)
   
   # change field settings and options on google sheets manually and then fill in by hand.
   
+  R_in_non_R_papers <- read_sheet("1LB2f4r3kzQG5KYUuqRo8WGGJdnpQH10SDjJmoeedFGA",
+                                  n_max = 300)    
+  
+  R_in_non_R_papers %>%
+    filter(!is.na(uses_R))%>%
+    group_by(year) %>%
+    summarise(n=n())
+
+  R_in_non_R_papers %>%
+    filter(!is.na(uses_R))%>%
+    group_by(year) %>%
+    select(year,uses_R)%>%
+    mutate(uses_R_bin = uses_R == "yes") %>%
+    group_by(year) %>%
+    summarise(n=n(),
+              n_uses_R = sum(uses_R_bin))
   
