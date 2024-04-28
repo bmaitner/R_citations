@@ -465,8 +465,6 @@
   
   # Modeling citation rate
     # Thanks to reviewer 2 for suggesting the poisson model
-  
-  
 
   # models
   
@@ -723,14 +721,23 @@
                        )+
     ylab("\nCumulative Citations")+
     xlab("\nYears Since Publication")+
-    scale_color_discrete(breaks=c('Fully open',
-                                  "Open code and data",
-                                  "Open code and publication",
-                                  "Open data and publication",
-                                  "Open data",
-                                  'Open publication',
-                                  'Fully closed',
-                                  'Open code'))+
+    scale_color_manual(values = 
+                         c('Fully open' = "#ff6db6",
+                                    'Open code and data' = "#24ff24",
+                                    'Open code and publication' = "#490092",
+                                    'Open data and publication' = "#006ddb",
+                                    'Open data' =  "#ffff6d",
+                                    'Open publication' = "#b66dff",
+                                    'Fully closed' = "#924900",
+                                    'Open code' = "#009292"),
+                       breaks=c('Fully open',
+                                         "Open code and data",
+                                         "Open code and publication",
+                                         "Open data and publication",
+                                         "Open data",
+                                         'Open publication',
+                                         'Fully closed',
+                                         'Open code'))+
     theme_bw()+
     theme(axis.text.x = element_text(vjust = 0.9, size=20),
           axis.text.y = element_text(size=20),
