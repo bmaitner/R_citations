@@ -281,11 +281,10 @@ library(googlesheets4)
   
   AICtab(m0,m1,m2,m3,m4,m5,m6,m7,m8,m9,m10)
   
-  summarym7 <- summary(m7)
-  summarym7
-  pref_model <- m7  
-  
-  
+  # Model 7 wins as before
+
+  summary(m7)
+
 #########################################
   
   # switching to age in days
@@ -378,9 +377,9 @@ library(googlesheets4)
                data_available*r_scripts_available ) # open access matters
   
   AICtab(m0,m1,m2,m3,m4,m5,m6,m7,m8,m9,m10)
+  
+  # Model 7 wins as before
 
   summary(m7)  
 
-    
-
-  
+###############

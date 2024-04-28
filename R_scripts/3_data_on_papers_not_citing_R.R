@@ -26,39 +26,38 @@ source("api_key.R")
 # Getting publication data via scopus
 
 # set year thresholds
-min_year <- 2010
-max_year <- 2022
+
+  min_year <- 2010
+  max_year <- 2022
 
 # prep empty output    
-out_df <- NULL
+
+  # out_df <- NULL
 
 # search by year (broken down by year because of 5k limit on records)
 
-for(i in min_year:max_year){
-  
-  res <- scopus_search(query = paste("all(ecology OR evolution)
-                                  AND SUBJAREA(AGRI)
-                                  AND pubyear = ", i,
-                                     "AND LANGUAGE(english)
-                                  AND srctype(j)
-                                  AND NOT REFTITLE({R: A Language and Environment for Statistical Computing})
-                                  "),
-                       count = 25,
-                       max_count = 5000,
-                       api_key = api_key)
-  
-  
-  # n_records <- res$total_results
-  
-  # if(n_records > 5000){stop("Brian, add a while() loop")}
-  
-  out_df <- bind_rows(out_df,gen_entries_to_df(res$entries)$df)
-  
-}#year loop
+  # for(i in min_year:max_year){
+  #   
+  #   res <- scopus_search(query = paste("all(ecology OR evolution)
+  #                                   AND SUBJAREA(AGRI)
+  #                                   AND pubyear = ", i,
+  #                                      "AND LANGUAGE(english)
+  #                                   AND srctype(j)
+  #                                   AND NOT REFTITLE({R: A Language and Environment for Statistical Computing})
+  #                                   "),
+  #                        count = 25,
+  #                        max_count = 5000,
+  #                        api_key = api_key)
+  # 
+  # 
+  # 
+  #   out_df <- bind_rows(out_df,gen_entries_to_df(res$entries)$df)
+  #   
+  # }#year loop
 
 # clean up
 
-rm(i, n_records, res, min_year, max_year)
+# rm(i, n_records, res, min_year, max_year)
 
 #  save df of articles
 
@@ -67,84 +66,84 @@ rm(i, n_records, res, min_year, max_year)
 
 # read in df if needed  
 
-  papers <- readRDS(file = "data/search_results_NOT_citing_R_4_22_2024.RDS")
+  # papers <- readRDS(file = "data/search_results_NOT_citing_R_4_22_2024.RDS")
 
   # reorder articles so that they are stratified
   
   # toss unnecessary fields and rename others for convenience
   
-  papers <- 
-    papers %>%
-    dplyr::select(c("dc:title",
-                    "dc:creator",
-                    "prism:publicationName",
-                    "prism:issn",
-                    "prism:volume",
-                    "prism:pageRange",
-                    "prism:coverDate",
-                    "prism:coverDisplayDate",
-                    "prism:doi",
-                    "citedby-count",
-                    "subtypeDescription",
-                    "openaccess")) %>%
-    rename(title =  'dc:title',
-           author = 'dc:creator',
-           journal = 'prism:publicationName',
-           issn = 'prism:issn',
-           volume = 'prism:volume',
-           pages = 'prism:pageRange',
-           date = 'prism:coverDate',
-           display_date = 'prism:coverDisplayDate',
-           doi = 'prism:doi',
-           citations = 'citedby-count',
-           article_type = subtypeDescription,
-           open_access = openaccess ) %>%
-    mutate(year = lubridate::year(date))
+  # papers <- 
+  #   papers %>%
+  #   dplyr::select(c("dc:title",
+  #                   "dc:creator",
+  #                   "prism:publicationName",
+  #                   "prism:issn",
+  #                   "prism:volume",
+  #                   "prism:pageRange",
+  #                   "prism:coverDate",
+  #                   "prism:coverDisplayDate",
+  #                   "prism:doi",
+  #                   "citedby-count",
+  #                   "subtypeDescription",
+  #                   "openaccess")) %>%
+  #   rename(title =  'dc:title',
+  #          author = 'dc:creator',
+  #          journal = 'prism:publicationName',
+  #          issn = 'prism:issn',
+  #          volume = 'prism:volume',
+  #          pages = 'prism:pageRange',
+  #          date = 'prism:coverDate',
+  #          display_date = 'prism:coverDisplayDate',
+  #          doi = 'prism:doi',
+  #          citations = 'citedby-count',
+  #          article_type = subtypeDescription,
+  #          open_access = openaccess ) %>%
+  #   mutate(year = lubridate::year(date))
   
   # randomize order of publications
   
-  papers <- papers[sample(x = 1:nrow(papers),size = nrow(papers),replace = FALSE),]
+  # papers <- papers[sample(x = 1:nrow(papers),size = nrow(papers),replace = FALSE),]
   
   #stratify sampling by year
   
-  papers %>%
-    group_by(year) %>%
-    mutate(n = row_number())%>%
-    arrange(n, year) %>%
-    ungroup() %>%
+  # papers %>%
+  #   group_by(year) %>%
+  #   mutate(n = row_number())%>%
+  #   arrange(n, year) %>%
+  #   ungroup() %>%
     
     #add needed columns      
     
-    mutate(uid = row_number(),
-           uses_R = NA,
-           comments = NA,
-           doi_url = paste("https://doi.org/",doi,sep = "")) %>%
-    
-    #reorder for convenience
-    
-    select("uid",
-           "doi_url",
-           "uses_R",
-           "comments",
-           "title",
-           "author",
-           "year",
-           "doi",
-           "journal",
-           "issn",
-           "volume",
-           "pages",
-           "date",
-           "display_date",
-           "citations",
-           "article_type",
-           "open_access",
-           "n"
-    ) -> papers
+    # mutate(uid = row_number(),
+    #        uses_R = NA,
+    #        comments = NA,
+    #        doi_url = paste("https://doi.org/",doi,sep = "")) %>%
+    # 
+    # #reorder for convenience
+    # 
+    # select("uid",
+    #        "doi_url",
+    #        "uses_R",
+    #        "comments",
+    #        "title",
+    #        "author",
+    #        "year",
+    #        "doi",
+    #        "journal",
+    #        "issn",
+    #        "volume",
+    #        "pages",
+    #        "date",
+    #        "display_date",
+    #        "citations",
+    #        "article_type",
+    #        "open_access",
+    #        "n"
+    # ) -> papers
   
   # replace doi_url = https://doi.org/NA with NA
   
-  papers$doi_url[which(is.na(papers$doi))] <- NA
+  # papers$doi_url[which(is.na(papers$doi))] <- NA
   
   # create a google sheet from papers df (can't specify location, so have to move the file)
   
@@ -159,20 +158,30 @@ rm(i, n_records, res, min_year, max_year)
   
   # change field settings and options on google sheets manually and then fill in by hand.
   
-  R_in_non_R_papers <- read_sheet("1LB2f4r3kzQG5KYUuqRo8WGGJdnpQH10SDjJmoeedFGA",
-                                  n_max = 300)    
-  
-  R_in_non_R_papers %>%
-    filter(!is.na(uses_R))%>%
-    group_by(year) %>%
-    summarise(n=n())
+  # R_in_non_R_papers <- read_sheet("1LB2f4r3kzQG5KYUuqRo8WGGJdnpQH10SDjJmoeedFGA",
+  #                                 n_max = 300)
+  # 
+  # 
+  # R_in_non_R_papers %>%
+  #   filter(!is.na(uses_R))%>%
+  #   group_by(year) %>%
+  #   slice_head(n = 10)%>%
+  #   mutate(uses_R_bin = uses_R == "yes") ->
+  #   R_in_non_R_papers
+  # 
+  # saveRDS(object = R_in_non_R_papers,
+  #         file = "data/R_in_papers_that_dont_cite_R.RDS")  
 
-  R_in_non_R_papers %>%
-    filter(!is.na(uses_R))%>%
-    group_by(year) %>%
-    select(year,uses_R)%>%
-    mutate(uses_R_bin = uses_R == "yes") %>%
-    group_by(year) %>%
+  
+  R_in_non_R_papers  <- readRDS(file = "data/R_in_papers_that_dont_cite_R.RDS")
+    
+  R_in_non_R_papers %>%  
     summarise(n=n(),
-              n_uses_R = sum(uses_R_bin))
+              n_uses_R = sum(uses_R_bin)) %>%
+    summarise(total_n = sum(n),
+              total_uses_R = sum(n_uses_R),
+              total_pct_uses_R = total_uses_R/total_n *100)
+
+  
+
   

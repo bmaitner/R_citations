@@ -146,6 +146,14 @@
   
   summary(cite_v_year_binary)
   
+  # Check for temporal autocorrelation
+  library(DHARMa)  
+  
+  simulateResiduals(cite_v_year_binary)%>%
+    recalculateResiduals(group = cite_data$age_scaled)%>%
+    testTemporalAutocorrelation(time = unique(cite_data$age_scaled))  
+  
+  
   # Get probabilities over time
     new_binary <- data.frame(year = 0:12,
                              r_scripts_available_binary = 1)
