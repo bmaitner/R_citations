@@ -222,21 +222,21 @@
       open_science_preds <- 
       bind_rows(data.frame(year = new_years,
                  value = code_prob.predictions,
-                 Availability = 'Open Code'),
+                 Availability = 'Open code'),
       data.frame(year = new_years,
                  value = data_prob.predictions,
-                 Availability = 'Open Data'),
+                 Availability = 'Open data'),
       data.frame(year = new_years,
                  value = open_prob.predictions,
-                 Availability = 'Open Publication')) %>%
+                 Availability = 'Open publication')) %>%
         mutate( year = year+2010)%>%
-        mutate(sig = case_when(Availability %in% c("Open Publication") ~ 2,
-                               Availability %in% c("Open Data", "Open Code") ~ 1))%>%
+        mutate(sig = case_when(Availability %in% c("Open publication") ~ 2,
+                               Availability %in% c("Open data", "Open code") ~ 1))%>%
         mutate(value = value*100) %>%
         mutate(sig = as.character(sig))
       
       open_science_preds$Availability <- factor(x = open_science_preds$Availability,
-                                                levels = c("Open Publication", "Open Data", "Open Code"))
+                                                levels = c("Open publication", "Open data", "Open code"))
       
       
         
@@ -266,14 +266,16 @@
            pct_scripts_available,
            pct_open_access_pub,
            pct_data_available) %>%
-    rename('Open Code' = pct_scripts_available,
-           'Open Publication' = pct_open_access_pub,
-           'Open Data' = pct_data_available) %>%
+    rename('Open code' = pct_scripts_available,
+           'Open publication' = pct_open_access_pub,
+           'Open data' = pct_data_available) %>%
     pivot_longer(cols = 2:4,names_to = "Availability") -> temp
   
   # order availability to match lines: pub, then data, then code
   
-  temp$Availability <- factor(x = temp$Availability,levels = c("Open Publication", "Open Data", "Open Code"))
+  temp$Availability <- factor(x = temp$Availability,levels = c("Open publication",
+                                                               "Open data",
+                                                               "Open code"))
   
 
 
@@ -283,10 +285,13 @@
                color = Availability))+
     geom_point(size=3)+
     geom_line(data = open_science_preds,
-              mapping = aes(x=year,y=value,color=Availability,
+              mapping = aes(x= year,
+                            y = value,
+                            color = Availability,
                             lty=sig),
-              linewidth=3)+
-    ylab("Availability")+
+              linewidth=3,
+              alpha = 0.5)+
+    ylab("% Articles")+
     xlab("Year")+
     xlab("\nYear")+
     scale_x_continuous(limits = c(2009.7, 2022.3),
@@ -298,16 +303,27 @@
                        expand = c(0,1),
                        minor_breaks = seq(0,40,1),
                        labels = c("0%","5%","10%","15%","20%","25%","30%","35%","40%"))+
+      scale_color_manual(values = 
+                           c('Fully open' = "#ff6db6",
+                             'Open code and data' = "#24ff24",
+                             'Open code and publication' = "#490092",
+                             'Open data and publication' = "#ffff6d",
+                             'Open data' =  "#006ddb",
+                             'Open publication' = "#b66dff",
+                             'Fully closed' = "#924900",
+                             'Open code' = "#009292"))+
     theme_classic()+
     theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=.9,size=20),
           axis.text.y = element_text(size=20),
-          axis.title.y = element_text(angle = 90, vjust=3,size=20),
+          axis.title.y = element_text(angle = 90, vjust=1,size=20),
           axis.title.x = element_text(size=20),
           title = element_text(size=20),
           legend.title=element_blank(),
           legend.text = element_text(size=20))+
       guides(linetype="none")->fig1_rev
   
+    fig1_rev
+    
   ggsave(plot = fig1_rev, filename = "figures/figure1.svg",
          width = 10,height = 5,units = "in",dpi = 600)
   
@@ -723,13 +739,13 @@
     xlab("\nYears Since Publication")+
     scale_color_manual(values = 
                          c('Fully open' = "#ff6db6",
-                                    'Open code and data' = "#24ff24",
-                                    'Open code and publication' = "#490092",
-                                    'Open data and publication' = "#006ddb",
-                                    'Open data' =  "#ffff6d",
-                                    'Open publication' = "#b66dff",
-                                    'Fully closed' = "#924900",
-                                    'Open code' = "#009292"),
+                           'Open code and data' = "#24ff24",
+                           'Open code and publication' = "#490092",
+                           'Open data and publication' = "#ffff6d",
+                           'Open data' =  "#006ddb",
+                           'Open publication' = "#b66dff",
+                           'Fully closed' = "#924900",
+                           'Open code' = "#009292"),
                        breaks=c('Fully open',
                                          "Open code and data",
                                          "Open code and publication",
@@ -948,7 +964,7 @@
                                            'Open data and pub.,\n low IF'))) %>%
   ggplot(mapping = aes(x=`age`,y=citations,color=Scenario))+
     geom_line(mapping = aes(size = Scenario))+
-    scale_size_manual(values = c(.75,.75,.75,1.5,.75))+
+    scale_size_manual(values = c(.75,.75,.75,2,.75))+
     # geom_ribbon(mapping = aes(ymin=citations_lower,
     #                           ymax=citations_upper,
     #                           fill=Access,color=NULL),
@@ -957,19 +973,20 @@
                        breaks = seq(1,13, 1),
                        minor_breaks = NULL,
                        expand = c(0, 0))+
-    scale_y_continuous(#limits = c(0,120),
-                       breaks = seq(0,550, 100),
-                       minor_breaks = seq(0,550,10),
-                       trans = "log10",
-                       expand = c(0, 0))+
+    scale_y_continuous(limits = c(0.9,600),
+      breaks = c(0,1,10,100,1000),
+      minor_breaks = seq(0,800, 10),
+      expand = c(0, 0)
+      ,trans = "log10"
+    )+
+    
     ylab("Cumulative Citations")+
     xlab("Years Since Publication")+
-    # scale_color_discrete(breaks=c('Fully open,\n low IF',
-    #                               'Open code and data,\n low IF',
-    #                               'Open code and pub.,\n low IF',
-    #                               'Fully closed,\n high IF',
-    #                               'Open data and pub.,\n low IF'
-    #                               ))+
+    scale_color_manual(values = c('Fully open,\n low IF' = "#ff6db6",
+                                  'Open code and data,\n low IF' = "#24ff24",
+                                  'Open code and pub.,\n low IF' = "#490092",
+                                  'Open data and pub.,\n low IF' = "#ffff6d",
+                                  'Fully closed,\n high IF' = "#924900"))+
     theme_bw()+
     theme(axis.text.x = element_text(vjust = 0.9, size=20),
           axis.text.y = element_text(size=15),
@@ -986,56 +1003,6 @@
          width = 10,height = 5,units = "in",dpi = 600)
   
 
-  #' predicted_data_if %>%
-  #'   filter(Access %in% c("Fully open", "Fully closed")) %>%
-  #'   ggplot(mapping = aes(x=`age`,
-  #'                        y=citations,
-  #'                        lty=Impact,
-  #'                        color=Access))+
-  #'   geom_line(size=0.75)+
-  #'   # geom_ribbon(mapping = aes(ymin=citations_lower,
-  #'   #                           ymax=citations_upper,
-  #'   #                           fill=Access,
-  #'   #                           color=NULL),
-  #'   #             alpha=0.25)+
-  #'   scale_x_continuous(limits = c(1,13),
-  #'                      breaks = seq(1,13, 1),
-  #'                      minor_breaks = NULL,
-  #'                      expand = c(0, 0))+
-  #'   scale_y_continuous(#limits = c(0,120),
-  #'                      #breaks = seq(0,120, 10),
-  #'                      #minor_breaks = NULL,
-  #'                      trans = "log10",
-  #'                       expand = c(0, 0))+
-  #'   ylab("Cumulative Citations")+
-  #'   xlab("Age")+
-  #'   scale_color_discrete(breaks=c('Fully open',
-  #'                                 #'Open code',
-  #'                                 #'Open publication',
-  #'                                 'Fully closed'),
-  #'                        type = c("#F8766D","#7CAE00"))+
-  #'   scale_fill_discrete(breaks=c('Fully open',
-  #'                                #'Open code',
-  #'                                #'Open publication',
-  #'                                'Fully closed'),
-  #'                       type = c("#F8766D","#7CAE00"))+
-  #'   
-  #'   theme_bw()+
-  #'   theme(axis.text.x = element_text(vjust = 0.9, size=20),
-  #'         axis.text.y = element_text(size=20),
-  #'         axis.title.y = element_text(vjust=2,size=20),
-  #'         axis.title.x = element_text(size=20),
-  #'         legend.text = element_text(size=20),
-  #'         legend.title = element_text(size=15)) -> fig3b
-  #' 
-  #' fig3b  
-
-  # ggsave(plot = fig3b, filename = "figures/figure3b.svg",
-  #        width = 10,height = 5,units = "in",dpi = 600)
-  # 
-  # ggsave(plot = fig3b, filename = "figures/figure3b.jpg",
-  #        width = 10,height = 5,units = "in",dpi = 600)
-  
 #############
 
   # IF citations
