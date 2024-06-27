@@ -1,0 +1,56 @@
+"uid","doi","doi_url","comments","code location","code_url"
+86,"10.3389/fevo.2017.00029","https://doi.org/10.3389/fevo.2017.00029","https://github.com/mlagisz/nest_predation_MA","Github","https://github.com/mlagisz/nest_predation_MA"
+702,"10.1007/s10725-022-00842-9","https://doi.org/10.1007/s10725-022-00842-9","https://github.com/wallacelab/paper-schultz-endophytes-2021","Github","https://github.com/wallacelab/paper-schultz-endophytes-2021"
+79,"10.1111/j.1365-2745.2010.01724.x","https://doi.org/10.1111/j.1365-2745.2010.01724.x","R scipts saved in a word file","SI",
+198,"10.1111/j.1558-5646.2012.01645.x","https://doi.org/10.1111/j.1558-5646.2012.01645.x","partial code","SI",
+731,"10.1007/s00606-011-0573-5","https://doi.org/10.1007/s00606-011-0573-5","R code supplied as word document","SI",
+17,"10.1111/jbi.12043","https://doi.org/10.1111/jbi.12043","Example code was partially available, but contained within a Word document.  R script used is just pasted together from the Word file","SI",
+82,"10.1111/j.1558-5646.2012.01790.x","https://doi.org/10.1111/j.1558-5646.2012.01790.x","R scipts saved in a word file","SI",
+446,"10.1111/cobi.12028","https://doi.org/10.1111/cobi.12028","includes R and winbugs code, but as a .docx file","SI",
+485,"10.1007/s00442-013-2602-2","https://doi.org/10.1007/s00442-013-2602-2","partial code included in a word document","SI",
+862,"10.1002/ece3.652","https://doi.org/10.1002/ece3.652","incomplete code","SI",
+279,"10.1186/s12711-015-0116-6","https://doi.org/10.1186/s12711-015-0116-6","NA","SI",
+202,"10.1111/eva.12380","https://doi.org/10.1111/eva.12380","data on dryad","SI",
+553,"10.1007/s10531-016-1053-6","https://doi.org/10.1007/s10531-016-1053-6","data not included, but may be reprocible from the original sources","SI",
+515,"10.1016/j.forpol.2016.10.004","https://doi.org/10.1016/j.forpol.2016.10.004","simulation study that seems fully reproducible","SI",
+905,"10.1016/j.ecolind.2017.01.009","https://doi.org/10.1016/j.ecolind.2017.01.009","seems to use data that are available by filling out a form, but not exacty clear which data were used.","SI",
+918,"10.3732/ajb.1600336","https://doi.org/10.3732/ajb.1600336","NA","SI",
+75,"10.1016/j.quascirev.2019.01.018","https://doi.org/10.1016/j.quascirev.2019.01.018","Data are provided via download links in R code","SI",
+206,"10.1007/s11816-020-00594-w","https://doi.org/10.1007/s11816-020-00594-w","The supplementary is actually publicly available","SI",
+90,"10.1139/cjfas-2020-0266","https://doi.org/10.1139/cjfas-2020-0266","code includes data as a vector","SI",
+207,"10.1016/j.ejsobi.2021.103337","https://doi.org/10.1016/j.ejsobi.2021.103337","code buried in SI","SI",
+324,"10.1016/j.actao.2021.103768","https://doi.org/10.1016/j.actao.2021.103768","some derived data available, but not full set of raw data","SI",
+896,"10.1016/j.ufug.2021.127095","https://doi.org/10.1016/j.ufug.2021.127095","NA","SI",
+962,"10.1016/j.soilbio.2021.108472","https://doi.org/10.1016/j.soilbio.2021.108472","Also included Python code for multi-threading the workload","SI",
+563,"10.1080/00028487.2013.793615","https://doi.org/10.1080/00028487.2013.793615","included in the appendix as raw text, which breaks the code (e.g. due to line breaks, special characters). also include jags code","appendix",
+949,"10.1007/s00265-022-03152-2","https://doi.org/10.1007/s00265-022-03152-2","https://bitbucket.org/maucantor/social_fishers/src/master/","bitbucket","https://bitbucket.org/maucantor/social_fishers/src/master/"
+758,"10.1666/12053","https://doi.org/10.1666/12053","partial code included in a text (rtf) file.  doi 10.5061/dryad.1779g","dryad","https://doi.org/10.5061/dryad.1779g"
+689,"10.1111/evo.14413","https://doi.org/10.1111/evo.14413","R code saved as .txt file; https://datadryad.org/stash/dataset/doi:10.5061/dryad.1c59zw3wd","dryad","https://doi.org/10.5061/dryad.1c59zw3wd"
+724,"10.1016/j.soilbio.2018.09.014","https://doi.org/10.1016/j.soilbio.2018.09.014","example code, not full set; https://portal.edirepository.org/nis/mapbrowse?packageid=edi.242.3","environmental data initiative","https://doi.org/10.6073/pasta/03fdc5bddce63d6c036559273069f6b6"
+417,"10.1890/09-1611.1","https://doi.org/10.1890/09-1611.1","code in a pdf; https://figshare.com/collections/Temporal_spatial_and_between-host_comparisons_of_patterns_of_parasitism_in_lake_zooplankton/3303585","figshare","https://doi.org/10.6084/m9.figshare.c.3303585.v1"
+340,"10.1890/11-0538.1","https://doi.org/10.1890/11-0538.1","https://figshare.com/collections/On_the_use_of_log-transformation_vs_nonlinear_regression_for_analyzing_biological_power_laws/3304173","figshare","https://doi.org/10.6084/m9.figshare.c.3304173.v1"
+174,"10.7717/peerj.616","https://doi.org/10.7717/peerj.616","http://dx.doi.org/10.6084/m9.figshare.1144471 ; uses simulated data which are produced by the code","figshare","http://dx.doi.org/10.6084/m9.figshare.1144471"
+408,"10.1890/14-0024.1","https://doi.org/10.1890/14-0024.1","only includes partial code;https://figshare.com/collections/Determinants_of_the_microstructure_of_plant_pollinator_networks/3307269","figshare","https://doi.org/10.6084/m9.figshare.c.3307269.v1"
+47,"10.1371/journal.pone.0175684","https://doi.org/10.1371/journal.pone.0175684","NA","figshare","https://doi.org/10.6084/m9.figshare.4810651.v1"
+698,"10.1016/j.anbehav.2018.04.008","https://doi.org/10.1016/j.anbehav.2018.04.008","https://figshare.com/articles/dataset/Data_and_code_for_Animal_Behaviour_manuscript_Assessing_the_similarity_of_song-type_transitions_among_birds_evidence_for_interspecies_variation_/5379811","figshare","https://doi.org/10.6084/m9.figshare.5379811.v1"
+201,"10.3354/ame01755","https://doi.org/10.3354/ame01755","https://github.com/adsteen/subspec","github","https://github.com/adsteen/subspec"
+765,"10.1016/j.anbehav.2019.12.012","https://doi.org/10.1016/j.anbehav.2019.12.012","https://github.com/CreanzaLab/ChippingSparrows","github","https://github.com/CreanzaLab/ChippingSparrows"
+168,"10.1016/j.fishres.2021.105884","https://doi.org/10.1016/j.fishres.2021.105884","not the full set of code, just a few functions;https://github.com/StefanieHaase/Adapted-HMMoce","github","https://github.com/StefanieHaase/Adapted-HMMoce"
+181,"10.1016/j.jhevol.2021.103029","https://doi.org/10.1016/j.jhevol.2021.103029","Excellent format, everyitng is on Github, even the ms","github"," https://github.com/reevesj191/Reeves_et_al_Ecological_Perspectives_Kanjera_South "
+220,"10.1007/s00265-021-03091-4","https://doi.org/10.1007/s00265-021-03091-4","slight error in github repo, correct link is: https://github.com/KristaNicholson/Niche-partitioning-among-social-clusters-of-a-resident-estuarine-apex-predator","github","https://github.com/KristaNicholson/Niche-partitioning-among-social-clusters-of-a-resident-estuarine-apex-predator"
+389,"10.1016/j.foreco.2021.119020","https://doi.org/10.1016/j.foreco.2021.119020","https://github.com/mingxinliu/nfp4MBC","github","https://github.com/mingxinliu/nfp4MBC"
+649,"10.1016/j.foreco.2021.118923","https://doi.org/10.1016/j.foreco.2021.118923","https://github.com/pulidofabs/Fungi-PonderosaPine","github","https://github.com/pulidofabs/Fungi-PonderosaPine"
+792,"10.1016/j.soilbio.2021.108142","https://doi.org/10.1016/j.soilbio.2021.108142","https://github.com/dossag/Mengsong-fungal-succession-on-woody-debris_SBB","github","https://github.com/dossag/Mengsong-fungal-succession-on-woody-debris_SBB"
+857,"10.1007/s00265-021-03094-1","https://doi.org/10.1007/s00265-021-03094-1","https://github.com/annemarievdmarel/coordinated-vigilance","github","https://github.com/annemarievdmarel/coordinated-vigilance"
+260,"10.1038/s41396-021-01163-x","https://doi.org/10.1038/s41396-021-01163-x","https://github.com/m-taubert/SIsCA","github","https://github.com/m-taubert/SIsCA"
+312,"10.1007/s10530-022-02825-3","https://doi.org/10.1007/s10530-022-02825-3","https://github.com/philpatton/cowbird/","github","https://github.com/philpatton/cowbird/"
+676,"10.1007/s00122-021-03949-1","https://doi.org/10.1007/s00122-021-03949-1","https://github.com/KosukeHamazaki/ROCAPS","github","https://github.com/KosukeHamazaki/ROCAPS"
+558,"10.1016/j.anbehav.2021.06.030","https://doi.org/10.1016/j.anbehav.2021.06.030","https://data.mendeley.com/datasets/92d7yc7sv3/1","mendeley data","https://data.mendeley.com/datasets/92d7yc7sv3/1"
+169,"10.1016/j.anbehav.2021.10.016","https://doi.org/10.1016/j.anbehav.2021.10.016","https://osf.io/nv9se/","osf","https://osf.io/nv9se/"
+325,"10.1016/j.anbehav.2021.12.015","https://doi.org/10.1016/j.anbehav.2021.12.015","https://osf.io/ds8vz/","osf","https://osf.io/ds8vz/"
+858,"10.1007/s00265-022-03209-2","https://doi.org/10.1007/s00265-022-03209-2","https://osf.io/dhgqc/; data are hidden behind a login/request","osf","https://osf.io/dhgqc/"
+898,"10.1111/j.1558-5646.2009.00838.x","https://doi.org/10.1111/j.1558-5646.2009.00838.x","https://www.zoology.ubc.ca/prog/mosaic/","website","https://www.zoology.ubc.ca/prog/mosaic/"
+108,"10.1002/ece3.722","https://doi.org/10.1002/ece3.722","NA","website","http://evol.bio.lmu.de/_statgen/software/jaatha/"
+61,"10.1016/j.cub.2018.04.062","https://doi.org/10.1016/j.cub.2018.04.062","NA","zenodo","https://doi.org/10.5281/zenodo.1204464"
+595,"10.1186/s40462-019-0176-2","https://doi.org/10.1186/s40462-019-0176-2","https://zenodo.org/record/2783972 ; Rights listed as ""open"" but no license provided","zenodo","https://doi.org/10.5281/zenodo.2783972"
+660,"10.1016/j.quascirev.2019.105893","https://doi.org/10.1016/j.quascirev.2019.105893","https://doi.org/10.5281/zenodo.3368376; Rights listed as ""open"" but no license provided","zenodo","https://doi.org/10.5281/zenodo.3368376"
